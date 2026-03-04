@@ -11,7 +11,7 @@ export type TechTag =
   | "Prisma"
   | "Vite"
   | "SQLite"
-  | string;
+  | (string & {});
 
 export type ContentBlock =
   | { type: "paragraph"; text: string }

@@ -4,6 +4,7 @@ import { Nav } from "@/components/Nav/Nav";
 import { projects } from "@/data/projects";
 import { posts } from "@/data/posts";
 import { TypewriterHeading } from "@/components/TypewriterHeading";
+import { CurrentYear } from "@/components/ui/CurrentYear";
 
 export default function HomePage() {
   const recentPosts = posts.slice(0, 3);
@@ -172,7 +173,7 @@ export default function HomePage() {
         style={{ borderTop: "1px solid var(--theme-border)" }}
       >
         <span style={{ fontSize: "0.65rem", color: "var(--theme-muted)" }}>
-          axel haciendo cosas · {new Date().getFullYear()}
+          axel haciendo cosas · <CurrentYear />
         </span>
         <a
           href="mailto:marazzi.axel@gmail.com"
