@@ -74,44 +74,7 @@ export const projects: Project[] = [
     body: [
       {
         type: "paragraph",
-        text: "Quería un editor de texto que no me moleste. Sin barras laterales, sin menús infinitos, sin notificaciones. Solo una ventana, un cursor y las palabras. Así nace minimal.",
-      },
-      {
-        type: "paragraph",
-        text: "Está hecho con Electron y TypeScript, y la idea es que sea lo más limpio y directo posible. Abrís la app, escribís y listo. Funciona en macOS, Windows y Linux.",
-      },
-      {
-        type: "heading",
-        text: "Cómo funciona",
-      },
-      {
-        type: "paragraph",
-        text: "Abrís minimal y tenés un espacio en blanco para escribir. Podés trabajar con múltiples tabs, cada uno se auto-titula con la primera línea de contenido. El markdown se renderiza inline mientras escribís: negritas, itálicas, headings, código, links y listas, todo sin modo preview.",
-      },
-      {
-        type: "heading",
-        text: "Sus features",
-      },
-      {
-        type: "list",
-        items: [
-          "Tabs: trabajá en múltiples documentos a la vez. Se auto-titulan desde la primera línea.",
-          "Markdown inline: bold, italic, underline, headings, code, links y listas se renderizan mientras escribís.",
-          "Auto-continue listas: al presionar Enter en un ítem de lista, se crea el siguiente automáticamente.",
-          "Tipografía configurable: elegí entre Merriweather (serif) y JetBrains Mono (monospace). Ajustá el tamaño de 12pt a 28pt.",
-          "Modo oscuro y claro: por defecto en dark mode, toggle instantáneo.",
-          "Protección de guardado: cerrar un tab o la app con cambios sin guardar te avisa antes.",
-          "Contador de palabras y caracteres siempre visible.",
-          "Pantalla de bienvenida con todos los atajos de teclado.",
-        ],
-      },
-      {
-        type: "heading",
-        text: "Por qué existe",
-      },
-      {
-        type: "paragraph",
-        text: "Porque los editores de texto tienen demasiadas cosas. Quería algo que se sienta como escribir en una hoja en blanco, pero en la compu. Sin distracciones, sin features que no uso. Solo escribir.",
+        text: "Abrís minimal y tenés un espacio en blanco para escribir. Podés trabajar con varias tabs y markdown se renderiza inline mientras escribís: negritas, itálicas, headings, código, links y listas, todo sin modo preview. Todo con atajos del teclado porque así me gusta trabajar a mí. Funciona en cualquier sistema operativo.",
       },
     ],
   },
