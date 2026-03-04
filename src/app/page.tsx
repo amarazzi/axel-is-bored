@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { Nav } from "@/components/Nav/Nav";
@@ -5,8 +7,10 @@ import { projects } from "@/data/projects";
 import { posts } from "@/data/posts";
 import { TypewriterHeading } from "@/components/TypewriterHeading";
 import { CurrentYear } from "@/components/ui/CurrentYear";
+import { useLanguage } from "@/components/Language/LanguageProvider";
 
 export default function HomePage() {
+  const { locale, t } = useLanguage();
   const recentPosts = posts.slice(0, 3);
 
   return (
@@ -22,11 +26,11 @@ export default function HomePage() {
             <div className="flex-1 min-w-0">
               <TypewriterHeading />
               <p className="text-sm leading-relaxed max-w-sm t-accent2" style={{ fontWeight: 300 }}>
-                Escribo cómo veo la vida en{" "}
+                {t["home.heroDesc1"]}{" "}
                 <Link href="/observando" className="ff-link-yellow">
                   observando
                 </Link>
-                . Además, vibecodeo y diseño pequeñas apps.
+                {t["home.heroDesc2"]}
               </p>
             </div>
 
@@ -102,7 +106,7 @@ export default function HomePage() {
 
           <div className="mt-6">
             <Link href="/observando" className="ff-link-muted" style={{ fontSize: "0.7rem" }}>
-              ver todos →
+              {t["home.seeAll"]}
             </Link>
           </div>
         </section>
@@ -113,7 +117,7 @@ export default function HomePage() {
             className="t-muted mb-10"
             style={{ fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase" }}
           >
-            Proyectos
+            {t["home.projects"]}
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-14">
@@ -126,14 +130,16 @@ export default function HomePage() {
                       {p.name}
                     </Link>
                   </h3>
-                  <p className="leading-relaxed mb-4 t-accent2" style={{ fontSize: "0.8rem", fontWeight: 300 }}>{p.tagline}</p>
+                  <p className="leading-relaxed mb-4 t-accent2" style={{ fontSize: "0.8rem", fontWeight: 300 }}>
+                    {locale === "en" ? (p.tagline_en ?? p.tagline) : p.tagline}
+                  </p>
                   <p className="mb-5 t-muted" style={{ fontSize: "0.65rem", letterSpacing: "0.04em" }}>{p.techStack.join("  ·  ")}</p>
                   <Link
                     href={`/projects/${p.id}`}
                     className="ff-link-muted"
                     style={{ fontSize: "0.7rem" }}
                   >
-                    más →
+                    {t["home.more"]}
                   </Link>
                 </div>
                 {/* Screenshot */}
@@ -161,7 +167,7 @@ export default function HomePage() {
 
           <div className="mt-10">
             <Link href="/projects" className="ff-link-muted" style={{ fontSize: "0.7rem" }}>
-              ver todos →
+              {t["home.seeAll"]}
             </Link>
           </div>
         </section>
@@ -173,7 +179,7 @@ export default function HomePage() {
         style={{ borderTop: "1px solid var(--theme-border)" }}
       >
         <span style={{ fontSize: "0.65rem", color: "var(--theme-muted)" }}>
-          axel haciendo cosas · <CurrentYear />
+          {t["home.footer"]} · <CurrentYear />
         </span>
         <a
           href="mailto:marazzi.axel@gmail.com"

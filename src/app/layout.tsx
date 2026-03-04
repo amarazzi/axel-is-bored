@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/Theme/ThemeProvider";
+import { LanguageProvider } from "@/components/Language/LanguageProvider";
 
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
@@ -15,8 +16,8 @@ export const metadata: Metadata = {
   description: "Proyectos simples, listas, y autoficción.",
 };
 
-// Inline script to apply saved theme before first paint (prevents FOUC)
-const themeInitScript = `
+// Inline script to apply saved theme + language before first paint (prevents FOUC)
+const initScript = `
 (function(){
   try {
     var THEMES = {
@@ -36,6 +37,10 @@ const themeInitScript = `
       s.setProperty("--theme-btn-bg",t.btnBg);
       s.setProperty("--logo-filter",t.logoFilter);
     }
+    var lang = localStorage.getItem("axel-lang");
+    if (lang === "en" || lang === "es") {
+      document.documentElement.lang = lang;
+    }
   } catch(e){}
 })()
 `;
@@ -48,10 +53,12 @@ export default function RootLayout({
   return (
     <html lang="es" className={ibmPlexMono.variable} suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <script dangerouslySetInnerHTML={{ __html: initScript }} />
       </head>
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <LanguageProvider>{children}</LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
