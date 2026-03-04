@@ -57,16 +57,14 @@ function ProjectCard({ project }: { project: Project }) {
       <p className="leading-relaxed mb-5 t-accent2" style={{ fontSize: "0.82rem", fontWeight: 300 }}>{project.description}</p>
 
       {project.screenshotPath && (
-        <div className="mb-5 overflow-hidden">
-          <Image
-            src={project.screenshotPath}
-            alt={`${project.name} screenshot`}
-            width={560}
-            height={315}
-            className="w-full h-auto transition-opacity duration-300"
-            style={{ opacity: 1 }}
-          />
-        </div>
+        <Image
+          src={project.screenshotPath}
+          alt={`${project.name} screenshot`}
+          width={560}
+          height={315}
+          className="w-full h-auto mb-5 block"
+          style={{ borderRadius: "12px", border: "none" }}
+        />
       )}
 
       <p className="mb-6 t-muted" style={{ fontSize: "0.65rem", letterSpacing: "0.04em" }}>
