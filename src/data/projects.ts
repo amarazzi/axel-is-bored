@@ -61,18 +61,59 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: "listapp",
-    name: "ListApp",
-    tagline: "Listas de todo lo que querés hacer, ver o consumir.",
+    id: "minimal",
+    name: "minimal",
+    tagline: "Un editor de texto sin distracciones para macOS.",
     description:
-      "Una app para hacer listas de cualquier cosa: discos que querés escuchar, " +
-      "películas pendientes, libros, restaurantes, lo que sea. Sin algoritmo, " +
-      "sin recomendaciones. Solo vos y tus listas. Rápida, limpia, para uso personal.",
-    techStack: ["React", "TypeScript", "Node.js"],
-    githubUrl: "https://github.com/amarazzi/listapp",
-    screenshotPath: "/screenshots/listapp.png",
+      "Un editor de texto minimalista para macOS hecho con SwiftUI. Inspirado en editores como uFocus y AI Writer, minimal saca todo lo que sobra y te deja enfocarte en escribir.",
+    techStack: ["Swift", "SwiftUI", "macOS"],
+    githubUrl: "https://github.com/amarazzi/minimal",
+    screenshotPath: "/screenshots/minimal.png",
     status: "active",
     year: 2025,
+    body: [
+      {
+        type: "paragraph",
+        text: "Quería un editor de texto que no me moleste. Sin barras laterales, sin menús infinitos, sin notificaciones. Solo una ventana, un cursor y las palabras. Así nace minimal.",
+      },
+      {
+        type: "paragraph",
+        text: "Está hecho con SwiftUI, pensado para macOS, y la idea es que sea lo más limpio y directo posible. Abrís la app, escribís y listo.",
+      },
+      {
+        type: "heading",
+        text: "Cómo funciona",
+      },
+      {
+        type: "paragraph",
+        text: "Abrís minimal y tenés un espacio en blanco para escribir. Podés trabajar con múltiples tabs, cada uno se auto-titula con la primera línea de contenido. El markdown se renderiza inline mientras escribís: negritas, itálicas, headings, código, links y listas, todo sin modo preview.",
+      },
+      {
+        type: "heading",
+        text: "Sus features",
+      },
+      {
+        type: "list",
+        items: [
+          "Tabs: trabajá en múltiples documentos a la vez. Se auto-titulan desde la primera línea.",
+          "Markdown inline: bold, italic, underline, headings, code, links y listas se renderizan mientras escribís.",
+          "Auto-continue listas: al presionar Enter en un ítem de lista, se crea el siguiente automáticamente.",
+          "Tipografía configurable: elegí entre Merriweather (serif) y JetBrains Mono (monospace). Ajustá el tamaño de 12pt a 28pt.",
+          "Modo oscuro y claro: por defecto en dark mode, toggle instantáneo.",
+          "Protección de guardado: cerrar un tab o la app con cambios sin guardar te avisa antes.",
+          "Contador de palabras y caracteres siempre visible.",
+          "Pantalla de bienvenida con todos los atajos de teclado.",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Por qué existe",
+      },
+      {
+        type: "paragraph",
+        text: "Porque los editores de texto tienen demasiadas cosas. Quería algo que se sienta como escribir en una hoja en blanco, pero en la compu. Sin distracciones, sin features que no uso. Solo escribir.",
+      },
+    ],
   },
 ];
 
