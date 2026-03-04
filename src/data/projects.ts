@@ -63,10 +63,10 @@ export const projects: Project[] = [
   {
     id: "minimal",
     name: "minimal",
-    tagline: "Un editor de texto sin distracciones para macOS.",
+    tagline: "Un editor de texto sin distracciones.",
     description:
-      "Un editor de texto minimalista para macOS hecho con SwiftUI. Inspirado en editores como uFocus y AI Writer, minimal saca todo lo que sobra y te deja enfocarte en escribir.",
-    techStack: ["Swift", "SwiftUI", "macOS"],
+      "Un editor de texto minimalista hecho con Electron. Inspirado en editores como uFocus y AI Writer, minimal saca todo lo que sobra y te deja enfocarte en escribir. Disponible para macOS, Windows y Linux.",
+    techStack: ["Electron", "TypeScript", "CodeMirror"],
     githubUrl: "https://github.com/amarazzi/minimal",
     screenshotPath: "/screenshots/minimal.png",
     status: "active",
@@ -78,7 +78,7 @@ export const projects: Project[] = [
       },
       {
         type: "paragraph",
-        text: "Está hecho con SwiftUI, pensado para macOS, y la idea es que sea lo más limpio y directo posible. Abrís la app, escribís y listo.",
+        text: "Está hecho con Electron y TypeScript, y la idea es que sea lo más limpio y directo posible. Abrís la app, escribís y listo. Funciona en macOS, Windows y Linux.",
       },
       {
         type: "heading",
