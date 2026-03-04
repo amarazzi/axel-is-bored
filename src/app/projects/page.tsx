@@ -57,10 +57,7 @@ function ProjectCard({ project }: { project: Project }) {
       <p className="leading-relaxed mb-5 t-accent2" style={{ fontSize: "0.82rem", fontWeight: 300 }}>{project.description}</p>
 
       {project.screenshotPath && (
-        <div
-          className="mb-5 overflow-hidden"
-          style={{ border: "1px solid var(--theme-border)" }}
-        >
+        <div className="mb-5 overflow-hidden">
           <Image
             src={project.screenshotPath}
             alt={`${project.name} screenshot`}
