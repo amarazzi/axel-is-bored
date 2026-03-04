@@ -15,7 +15,7 @@ export function ThemeSwitcher() {
         width: 11,
         height: 11,
         borderRadius: "50%",
-        backgroundColor: isDark ? "#E8E8E8" : "#141414",
+        backgroundColor: "var(--theme-fg)",
         border: "none",
         cursor: "pointer",
         transition: "background-color 0.3s ease, transform 0.15s ease",
