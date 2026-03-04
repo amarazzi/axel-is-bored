@@ -1,4 +1,5 @@
 import { fetchPostBySlug, fetchPosts } from "@/lib/rss";
+import { sanitizeHtml } from "@/lib/sanitize";
 import { Nav } from "@/components/Nav/Nav";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -60,7 +61,7 @@ export default async function PostPage({ params }: Props) {
 
         <div
           className="post-content"
-          dangerouslySetInnerHTML={{ __html: post.content }}
+          dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.content) }}
         />
 
         <div

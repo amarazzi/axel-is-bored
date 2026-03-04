@@ -1,3 +1,5 @@
+import { XMLParser } from "fast-xml-parser";
+
 export interface RSSPost {
   title: string;
   subtitle: string;
@@ -7,25 +9,12 @@ export interface RSSPost {
   content: string;
 }
 
-function extractField(xml: string, tag: string): string {
-  // CDATA
-  const cdataRe = new RegExp(
-    `<${tag}[^>]*><!\\[CDATA\\[([\\s\\S]*?)\\]\\]><\\/${tag}>`,
-    "i"
-  );
-  const cdataMatch = xml.match(cdataRe);
-  if (cdataMatch) return cdataMatch[1].trim();
-
-  // plain text
-  const plainRe = new RegExp(`<${tag}[^>]*>([^<]*)<\\/${tag}>`, "i");
-  const plainMatch = xml.match(plainRe);
-  return plainMatch ? plainMatch[1].trim() : "";
-}
-
 function decodeEntities(str: string): string {
   return str
     .replace(/&#(\d+);/g, (_, code) => String.fromCharCode(Number(code)))
-    .replace(/&#x([0-9a-fA-F]+);/g, (_, hex) => String.fromCharCode(parseInt(hex, 16)))
+    .replace(/&#x([0-9a-fA-F]+);/g, (_, hex) =>
+      String.fromCharCode(parseInt(hex, 16))
+    )
     .replace(/&nbsp;/g, " ")
     .replace(/&amp;/g, "&")
     .replace(/&lt;/g, "<")
@@ -56,6 +45,17 @@ function formatDate(pubDate: string): string {
   }
 }
 
+function extractText(value: unknown): string {
+  if (typeof value === "string") return value.trim();
+  if (typeof value === "object" && value !== null) {
+    const obj = value as Record<string, unknown>;
+    if (typeof obj.__cdata === "string") return obj.__cdata.trim();
+    if (typeof obj.__text === "string") return obj.__text.trim();
+    if (typeof obj["#text"] === "string") return obj["#text"].trim();
+  }
+  return String(value ?? "").trim();
+}
+
 export async function fetchPosts(): Promise<RSSPost[]> {
   try {
     const res = await fetch("https://observando.substack.com/feed", {
@@ -64,27 +64,36 @@ export async function fetchPosts(): Promise<RSSPost[]> {
     if (!res.ok) return [];
 
     const xml = await res.text();
-    const itemBlocks = xml
-      .split("<item>")
-      .slice(1)
-      .map((b) => b.split("</item>")[0]);
 
-    return itemBlocks
+    const parser = new XMLParser({
+      ignoreAttributes: false,
+      cdataPropName: "__cdata",
+      textNodeName: "#text",
+    });
+    const parsed = parser.parse(xml);
+
+    const channel = parsed?.rss?.channel;
+    if (!channel) return [];
+
+    const items: Record<string, unknown>[] = Array.isArray(channel.item)
+      ? channel.item
+      : channel.item
+        ? [channel.item]
+        : [];
+
+    return items
       .map((item): RSSPost | null => {
-        const url =
-          extractField(item, "link") ||
-          extractField(item, "guid") ||
-          "";
+        const url = extractText(item.link) || extractText(item.guid);
         const slug = extractSlug(url);
         if (!slug) return null;
 
         return {
-          title: extractField(item, "title"),
-          subtitle: stripHtml(extractField(item, "description")),
-          date: formatDate(extractField(item, "pubDate")),
+          title: extractText(item.title),
+          subtitle: stripHtml(extractText(item.description)),
+          date: formatDate(extractText(item.pubDate)),
           slug,
           url,
-          content: extractField(item, "content:encoded"),
+          content: extractText(item["content:encoded"]),
         };
       })
       .filter((p): p is RSSPost => p !== null);
@@ -93,7 +102,9 @@ export async function fetchPosts(): Promise<RSSPost[]> {
   }
 }
 
-export async function fetchPostBySlug(slug: string): Promise<RSSPost | null> {
+export async function fetchPostBySlug(
+  slug: string
+): Promise<RSSPost | null> {
   const posts = await fetchPosts();
   return posts.find((p) => p.slug === slug) ?? null;
 }

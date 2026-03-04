@@ -26,17 +26,18 @@ export function useTheme() {
 
 const DEFAULT_THEME = themes.find((t) => t.id === "standard")!;
 
-export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>(DEFAULT_THEME);
+function getInitialTheme(): Theme {
+  if (typeof window === "undefined") return DEFAULT_THEME;
+  const saved = localStorage.getItem("axel-theme");
+  if (saved) {
+    const found = themes.find((t) => t.id === saved);
+    if (found) return found;
+  }
+  return DEFAULT_THEME;
+}
 
-  // Cargar theme guardado
-  useEffect(() => {
-    const saved = localStorage.getItem("axel-theme");
-    if (saved) {
-      const found = themes.find((t) => t.id === saved);
-      if (found) setTheme(found);
-    }
-  }, []);
+export function ThemeProvider({ children }: { children: ReactNode }) {
+  const [theme, setTheme] = useState<Theme>(getInitialTheme);
 
   // Aplicar theme al DOM
   useEffect(() => {
