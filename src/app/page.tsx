@@ -148,7 +148,7 @@ export default function HomePage() {
                         style={{
                           objectPosition: "center bottom",
                           borderRadius: "10px",
-                          opacity: 0.88,
+                          opacity: 1,
                         }}
                       />
                     </Link>

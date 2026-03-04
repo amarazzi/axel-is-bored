@@ -67,7 +67,7 @@ function ProjectCard({ project }: { project: Project }) {
             width={560}
             height={315}
             className="w-full h-auto transition-opacity duration-300"
-            style={{ opacity: 0.5 }}
+            style={{ opacity: 1 }}
           />
         </div>
       )}

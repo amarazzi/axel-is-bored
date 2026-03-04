@@ -70,7 +70,7 @@ export default async function ProjectPage({ params }: Props) {
                 width={160}
                 height={178}
                 className="object-cover"
-                style={{ objectPosition: "center bottom", borderRadius: "12px", opacity: 0.88 }}
+                style={{ objectPosition: "center bottom", borderRadius: "12px", opacity: 1 }}
               />
             </div>
           )}
