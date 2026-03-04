@@ -11,7 +11,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/amarazzi/1oo1",
     screenshotPath: "/screenshots/1oo1.png",
     status: "active",
-    year: 2025,
+    year: 2026,
     body: [
       {
         type: "paragraph",
@@ -70,7 +70,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/amarazzi/minimal",
     screenshotPath: "/screenshots/minimal.png",
     status: "active",
-    year: 2025,
+    year: 2026,
     body: [
       {
         type: "paragraph",
