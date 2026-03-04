@@ -18,10 +18,10 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
           <div className="space-y-5 t-accent2" style={{ fontSize: "0.85rem", lineHeight: 1.8, fontWeight: 300 }}>
             <p>
-              Me llamo <strong style={{ fontWeight: 500 }}>Axel Marazzi</strong>. Vivo en Buenos Aires. Soy periodista y
+              Me llamo Axel Marazzi. Vivo en Buenos Aires. Soy periodista y
               diseñador. Hoy trabajo para ueno bank, un banco paraguayo,
               diseñando experiencias con inteligencia artificial.{" "}
-              <strong style={{ fontWeight: 500 }}>Mi trabajo, me gusta pensar, siempre mezcló tecnología y palabras</strong>.
+              Mi trabajo, me gusta pensar, siempre mezcló tecnología y palabras.
             </p>
             <p>
               Hace muchos años escribo{" "}
@@ -29,13 +29,11 @@ export default function AboutPage() {
                 observando
               </Link>
               , un newsletter que cambió muchísimo con los años. Hoy es una
-              especie de{" "}
-              <strong style={{ fontWeight: 500 }}>diario personal abierto donde exploro mi escritura</strong>{" "}
+              especie de diario personal abierto donde exploro mi escritura
               e intento contar cómo veo la vida.
             </p>
             <p>
-              En mi tiempo libre{" "}
-              <strong style={{ fontWeight: 500 }}>vibecodeo pequeños proyectos que resuelven algunas de mis necesidades</strong>.
+              En mi tiempo libre vibecodeo pequeños proyectos que resuelven algunas de mis necesidades.
               {" "}Los hago por placer, sin presión, a ver qué sale. Son herramientas
               que necesito yo mismo y que tal vez te sirvan a vos también.
             </p>
