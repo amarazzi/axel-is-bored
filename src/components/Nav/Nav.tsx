@@ -1,14 +1,20 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { ThemeSwitcher } from "@/components/Theme/ThemeSwitcher";
-
-const links = [
-  { label: "sobre mí", href: "/about" },
-  { label: "observando", href: "/observando" },
-  { label: "proyectos", href: "/projects" },
-];
+import { LanguageSwitcher } from "@/components/Language/LanguageSwitcher";
+import { useLanguage } from "@/components/Language/LanguageProvider";
 
 export function Nav() {
+  const { t } = useLanguage();
+
+  const links = [
+    { label: t["nav.about"], href: "/about" },
+    { label: t["nav.observando"], href: "/observando" },
+    { label: t["nav.projects"], href: "/projects" },
+  ];
+
   return (
     <nav
       style={{ borderBottom: "1px solid var(--theme-border)" }}
@@ -26,6 +32,7 @@ export function Nav() {
           ))}
           <span style={{ color: "var(--theme-border)", fontSize: "0.7rem" }}>|</span>
           <ThemeSwitcher />
+          <LanguageSwitcher />
         </div>
       </div>
     </nav>

@@ -1,15 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-
-const PHRASES = [
-  "hace cosas",
-  "escribe",
-  "vibecodea",
-  "diseña",
-  "lee",
-  "corre",
-];
+import { useState, useEffect, useRef } from "react";
+import { useLanguage } from "@/components/Language/LanguageProvider";
 
 const DISPLAY_MS  = 2400;
 const ERASE_MS    = 55;
@@ -17,7 +9,14 @@ const TYPE_MS     = 80;
 const PAUSE_MS    = 150;
 
 export function TypewriterHeading() {
-  const [suffix, setSuffix] = useState(PHRASES[0]);
+  const { t } = useLanguage();
+  const phrases = t["home.phrases"] as string[];
+  const [suffix, setSuffix] = useState(phrases[0]);
+  const phrasesRef = useRef(phrases);
+
+  useEffect(() => {
+    phrasesRef.current = phrases;
+  }, [phrases]);
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
@@ -25,8 +24,8 @@ export function TypewriterHeading() {
 
     const erase = (current: string) => {
       if (current.length === 0) {
-        phraseIdx = (phraseIdx + 1) % PHRASES.length;
-        timer = setTimeout(() => type(PHRASES[phraseIdx], 0), PAUSE_MS);
+        phraseIdx = (phraseIdx + 1) % phrasesRef.current.length;
+        timer = setTimeout(() => type(phrasesRef.current[phraseIdx], 0), PAUSE_MS);
         return;
       }
       const next = current.slice(0, -1);
@@ -44,9 +43,8 @@ export function TypewriterHeading() {
       timer = setTimeout(() => type(target, pos + 1), TYPE_MS);
     };
 
-    // Primer ciclo: mostrar la primera frase, luego arrancar
     timer = setTimeout(() => {
-      erase(PHRASES[0]);
+      erase(phrasesRef.current[0]);
     }, DISPLAY_MS);
 
     return () => clearTimeout(timer);

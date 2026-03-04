@@ -1,7 +1,7 @@
 import { fetchPostBySlug, fetchPosts } from "@/lib/rss";
 import { sanitizeHtml } from "@/lib/sanitize";
 import { Nav } from "@/components/Nav/Nav";
-import Link from "next/link";
+import { ObservandoPostContent } from "@/components/ObservandoPostContent";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
@@ -31,63 +31,12 @@ export default async function PostPage({ params }: Props) {
   const post = await fetchPostBySlug(slug);
   if (!post) notFound();
 
+  const sanitizedContent = sanitizeHtml(post.content);
+
   return (
     <div className="min-h-screen t-bg">
       <Nav />
-
-      <main className="max-w-2xl mx-auto px-8 py-24">
-        <p
-          className="t-muted mb-6"
-          style={{ fontSize: "0.65rem", letterSpacing: "0.1em" }}
-        >
-          {post.date}
-        </p>
-
-        <h1
-          className="t-accent mb-4"
-          style={{ fontSize: "1.5rem", fontWeight: 300, lineHeight: 1.3, letterSpacing: "-0.01em" }}
-        >
-          {post.title}
-        </h1>
-
-        <p
-          className="t-accent2 mb-12"
-          style={{ fontSize: "0.9rem", fontWeight: 300, lineHeight: 1.7 }}
-        >
-          {post.subtitle}
-        </p>
-
-        <div style={{ borderTop: "1px solid var(--theme-border)", marginBottom: "2.5rem" }} />
-
-        <div
-          className="post-content"
-          dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.content) }}
-        />
-
-        <div
-          className="mt-16"
-          style={{ borderTop: "1px solid var(--theme-border)", paddingTop: "1.5rem" }}
-        >
-          <a
-            href={post.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="ff-link-muted"
-            style={{ fontSize: "0.7rem" }}
-          >
-            leer en substack ↗
-          </a>
-        </div>
-      </main>
-
-      <footer
-        className="max-w-2xl mx-auto px-8 py-8"
-        style={{ borderTop: "1px solid var(--theme-border)" }}
-      >
-        <Link href="/observando" className="ff-back">
-          ← observando
-        </Link>
-      </footer>
+      <ObservandoPostContent post={post} sanitizedContent={sanitizedContent} />
     </div>
   );
 }

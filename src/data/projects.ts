@@ -5,8 +5,11 @@ export const projects: Project[] = [
     id: "1oo1",
     name: "1oo1",
     tagline: "Una película, un disco. Sin algoritmo, sin scroll.",
+    tagline_en: "One movie, one album. No algorithm, no scroll.",
     description:
       "Una app para macOS que vive en el menú bar y te da una película y un disco de las listas canónicas \"1001 cosas que hay que ver/escuchar antes de morir\". Sin scroll infinito, sin sugerencias. Solo los clásicos, de a uno, con tiempo.",
+    description_en:
+      "A macOS app that lives in the menu bar and gives you a movie and an album from the canonical \"1001 things to see/listen to before you die\" lists. No infinite scroll, no suggestions. Just the classics, one at a time.",
     techStack: ["Swift", "SwiftUI", "macOS", "GRDB"],
     githubUrl: "https://github.com/amarazzi/1oo1",
     screenshotPath: "/screenshots/1oo1.png",
@@ -59,13 +62,63 @@ export const projects: Project[] = [
         text: "Estoy muy cansado de los algoritmos recomendándome cosas todos los días todo el tiempo dependiendo de la agenda de la industria. Así nace 1oo1.",
       },
     ],
+    body_en: [
+      {
+        type: "paragraph",
+        text: "There are two lists that have been around for a long time that I really want to tackle: 1001 movies you must see before you die and 1001 albums you must hear before you die.",
+      },
+      {
+        type: "paragraph",
+        text: "They're huge, a bit overwhelming, but I'm determined to watch and listen to every movie and album on those lists, so I started vibecoding what ended up becoming 1oo1, a small app that lives in the macOS menu bar that solves exactly that.",
+      },
+      {
+        type: "paragraph",
+        text: "When you open it, you'll see a movie and an album. Nothing else. No scroll, no algorithm. Just the classics, one at a time. Once you've consumed it, you can rate it, write a short review and move on to the next one.",
+      },
+      {
+        type: "heading",
+        text: "How it works",
+      },
+      {
+        type: "paragraph",
+        text: "The app lives in the menu bar. When you click it, a window appears with two cards: a film and an album. When you're done, you can mark them, leave a rating and a note. 1oo1 will show you the next one. If the one you got doesn't appeal to you that day, you can skip it — without losing it, it will come back randomly later.",
+      },
+      {
+        type: "heading",
+        text: "Features",
+      },
+      {
+        type: "list",
+        items: [
+          "Persistent recommendations: the movie and album don't change on their own. They stay there until you decide what to do with them.",
+          "Automatic poster and cover art: fetched via TMDB (for movies) and iTunes (for albums). Cached locally.",
+          "TMDB rating next to the duration, for context before deciding.",
+          "Direct trailer link to YouTube.",
+          "Deep link to Spotify for albums.",
+          "History with date, rating and notes for everything you've marked.",
+          "Skip without penalty: skipping a movie or album doesn't remove it from the list, it just shows you another one.",
+          "No account, no sync, no subscription. Everything local, everything yours.",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Why it exists",
+      },
+      {
+        type: "paragraph",
+        text: "I'm really tired of algorithms recommending things to me every day all the time depending on the industry's agenda. That's how 1oo1 was born.",
+      },
+    ],
   },
   {
     id: "minimal",
     name: "minimal",
     tagline: "Un editor de texto sin distracciones.",
+    tagline_en: "A distraction-free text editor.",
     description:
       "Un editor de texto minimalista hecho con Electron. Inspirado en editores como uFocus y AI Writer, minimal saca todo lo que sobra y te deja enfocarte en escribir. Disponible para macOS, Windows y Linux.",
+    description_en:
+      "A minimalist text editor built with Electron. Inspired by editors like uFocus and AI Writer, minimal removes everything unnecessary and lets you focus on writing. Available for macOS, Windows and Linux.",
     techStack: ["Electron", "TypeScript", "CodeMirror"],
     githubUrl: "https://github.com/amarazzi/minimal",
     screenshotPath: "/screenshots/minimal.png",
@@ -112,6 +165,49 @@ export const projects: Project[] = [
       {
         type: "paragraph",
         text: "Porque los editores de texto tienen demasiadas cosas. Quería algo que se sienta como escribir en una hoja en blanco, pero en la compu. Sin distracciones, sin features que no uso. Solo escribir.",
+      },
+    ],
+    body_en: [
+      {
+        type: "paragraph",
+        text: "I wanted a text editor that doesn't bother me. No sidebars, no infinite menus, no notifications. Just a window, a cursor and the words. That's how minimal was born.",
+      },
+      {
+        type: "paragraph",
+        text: "It's built with Electron and TypeScript, and the idea is to be as clean and straightforward as possible. You open the app, you write, that's it. Works on macOS, Windows and Linux.",
+      },
+      {
+        type: "heading",
+        text: "How it works",
+      },
+      {
+        type: "paragraph",
+        text: "You open minimal and you have a blank space to write. You can work with multiple tabs and markdown renders inline as you type: bold, italics, headings, code, links and lists, all without preview mode. Everything with keyboard shortcuts because that's how I like to work. Works on any operating system.",
+      },
+      {
+        type: "heading",
+        text: "Features",
+      },
+      {
+        type: "list",
+        items: [
+          "Tabs: work on multiple documents at once. They auto-title from the first line.",
+          "Inline markdown: bold, italic, underline, headings, code, links and lists render as you type.",
+          "Auto-continue lists: pressing Enter on a list item automatically creates the next one.",
+          "Configurable typography: choose between Merriweather (serif) and JetBrains Mono (monospace). Adjust size from 12pt to 28pt.",
+          "Dark and light mode: dark mode by default, instant toggle.",
+          "Save protection: closing a tab or the app with unsaved changes warns you first.",
+          "Word and character counter always visible.",
+          "Welcome screen with all keyboard shortcuts.",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Why it exists",
+      },
+      {
+        type: "paragraph",
+        text: "Because text editors have too many things. I wanted something that feels like writing on a blank page, but on the computer. No distractions, no features I don't use. Just writing.",
       },
     ],
   },

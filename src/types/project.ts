@@ -22,7 +22,9 @@ export interface Project {
   id: string;
   name: string;
   tagline: string;
+  tagline_en?: string;
   description: string;
+  description_en?: string;
   techStack: TechTag[];
   githubUrl: string;
   liveUrl?: string;
@@ -30,4 +32,5 @@ export interface Project {
   status: "active" | "wip" | "archived";
   year: number;
   body?: ContentBlock[];
+  body_en?: ContentBlock[];
 }
