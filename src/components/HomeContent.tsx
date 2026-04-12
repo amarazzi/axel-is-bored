@@ -189,36 +189,35 @@ export function HomeContent({
       </main>
 
       <footer
-        className="max-w-4xl mx-auto px-8 py-8 flex justify-between items-start"
+        className="max-w-4xl mx-auto px-8 py-8"
         style={{ borderTop: "1px solid var(--theme-border)" }}
       >
-        <span style={{ fontSize: "0.65rem", color: "var(--theme-muted)" }}>
-          {t["home.footer"]} · <CurrentYear />
-          <span style={{ display: "flex", alignItems: "center", gap: "4px", marginTop: "5px", fontSize: "0.55rem" }}>
-            {t["home.footer.claude"]}{" "}
-            <a
-              href="https://claude.ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ display: "inline-flex", alignItems: "center" }}
-              title="Claude"
-            >
-              <img
-                src="/claude-icon.svg"
-                alt="Claude"
-                width={12}
-                height={12}
-                style={{ display: "block" }}
-              />
-            </a>
+        <div className="flex justify-between items-center">
+          <span style={{ fontSize: "0.65rem", color: "var(--theme-muted)" }}>
+            {t["home.footer"]} · <CurrentYear />
           </span>
-        </span>
-        <a
-          href="mailto:marazzi.axel@gmail.com"
-          className="ff-back"
-        >
-          marazzi.axel@gmail.com
-        </a>
+          <a href="mailto:marazzi.axel@gmail.com" className="ff-back">
+            marazzi.axel@gmail.com
+          </a>
+        </div>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "4px", marginTop: "10px", fontSize: "0.55rem", color: "var(--theme-muted)" }}>
+          {t["home.footer.claude"]}{" "}
+          <a
+            href="https://claude.ai"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ display: "inline-flex", alignItems: "center" }}
+            title="Claude"
+          >
+            <img
+              src="/claude-icon.svg"
+              alt="Claude"
+              width={12}
+              height={12}
+              style={{ display: "block" }}
+            />
+          </a>
+        </div>
       </footer>
     </div>
   );
