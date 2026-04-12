@@ -222,6 +222,7 @@ export const projects: Project[] = [
       "A terminal streaming client for macOS. Search, browse trending content and stream movies and TV shows directly from the command line, without opening a browser.",
     techStack: ["Go", "Bubbletea", "SQLite"],
     githubUrl: "https://github.com/amarazzi/torr",
+    screenshotPath: "/screenshots/torr.png",
     status: "active",
     year: 2026,
     body: [
