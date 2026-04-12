@@ -71,15 +71,29 @@ export function AboutContent() {
             <p>{t["about.p3"]}</p>
           </div>
 
-          <div>
-            <p className="mb-5 t-muted" style={{ fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>{t["about.contact"]}</p>
-            <a
-              href="mailto:marazzi.axel@gmail.com"
-              className="ff-link-muted"
-              style={{ fontSize: "0.82rem" }}
-            >
-              marazzi.axel@gmail.com
-            </a>
+          <div className="space-y-8">
+            <div>
+              <p className="mb-5 t-muted" style={{ fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>{t["about.contact"]}</p>
+              <a
+                href="mailto:marazzi.axel@gmail.com"
+                className="ff-link-muted"
+                style={{ fontSize: "0.82rem" }}
+              >
+                marazzi.axel@gmail.com
+              </a>
+            </div>
+            <div>
+              <p className="mb-5 t-muted" style={{ fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>CV</p>
+              <a
+                href="https://axelmarazzi.notion.site/Axel-Marazzi-9f827fe896524669a3ffc670a18460d3"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ff-link-muted"
+                style={{ fontSize: "0.82rem" }}
+              >
+                notion ↗
+              </a>
+            </div>
           </div>
         </div>
 
