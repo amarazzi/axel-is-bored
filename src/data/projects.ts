@@ -7,7 +7,7 @@ export const projects: Project[] = [
     tagline: "Un Stremio para la terminal.",
     tagline_en: "A Stremio for the terminal.",
     description:
-      "Un cliente de streaming para la terminal de macOS. Buscás, explorás tendencias y reproducís películas y series directamente desde la línea de comandos, sin abrir el navegador.",
+      "Un cliente de streaming, algo así como Stremio, para la terminal de macOS. Buscás, ves cuáles son las tendencias y reproducís películas y series directamente desde la línea de comandos.",
     description_en:
       "A terminal streaming client for macOS. Search, browse trending content and stream movies and TV shows directly from the command line, without opening a browser.",
     techStack: ["Go", "Bubbletea", "SQLite"],
