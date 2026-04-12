@@ -25,12 +25,14 @@ export function Nav() {
         </Link>
 
         <div className="flex items-center gap-4 sm:gap-8">
-          {links.map((link) => (
-            <Link key={link.href} href={link.href} className="ff-nav-link whitespace-nowrap">
-              {link.label}
-            </Link>
-          ))}
-          <span style={{ color: "var(--theme-border)", fontSize: "0.7rem" }}>|</span>
+          <div className="hidden sm:flex items-center gap-8">
+            {links.map((link) => (
+              <Link key={link.href} href={link.href} className="ff-nav-link whitespace-nowrap">
+                {link.label}
+              </Link>
+            ))}
+            <span style={{ color: "var(--theme-border)", fontSize: "0.7rem" }}>|</span>
+          </div>
           <ThemeSwitcher />
           <LanguageSwitcher />
         </div>
