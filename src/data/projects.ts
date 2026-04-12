@@ -2,6 +2,107 @@ import { Project } from "@/types/project";
 
 export const projects: Project[] = [
   {
+    id: "torr",
+    name: "torr",
+    tagline: "Un Stremio para la terminal.",
+    tagline_en: "A Stremio for the terminal.",
+    description:
+      "Un cliente de streaming para la terminal de macOS. Buscás, explorás tendencias y reproducís películas y series directamente desde la línea de comandos, sin abrir el navegador.",
+    description_en:
+      "A terminal streaming client for macOS. Search, browse trending content and stream movies and TV shows directly from the command line, without opening a browser.",
+    techStack: ["Go", "Bubbletea", "SQLite"],
+    githubUrl: "https://github.com/amarazzi/torr",
+    screenshotPath: "/screenshots/torr.png",
+    status: "active",
+    year: 2026,
+    body: [
+      {
+        type: "paragraph",
+        text: "Crecí con la película <em>Hackers</em> y siempre me gustaron las aplicaciones que se usan desde la terminal. Uso la línea de comandos y me siento como Trinity en <em>Matrix</em> usando map para escanear los puertos de un servidor. Y como uso mucho stremio y no encontré ninguna aplicación que hiciera eso mismo desde la terminal, le pedí al Claudito que me ayudara a hacerlo.",
+      },
+      {
+        type: "paragraph",
+        text: "Así es como nace torr, también uno de los nombres que me sugirió Claudio. Es un cliente de streaming para la terminal de macOS, hecho en Go con Bubbletea.",
+      },
+      {
+        type: "heading",
+        text: "Cómo funciona",
+      },
+      {
+        type: "paragraph",
+        text: "Abrís torr y tenés una interfaz interactiva en la terminal con lo que está trending en películas y series según TMDB. Podés buscar por título, filtrar por tipo de contenido, ver detalles, elegir calidad de stream y reproducir con VLC, IINA o QuickTime. Todo con el teclado, sin salir de la terminal.",
+      },
+      {
+        type: "heading",
+        text: "Sus features",
+      },
+      {
+        type: "list",
+        items: [
+          "Trending: películas y series populares del momento vía TMDB.",
+          "Búsqueda con filtro por tipo (películas, series o todo).",
+          "Selección de calidad: 4K hasta 480p, ordenado por seeders y tamaño.",
+          "Detección automática de reproductor: VLC, IINA o QuickTime.",
+          "Watchlist y historial persistentes en SQLite.",
+          "Continue watching: retomá donde lo dejaste.",
+          "Subtítulos opcionales vía OpenSubtitles.",
+          "Temas visuales: Nord, Dracula, Tokyo Night, Catppuccin y Matrix.",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Por qué existe",
+      },
+      {
+        type: "paragraph",
+        text: "Porque paso mucho tiempo en la terminal y quería encontrar contenidos para ver directamente desde ahí.",
+      },
+    ],
+    body_en: [
+      {
+        type: "paragraph",
+        text: "I grew up watching <em>Hackers</em> and always loved terminal-based applications. I use the command line and feel like Trinity in <em>The Matrix</em> scanning server ports with map. Since I use Stremio a lot and couldn't find anything that did the same from the terminal, I asked Claudito to help me build it.",
+      },
+      {
+        type: "paragraph",
+        text: "That's how torr was born — also one of the names Claudio suggested. It's a terminal streaming client for macOS, built in Go with Bubbletea.",
+      },
+      {
+        type: "heading",
+        text: "How it works",
+      },
+      {
+        type: "paragraph",
+        text: "You open torr and get an interactive terminal UI with what's trending in movies and TV according to TMDB. You can search by title, filter by content type, view details, choose stream quality and play with VLC, IINA or QuickTime. All with the keyboard, without leaving the terminal.",
+      },
+      {
+        type: "heading",
+        text: "Features",
+      },
+      {
+        type: "list",
+        items: [
+          "Trending: popular movies and TV shows via TMDB.",
+          "Search with type filter (movies, series or both).",
+          "Quality selection: 4K down to 480p, sorted by seeders and file size.",
+          "Automatic player detection: VLC, IINA or QuickTime.",
+          "Persistent watchlist and history in SQLite.",
+          "Continue watching: pick up where you left off.",
+          "Optional subtitles via OpenSubtitles.",
+          "Visual themes: Nord, Dracula, Tokyo Night, Catppuccin and Matrix.",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Why it exists",
+      },
+      {
+        type: "paragraph",
+        text: "Because I spend a lot of time in the terminal and wanted to find content to watch directly from there.",
+      },
+    ],
+  },
+  {
     id: "1oo1",
     name: "1oo1",
     tagline: "Una película, un disco. Sin algoritmo, sin scroll.",
@@ -208,107 +309,6 @@ export const projects: Project[] = [
       {
         type: "paragraph",
         text: "Because text editors have too many things. I wanted something that feels like writing on a blank page, but on the computer. No distractions, no features I don't use. Just writing.",
-      },
-    ],
-  },
-  {
-    id: "torr",
-    name: "torr",
-    tagline: "Un Stremio para la terminal.",
-    tagline_en: "A Stremio for the terminal.",
-    description:
-      "Un cliente de streaming para la terminal de macOS. Buscás, explorás tendencias y reproducís películas y series directamente desde la línea de comandos, sin abrir el navegador.",
-    description_en:
-      "A terminal streaming client for macOS. Search, browse trending content and stream movies and TV shows directly from the command line, without opening a browser.",
-    techStack: ["Go", "Bubbletea", "SQLite"],
-    githubUrl: "https://github.com/amarazzi/torr",
-    screenshotPath: "/screenshots/torr.png",
-    status: "active",
-    year: 2026,
-    body: [
-      {
-        type: "paragraph",
-        text: "Crecí con la película <em>Hackers</em> y siempre me gustaron las aplicaciones que se usan desde la terminal. Uso la línea de comandos y me siento como Trinity en Matrix usando map para escanear los puertos de un servidor. Y como uso mucho stremio y no encontré ninguna aplicación que hiciera eso mismo desde la terminal, le pedí al Claudito que me ayudara a hacerlo.",
-      },
-      {
-        type: "paragraph",
-        text: "Así es como nace torr, también uno de los nombres que me sugirió Claudio. Es un cliente de streaming para la terminal de macOS, hecho en Go con Bubbletea.",
-      },
-      {
-        type: "heading",
-        text: "Cómo funciona",
-      },
-      {
-        type: "paragraph",
-        text: "Abrís torr y tenés una interfaz interactiva en la terminal con lo que está trending en películas y series según TMDB. Podés buscar por título, filtrar por tipo de contenido, ver detalles, elegir calidad de stream y reproducir con VLC, IINA o QuickTime. Todo con el teclado, sin salir de la terminal.",
-      },
-      {
-        type: "heading",
-        text: "Sus features",
-      },
-      {
-        type: "list",
-        items: [
-          "Trending: películas y series populares del momento vía TMDB.",
-          "Búsqueda con filtro por tipo (películas, series o todo).",
-          "Selección de calidad: 4K hasta 480p, ordenado por seeders y tamaño.",
-          "Detección automática de reproductor: VLC, IINA o QuickTime.",
-          "Watchlist y historial persistentes en SQLite.",
-          "Continue watching: retomá donde lo dejaste.",
-          "Subtítulos opcionales vía OpenSubtitles.",
-          "Temas visuales: Nord, Dracula, Tokyo Night, Catppuccin y Matrix.",
-        ],
-      },
-      {
-        type: "heading",
-        text: "Por qué existe",
-      },
-      {
-        type: "paragraph",
-        text: "Porque paso mucho tiempo en la terminal y quería encontrar contenidos para ver directamente desde ahí.",
-      },
-    ],
-    body_en: [
-      {
-        type: "paragraph",
-        text: "I always wanted a way to see what's trending in movies and TV without opening Netflix, going to Letterboxd or scrolling Reddit. Something that works from the terminal, which is where I spend most of my time.",
-      },
-      {
-        type: "paragraph",
-        text: "That's how torr was born: an interactive terminal streaming client for macOS, built in Go with Bubbletea. Search, browse trending content and stream directly from the command line.",
-      },
-      {
-        type: "heading",
-        text: "How it works",
-      },
-      {
-        type: "paragraph",
-        text: "You open torr and get an interactive terminal UI with what's trending in movies and TV according to TMDB. You can search by title, filter by content type, view details, choose stream quality and play with IINA, VLC or QuickTime. All with the keyboard, without leaving the terminal.",
-      },
-      {
-        type: "heading",
-        text: "Features",
-      },
-      {
-        type: "list",
-        items: [
-          "Trending: popular movies and TV shows via TMDB.",
-          "Full-text search with type filter (movies, series or both).",
-          "Quality selection: 4K down to 480p, sorted by seeders and file size.",
-          "Automatic player detection: IINA, VLC or QuickTime.",
-          "Persistent watchlist and history in SQLite.",
-          "Continue watching: pick up where you left off.",
-          "Optional subtitles via OpenSubtitles.",
-          "Visual themes: Nord, Dracula, Tokyo Night, Catppuccin and Matrix.",
-        ],
-      },
-      {
-        type: "heading",
-        text: "Why it exists",
-      },
-      {
-        type: "paragraph",
-        text: "Because I spend a lot of time in the terminal and wanted finding something to watch to be as fast as any other command. No browser, no algorithms, no distractions.",
       },
     ],
   },
