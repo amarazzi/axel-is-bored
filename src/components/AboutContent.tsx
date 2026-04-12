@@ -89,7 +89,7 @@ export function AboutContent() {
                 className="ff-link-muted"
                 style={{ fontSize: "0.65rem", letterSpacing: "0.15em" }}
               >
-                CV ↗
+                cv ↗
               </a>
             </div>
           </div>

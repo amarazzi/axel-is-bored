@@ -121,9 +121,9 @@ export function HomeContent({
           </div>
 
           <div className="mt-6">
-            <Link href="/observando" className="ff-link-muted" style={{ fontSize: "0.7rem" }}>
+            <a href="https://observando.substack.com" target="_blank" rel="noopener noreferrer" className="ff-link-muted" style={{ fontSize: "0.7rem" }}>
               {t["home.seeAll"]}
-            </Link>
+            </a>
           </div>
         </section>
 
