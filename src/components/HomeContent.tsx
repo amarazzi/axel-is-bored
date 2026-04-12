@@ -194,14 +194,13 @@ export function HomeContent({
       >
         <span style={{ fontSize: "0.65rem", color: "var(--theme-muted)" }}>
           {t["home.footer"]} · <CurrentYear />
-          <br />
-          <span style={{ fontSize: "0.55rem" }}>
+          <span style={{ display: "flex", alignItems: "center", gap: "4px", marginTop: "5px", fontSize: "0.55rem" }}>
             {t["home.footer.claude"]}{" "}
             <a
               href="https://claude.ai"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ display: "inline-flex", alignItems: "center", verticalAlign: "middle" }}
+              style={{ display: "inline-flex", alignItems: "center" }}
               title="Claude"
             >
               <img
