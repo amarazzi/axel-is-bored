@@ -72,9 +72,9 @@ export interface Translations {
 }
 
 const es: Translations = {
-  "nav.about": "sobre mí",
+  "nav.about": "Sobre mí",
   "nav.observando": "observando",
-  "nav.projects": "proyectos",
+  "nav.projects": "Proyectos",
 
   "lang.label": "EN",
 
@@ -136,9 +136,9 @@ const es: Translations = {
 };
 
 const en: Translations = {
-  "nav.about": "about me",
+  "nav.about": "About me",
   "nav.observando": "observando",
-  "nav.projects": "projects",
+  "nav.projects": "Projects",
 
   "lang.label": "ES",
 

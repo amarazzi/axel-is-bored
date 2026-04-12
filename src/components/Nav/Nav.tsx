@@ -20,23 +20,11 @@ export function Nav() {
   return (
     <nav style={{ borderBottom: "1px solid var(--theme-border)" }}>
       <div className="max-w-4xl mx-auto px-4 sm:px-8 py-5 flex items-center justify-between">
-        <Link href="/" className="ff-logo" aria-label="inicio" onClick={() => setOpen(false)}>
-          <Image src="/logo.svg" alt="logo" width={20} height={20} style={{ filter: "var(--logo-filter)", opacity: 0.7 }} />
-        </Link>
-
-        <div className="flex items-center gap-4 sm:gap-8">
-          {/* Desktop links */}
-          <div className="hidden sm:flex items-center gap-8">
-            {links.map((link) => (
-              <Link key={link.href} href={link.href} className="ff-nav-link whitespace-nowrap">
-                {link.label}
-              </Link>
-            ))}
-            <span style={{ color: "var(--theme-border)", fontSize: "0.7rem" }}>|</span>
-          </div>
-
-          <ThemeSwitcher />
-          <LanguageSwitcher />
+        {/* Left: logo + hamburger (mobile only) */}
+        <div className="flex items-center gap-4">
+          <Link href="/" className="ff-logo" aria-label="inicio" onClick={() => setOpen(false)}>
+            <Image src="/logo.svg" alt="logo" width={20} height={20} style={{ filter: "var(--logo-filter)", opacity: 0.7 }} />
+          </Link>
 
           {/* Hamburger — mobile only */}
           <button
@@ -50,14 +38,37 @@ export function Nav() {
             <span style={{ display: "block", width: "18px", height: "1px", backgroundColor: "var(--theme-muted)", transition: "transform 0.2s ease, opacity 0.2s ease", transform: open ? "translateY(-6px) rotate(-45deg)" : "none" }} />
           </button>
         </div>
+
+        {/* Right: desktop links + theme + language */}
+        <div className="flex items-center gap-4 sm:gap-8">
+          <div className="hidden sm:flex items-center gap-8">
+            {links.map((link) => (
+              <Link key={link.href} href={link.href} className="ff-nav-link whitespace-nowrap">
+                {link.label}
+              </Link>
+            ))}
+            <span style={{ color: "var(--theme-border)", fontSize: "0.7rem" }}>|</span>
+          </div>
+          <ThemeSwitcher />
+          <LanguageSwitcher />
+        </div>
       </div>
 
       {/* Mobile menu */}
       {open && (
         <div
           className="sm:hidden"
-          style={{ borderTop: "1px solid var(--theme-border)" }}
+          style={{
+            borderTop: "1px solid var(--theme-border)",
+            animation: "menuSlideDown 0.2s ease",
+          }}
         >
+          <style>{`
+            @keyframes menuSlideDown {
+              from { opacity: 0; transform: translateY(-6px); }
+              to   { opacity: 1; transform: translateY(0); }
+            }
+          `}</style>
           {links.map((link) => (
             <Link
               key={link.href}
