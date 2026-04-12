@@ -121,7 +121,7 @@ const es: Translations = {
 
   "projectDetail.backProjects": "← proyectos",
 
-  "observando.subtitle": "autoficción",
+  "observando.subtitle": "Un poco de verdad un poco de ficción.",
   "observando.p1":
     "Hace muchos años escribo observando, un newsletter que cambió muchísimo con los años. Empezó siendo una cosa y se fue convirtiendo en otra sin que yo lo planeara demasiado.",
   "observando.p2":
