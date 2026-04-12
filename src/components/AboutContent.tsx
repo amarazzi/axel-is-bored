@@ -73,25 +73,23 @@ export function AboutContent() {
 
           <div className="space-y-8">
             <div>
-              <p className="mb-5 t-muted" style={{ fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>{t["about.contact"]}</p>
               <a
                 href="mailto:marazzi.axel@gmail.com"
                 className="ff-link-muted"
-                style={{ fontSize: "0.82rem" }}
+                style={{ fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase" }}
               >
-                marazzi.axel@gmail.com
+                {t["about.contact"]} ↗
               </a>
             </div>
             <div>
-              <p className="mb-5 t-muted" style={{ fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>CV</p>
               <a
                 href="https://axelmarazzi.notion.site/Axel-Marazzi-9f827fe896524669a3ffc670a18460d3"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="ff-link-muted"
-                style={{ fontSize: "0.82rem" }}
+                style={{ fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase" }}
               >
-                notion ↗
+                CV ↗
               </a>
             </div>
           </div>
