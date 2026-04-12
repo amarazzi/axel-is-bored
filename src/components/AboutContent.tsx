@@ -6,7 +6,7 @@ import { useLanguage } from "@/components/Language/LanguageProvider";
 const articles = [
   {
     title: "Cinco horas diarias mirando el teléfono",
-    publication: "Revista Anfibia",
+    publication: "Revista Qué Pasa",
     description: "Cómo las empresas tecnológicas diseñan a propósito la adicción al celular.",
     url: "https://www.revistaanfibia.com/cinco-horas-diarias-mirando-telefono/",
   },
