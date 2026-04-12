@@ -214,8 +214,8 @@ export const projects: Project[] = [
   {
     id: "torr",
     name: "torr",
-    tagline: "Películas y series desde la terminal.",
-    tagline_en: "Movies and TV shows from the terminal.",
+    tagline: "Un Stremio para la terminal.",
+    tagline_en: "A Stremio for the terminal.",
     description:
       "Un cliente de streaming para la terminal de macOS. Buscás, explorás tendencias y reproducís películas y series directamente desde la línea de comandos, sin abrir el navegador.",
     description_en:
@@ -228,11 +228,11 @@ export const projects: Project[] = [
     body: [
       {
         type: "paragraph",
-        text: "Siempre quise una forma de ver lo que está de moda en películas y series sin tener que abrir Netflix, entrar a Letterboxd o scrollear Reddit. Algo que funcione desde la terminal, que es donde paso la mayor parte del tiempo.",
+        text: "Crecí con la película Hackers y siempre me gustaron las aplicaciones que se usan desde la terminal. Uso la línea de comandos y me siento como Trinity en Matrix usando map para escanear los puertos de un servidor. Y como uso mucho stremio y no encontré ninguna aplicación que hiciera eso mismo desde la terminal, le pedí al Claudito que me ayudara a hacerlo.",
       },
       {
         type: "paragraph",
-        text: "Así nace torr: un cliente de streaming interactivo para la terminal de macOS, hecho en Go con Bubbletea. Buscás, explorás tendencias y reproducís directo desde la línea de comandos.",
+        text: "Así es como nace torr, también uno de los nombres que me sugirió Claudio. Es un cliente de streaming para la terminal de macOS, hecho en Go con Bubbletea.",
       },
       {
         type: "heading",
@@ -240,7 +240,7 @@ export const projects: Project[] = [
       },
       {
         type: "paragraph",
-        text: "Abrís torr y tenés una interfaz interactiva en la terminal con lo que está trending en películas y series según TMDB. Podés buscar por título, filtrar por tipo de contenido, ver detalles, elegir calidad de stream y reproducir con IINA, VLC o QuickTime. Todo con el teclado, sin salir de la terminal.",
+        text: "Abrís torr y tenés una interfaz interactiva en la terminal con lo que está trending en películas y series según TMDB. Podés buscar por título, filtrar por tipo de contenido, ver detalles, elegir calidad de stream y reproducir con VLC, IINA o QuickTime. Todo con el teclado, sin salir de la terminal.",
       },
       {
         type: "heading",
@@ -250,9 +250,9 @@ export const projects: Project[] = [
         type: "list",
         items: [
           "Trending: películas y series populares del momento vía TMDB.",
-          "Búsqueda full-text con filtro por tipo (películas, series o todo).",
+          "Búsqueda con filtro por tipo (películas, series o todo).",
           "Selección de calidad: 4K hasta 480p, ordenado por seeders y tamaño.",
-          "Detección automática de reproductor: IINA, VLC o QuickTime.",
+          "Detección automática de reproductor: VLC, IINA o QuickTime.",
           "Watchlist y historial persistentes en SQLite.",
           "Continue watching: retomá donde lo dejaste.",
           "Subtítulos opcionales vía OpenSubtitles.",
@@ -265,7 +265,7 @@ export const projects: Project[] = [
       },
       {
         type: "paragraph",
-        text: "Porque paso mucho tiempo en la terminal y quería que encontrar algo para ver sea tan rápido como cualquier otro comando. Sin abrir el navegador, sin algoritmos, sin distracciones.",
+        text: "Porque paso mucho tiempo en la terminal y quería encontrar contenidos para ver directamente desde ahí.",
       },
     ],
     body_en: [
