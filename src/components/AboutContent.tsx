@@ -86,7 +86,7 @@ export function AboutContent() {
         {/* Artículos */}
         <div className="mt-24">
           <p className="mb-8 t-muted" style={{ fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>
-            Algunos artículos
+            Algunos artículos periodísticos
           </p>
           <div style={{ borderTop: "1px solid var(--theme-border)" }}>
             {articles.map((article) => (
