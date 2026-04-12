@@ -41,7 +41,7 @@ export function ObservandoContent({
             className="ff-link-muted"
             style={{ fontSize: "0.65rem", letterSpacing: "0.04em" }}
           >
-            substack ↗
+            newsletter ↗
           </a>
         </div>
         <p className="mb-14 t-muted" style={{ fontSize: "0.65rem", letterSpacing: "0.1em" }}>{t["observando.subtitle"]}</p>

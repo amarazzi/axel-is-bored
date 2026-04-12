@@ -85,7 +85,7 @@ export function HomeContent({
               className="ff-link-muted"
               style={{ fontSize: "0.65rem", letterSpacing: "0.04em" }}
             >
-              substack ↗
+              newsletter ↗
             </a>
           </div>
 
