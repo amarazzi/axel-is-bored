@@ -68,9 +68,8 @@ export function ProjectDetailContent({ project }: { project: Project }) {
                     key={i}
                     className="t-accent2"
                     style={{ fontSize: "0.85rem", fontWeight: 300, lineHeight: 1.8 }}
-                  >
-                    {block.text}
-                  </p>
+                    dangerouslySetInnerHTML={{ __html: block.text }}
+                  />
                 );
               }
               if (block.type === "heading") {

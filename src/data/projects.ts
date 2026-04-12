@@ -228,7 +228,7 @@ export const projects: Project[] = [
     body: [
       {
         type: "paragraph",
-        text: "Crecí con la película Hackers y siempre me gustaron las aplicaciones que se usan desde la terminal. Uso la línea de comandos y me siento como Trinity en Matrix usando map para escanear los puertos de un servidor. Y como uso mucho stremio y no encontré ninguna aplicación que hiciera eso mismo desde la terminal, le pedí al Claudito que me ayudara a hacerlo.",
+        text: "Crecí con la película <em>Hackers</em> y siempre me gustaron las aplicaciones que se usan desde la terminal. Uso la línea de comandos y me siento como Trinity en Matrix usando map para escanear los puertos de un servidor. Y como uso mucho stremio y no encontré ninguna aplicación que hiciera eso mismo desde la terminal, le pedí al Claudito que me ayudara a hacerlo.",
       },
       {
         type: "paragraph",
