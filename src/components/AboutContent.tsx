@@ -76,7 +76,7 @@ export function AboutContent() {
               <a
                 href="mailto:marazzi.axel@gmail.com"
                 className="ff-link-muted"
-                style={{ fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase" }}
+                style={{ fontSize: "0.65rem", letterSpacing: "0.15em" }}
               >
                 {t["about.contact"]} ↗
               </a>
@@ -87,7 +87,7 @@ export function AboutContent() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="ff-link-muted"
-                style={{ fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase" }}
+                style={{ fontSize: "0.65rem", letterSpacing: "0.15em" }}
               >
                 CV ↗
               </a>
