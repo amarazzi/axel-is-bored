@@ -208,7 +208,7 @@ export function HomeContent({
                 alt="Claude"
                 width={12}
                 height={12}
-                style={{ display: "inline-block" }}
+                style={{ display: "block" }}
               />
             </a>
           </span>
