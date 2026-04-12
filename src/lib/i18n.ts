@@ -30,6 +30,7 @@ export interface Translations {
   "home.projects": string;
   "home.more": string;
   "home.footer": string;
+  "home.footer.claude": string;
 
   // About
   "about.title": string;
@@ -93,6 +94,7 @@ const es: Translations = {
   "home.projects": "Proyectos",
   "home.more": "más →",
   "home.footer": "axel haciendo cosas",
+  "home.footer.claude": "* página vibecodeada con ayuda de",
 
   "about.title": "Sobre mí",
   "about.subtitle": "periodista, diseñador y un poco escritor.",
@@ -157,6 +159,7 @@ const en: Translations = {
   "home.projects": "Projects",
   "home.more": "more →",
   "home.footer": "axel doing things",
+  "home.footer.claude": "* vibecoded with help from",
 
   "about.title": "About me",
   "about.subtitle": "journalist, designer, and a bit of a writer.",

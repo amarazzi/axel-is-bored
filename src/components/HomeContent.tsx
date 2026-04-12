@@ -196,7 +196,7 @@ export function HomeContent({
           {t["home.footer"]} · <CurrentYear />
           <br />
           <span style={{ fontSize: "0.55rem" }}>
-            * página vibecodeada con ayuda de{" "}
+            {t["home.footer.claude"]}{" "}
             <a
               href="https://claude.ai"
               target="_blank"
