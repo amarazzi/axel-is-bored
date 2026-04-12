@@ -20,7 +20,6 @@
   --theme-muted:   #6C6C6C;
   --theme-border:  #282828;
   --theme-btn-bg:  #141414;
-  --theme-link:    #C4714F;
 }
 
 /* ============================================================
@@ -107,7 +106,7 @@
 
   /* Link inline (texto corrido) — el toque que distingue */
   .ff-link-yellow {
-    color: var(--theme-link);
+    color: var(--theme-accent2);
     transition: color 0.15s ease;
   }
   .ff-link-yellow:hover { color: var(--theme-fg); }
@@ -200,7 +199,7 @@
     color: var(--theme-muted);
   }
   .post-content a {
-    color: var(--theme-link);
+    color: var(--theme-accent2);
     text-decoration: underline;
     text-decoration-color: var(--theme-border);
     text-underline-offset: 3px;
