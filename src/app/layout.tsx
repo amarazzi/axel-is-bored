@@ -3,6 +3,7 @@ import { IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/Theme/ThemeProvider";
 import { LanguageProvider } from "@/components/Language/LanguageProvider";
+import { DynamicTitle } from "@/components/DynamicTitle";
 
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
@@ -57,7 +58,10 @@ export default function RootLayout({
       </head>
       <body>
         <ThemeProvider>
-          <LanguageProvider>{children}</LanguageProvider>
+          <LanguageProvider>
+            <DynamicTitle />
+            {children}
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

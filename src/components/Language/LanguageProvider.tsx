@@ -24,9 +24,6 @@ export function useLanguage() {
 }
 
 function getInitialLocale(): Locale {
-  if (typeof window === "undefined") return DEFAULT_LOCALE;
-  const saved = localStorage.getItem(LOCALE_STORAGE_KEY);
-  if (saved === "en" || saved === "es") return saved;
   return DEFAULT_LOCALE;
 }
 

@@ -1,16 +1,18 @@
 "use client";
 
 import { useTheme } from "./ThemeProvider";
+import { useLanguage } from "@/components/Language/LanguageProvider";
 
 export function ThemeSwitcher() {
   const { theme, setThemeById } = useTheme();
+  const { t } = useLanguage();
   const isDark = theme.id !== "light";
 
   return (
     <button
       onClick={() => setThemeById(isDark ? "light" : "standard")}
-      title={isDark ? "Modo claro" : "Modo oscuro"}
-      aria-label={isDark ? "Modo claro" : "Modo oscuro"}
+      title={isDark ? t["theme.light"] : t["theme.dark"]}
+      aria-label={isDark ? t["theme.light"] : t["theme.dark"]}
       style={{
         width: 11,
         height: 11,

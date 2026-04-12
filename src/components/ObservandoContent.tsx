@@ -75,9 +75,11 @@ export function ObservandoContent({
             <div className="flex-1">
               {hasPosts
                 ? rssPosts.slice(0, 3).map((post, i) => (
-                    <Link
+                    <a
                       key={post.slug}
-                      href={`/observando/${post.slug}`}
+                      href={post.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="group block py-4"
                       style={{
                         borderBottom: "1px solid var(--theme-border)",
@@ -98,7 +100,7 @@ export function ObservandoContent({
                           {post.date}
                         </span>
                       </div>
-                    </Link>
+                    </a>
                   ))
                 : fallbackPosts.slice(0, 3).map((post, i) => (
                     <a

@@ -12,9 +12,12 @@ export function ProjectsContent() {
   return (
     <>
       <main className="max-w-4xl mx-auto px-8 py-24">
-        <h1 className="text-2xl mb-3 t-accent" style={{ fontWeight: 300, letterSpacing: "-0.01em" }}>{t["projects.title"]}</h1>
-        <p className="mb-16 t-muted" style={{ fontSize: "0.75rem", fontWeight: 300 }}>
+        <h1 className="text-2xl mb-2 t-accent" style={{ fontWeight: 300, letterSpacing: "-0.01em" }}>{t["projects.title"]}</h1>
+        <p className="mb-1 t-muted" style={{ fontSize: "0.65rem", letterSpacing: "0.1em" }}>
           {t["projects.subtitle"]}
+        </p>
+        <p className="mb-14 t-muted" style={{ fontSize: "0.55rem", letterSpacing: "0.05em" }}>
+          {t["projects.subtitle2"]}
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16">

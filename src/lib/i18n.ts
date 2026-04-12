@@ -12,9 +12,18 @@ export interface Translations {
   // Language switcher
   "lang.label": string;
 
+  // Meta titles
+  "meta.title.home": string;
+  "meta.title.about": string;
+  "meta.title.projects": string;
+  "meta.title.observando": string;
+
+  // Theme
+  "theme.light": string;
+  "theme.dark": string;
+
   // Home
   "home.phrases": string[];
-  "home.heroPrefix": string;
   "home.heroDesc1": string;
   "home.heroDesc2": string;
   "home.seeAll": string;
@@ -24,17 +33,19 @@ export interface Translations {
 
   // About
   "about.title": string;
+  "about.subtitle": string;
   "about.p1": string;
+  "about.p1b": string;
   "about.p2pre": string;
   "about.p2post": string;
   "about.p3": string;
-  "about.p4": string;
   "about.contact": string;
   "about.back": string;
 
   // Projects
   "projects.title": string;
   "projects.subtitle": string;
+  "projects.subtitle2": string;
   "projects.code": string;
   "projects.live": string;
   "projects.back": string;
@@ -67,8 +78,15 @@ const es: Translations = {
 
   "lang.label": "EN",
 
+  "meta.title.home": "axel haciendo cosas",
+  "meta.title.about": "sobre mí — axel haciendo cosas",
+  "meta.title.projects": "proyectos — axel haciendo cosas",
+  "meta.title.observando": "observando — axel haciendo cosas",
+
+  "theme.light": "Modo claro",
+  "theme.dark": "Modo oscuro",
+
   "home.phrases": ["hace cosas", "escribe", "vibecodea", "diseña", "lee", "corre"],
-  "home.heroPrefix": "axel",
   "home.heroDesc1": "Escribo cómo veo la vida en",
   "home.heroDesc2": ". Además, vibecodeo y diseño pequeñas apps.",
   "home.seeAll": "ver todos →",
@@ -77,19 +95,21 @@ const es: Translations = {
   "home.footer": "axel haciendo cosas",
 
   "about.title": "Sobre mí",
+  "about.subtitle": "periodista, diseñador y un poco escritor.",
   "about.p1":
-    "Me llamo Axel Marazzi. Vivo en Buenos Aires. Soy periodista y diseñador. Hoy trabajo para ueno bank, un banco paraguayo, diseñando experiencias con inteligencia artificial. Mi trabajo, me gusta pensar, siempre mezcló tecnología y palabras.",
+    "Me llamo Axel Marazzi. Soy periodista y diseñador. Hoy trabajo para ueno bank, un banco paraguayo, diseñando experiencias con inteligencia artificial. Pero antes de eso pasé por varias redacciones analizando cómo la tecnología nos afectaba, tanto positivamente como negativamente. Publiqué algunos textos en VICE, Anfibia, Qué Pasa.",
+  "about.p1b": "Mi trabajo, me gusta pensar, siempre mezcló tecnología y palabras.",
   "about.p2pre": "Hace muchos años escribo ",
   "about.p2post":
-    ", un newsletter que cambió muchísimo con los años. Hoy es una especie de diario personal abierto donde exploro mi escritura e intento contar cómo veo la vida.",
+    ", un newsletter que cambió un montón con el tiempo. Hoy es una especie de diario personal ficcionalizado donde exploro mi escritura y cuento cómo veo la vida.",
   "about.p3":
-    "En mi tiempo libre vibecodeo pequeños proyectos que resuelven algunas de mis necesidades. Los hago por placer, sin presión, a ver qué sale. Son herramientas que necesito yo mismo y que tal vez te sirvan a vos también.",
-  "about.p4": "Este sitio existe para juntar esas cosas.",
+    "En mi tiempo libre vibecodeo pequeños proyectos que resuelven algunas de mis necesidades o que simplemente hago porque me pinta. Es totalmente por placer, sin presión, a ver qué sale.",
   "about.contact": "contacto",
   "about.back": "← volver",
 
   "projects.title": "Proyectos",
-  "projects.subtitle": "Pequeñas apps que necesito y resuelvo vibecodeando.",
+  "projects.subtitle": "Pequeñas apps que vibecodeo.",
+  "projects.subtitle2": "* tienen muchos bugs jeje",
   "projects.code": "código ↗",
   "projects.live": "ver en vivo ↗",
   "projects.back": "← volver",
@@ -103,9 +123,9 @@ const es: Translations = {
   "observando.p1":
     "Hace muchos años escribo observando, un newsletter que cambió muchísimo con los años. Empezó siendo una cosa y se fue convirtiendo en otra sin que yo lo planeara demasiado.",
   "observando.p2":
-    "Hoy es una especie de diario personal abierto donde exploro mi escritura e intento contar cómo veo la vida. Algunas cosas pasaron tal cual las cuento. Otras no.",
+    "Hoy es una especie de diario personal ficcionalizado donde exploro mi escritura e intento contar cómo veo la vida. Algunas situaciones pasaron tal cual las cuento. Otras nada que ver.",
   "observando.p3":
-    "Cambio nombres, lugares, fechas, el orden de las cosas. La realidad me interesa como punto de partida, no como destino. Espero que algo de lo que escribo te resuene.",
+    "Cambio nombres, lugares, fechas, el orden. La realidad me interesa como punto de partida. Espero que algo de lo que escribo te resuene.",
   "observando.subscribe": "suscribirse →",
   "observando.latest": "últimas entregas",
   "observando.previous": "leer ediciones anteriores →",
@@ -122,8 +142,15 @@ const en: Translations = {
 
   "lang.label": "ES",
 
+  "meta.title.home": "axel doing things",
+  "meta.title.about": "about me — axel doing things",
+  "meta.title.projects": "projects — axel doing things",
+  "meta.title.observando": "observando — axel doing things",
+
+  "theme.light": "Light mode",
+  "theme.dark": "Dark mode",
+
   "home.phrases": ["does things", "writes", "vibecodes", "designs", "reads", "runs"],
-  "home.heroPrefix": "axel",
   "home.heroDesc1": "I write about how I see life in",
   "home.heroDesc2": ". I also vibecode and design small apps.",
   "home.seeAll": "see all →",
@@ -132,19 +159,21 @@ const en: Translations = {
   "home.footer": "axel doing things",
 
   "about.title": "About me",
+  "about.subtitle": "journalist, designer, and a bit of a writer.",
   "about.p1":
-    "My name is Axel Marazzi. I live in Buenos Aires. I'm a journalist and designer. I currently work for ueno bank, a Paraguayan bank, designing experiences with artificial intelligence. My work, I like to think, has always mixed technology and words.",
+    "My name is Axel Marazzi. I'm a journalist and designer. I currently work for ueno bank, a Paraguayan bank, designing experiences with artificial intelligence. But before that I worked in several newsrooms analyzing how technology affected us, both positively and negatively. I published some pieces in VICE, Anfibia, Qué Pasa.",
+  "about.p1b": "My work, I like to think, has always mixed technology and words.",
   "about.p2pre": "I've been writing ",
   "about.p2post":
-    " for many years, a newsletter that has changed a lot over time. Today it's a kind of open personal diary where I explore my writing and try to tell how I see life.",
+    " for many years, a newsletter that has changed a lot over time. Today it's a kind of fictionalized personal diary where I explore my writing and tell how I see life.",
   "about.p3":
-    "In my free time I vibecode small projects that solve some of my needs. I do them for pleasure, no pressure, just to see what comes out. They're tools I need myself and that might be useful to you too.",
-  "about.p4": "This site exists to bring those things together.",
+    "In my free time I vibecode small projects that solve some of my needs or that I simply do because I feel like it. It's totally for pleasure, no pressure, just to see what comes out.",
   "about.contact": "contact",
   "about.back": "← back",
 
   "projects.title": "Projects",
-  "projects.subtitle": "Small apps I need and solve by vibecoding.",
+  "projects.subtitle": "Small apps I vibecode.",
+  "projects.subtitle2": "* they have lots of bugs lol",
   "projects.code": "code ↗",
   "projects.live": "see live ↗",
   "projects.back": "← back",
@@ -158,9 +187,9 @@ const en: Translations = {
   "observando.p1":
     "I've been writing observando for many years, a newsletter that has changed a lot over time. It started as one thing and gradually became something else without me planning it too much.",
   "observando.p2":
-    "Today it's a kind of open personal diary where I explore my writing and try to tell how I see life. Some things happened exactly as I tell them. Others didn't.",
+    "Today it's a kind of fictionalized personal diary where I explore my writing and try to tell how I see life. Some situations happened exactly as I tell them. Others not at all.",
   "observando.p3":
-    "I change names, places, dates, the order of things. Reality interests me as a starting point, not a destination. I hope something I write resonates with you.",
+    "I change names, places, dates, the order. Reality interests me as a starting point. I hope something I write resonates with you.",
   "observando.subscribe": "subscribe →",
   "observando.latest": "latest entries",
   "observando.previous": "read previous editions →",

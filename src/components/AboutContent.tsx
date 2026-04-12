@@ -9,11 +9,13 @@ export function AboutContent() {
   return (
     <>
       <main className="max-w-4xl mx-auto px-8 py-24">
-        <h1 className="text-2xl mb-12 t-accent" style={{ fontWeight: 300, letterSpacing: "-0.01em" }}>{t["about.title"]}</h1>
+        <h1 className="text-2xl mb-2 t-accent" style={{ fontWeight: 300, letterSpacing: "-0.01em" }}>{t["about.title"]}</h1>
+        <p className="mb-14 t-muted" style={{ fontSize: "0.65rem", letterSpacing: "0.1em" }}>{t["about.subtitle"]}</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
           <div className="space-y-5 t-accent2" style={{ fontSize: "0.85rem", lineHeight: 1.8, fontWeight: 300 }}>
             <p>{t["about.p1"]}</p>
+            <p>{t["about.p1b"]}</p>
             <p>
               {t["about.p2pre"]}
               <Link href="/observando" className="ff-link-yellow">
@@ -22,7 +24,6 @@ export function AboutContent() {
               {t["about.p2post"]}
             </p>
             <p>{t["about.p3"]}</p>
-            <p>{t["about.p4"]}</p>
           </div>
 
           <div>
