@@ -139,6 +139,16 @@
   }
   .ff-back:hover { color: var(--theme-fg); }
 
+  /* Hamburger — mobile only */
+  .nav-hamburger {
+    display: flex;
+  }
+  @media (min-width: 640px) {
+    .nav-hamburger {
+      display: none;
+    }
+  }
+
   /* Divider */
   .ff-divider {
     border-color: var(--theme-border);

@@ -61,10 +61,10 @@ export function Nav() {
 
           {/* Hamburger — mobile only */}
           <button
-            className="sm:hidden"
+            className="nav-hamburger"
             onClick={toggle}
             aria-label={isOpen ? "cerrar menu" : "abrir menu"}
-            style={{ background: "none", border: "none", cursor: "pointer", padding: 0, display: "flex", flexDirection: "column", gap: "5px" }}
+            style={{ background: "none", border: "none", cursor: "pointer", padding: 0, flexDirection: "column", gap: "5px" }}
           >
             <span style={{ display: "block", width: "18px", height: "1px", backgroundColor: "var(--theme-muted)", transition: "transform 0.2s ease, opacity 0.2s ease", transform: isOpen ? "translateY(6px) rotate(45deg)" : "none" }} />
             <span style={{ display: "block", width: "18px", height: "1px", backgroundColor: "var(--theme-muted)", transition: "opacity 0.2s ease", opacity: isOpen ? 0 : 1 }} />
