@@ -82,9 +82,9 @@ export interface Translations {
 }
 
 const es: Translations = {
-  "nav.about": "Sobre mí",
-  "nav.observando": "observando",
-  "nav.projects": "Apps",
+  "nav.about": "sobre mí",
+  "nav.observando": "mis textos",
+  "nav.projects": "apps",
 
   "lang.label": "EN",
 
@@ -98,7 +98,7 @@ const es: Translations = {
 
   "home.phrases": ["hace cosas", "escribe", "vibecodea", "diseña", "lee", "corre"],
   "home.heroDesc1": "Escribo cómo veo la vida en",
-  "home.heroDesc2": ". Además, vibecodeo y diseño pequeñas apps.",
+  "home.heroDesc2": ", mi newsletter. Además, vibecodeo y diseño pequeñas apps.",
   "home.seeAll": "más entregas →",
   "home.projects": "Apps",
   "home.more": "más proyectos →",
@@ -145,7 +145,7 @@ const es: Translations = {
   "observandoPost.readOnSubstack": "leer en substack ↗",
   "observandoPost.back": "← observando",
 
-  "nav.recomendaciones": "Recomendaciones",
+  "nav.recomendaciones": "recomendaciones",
   "meta.title.recomendaciones": "recomendaciones — axel haciendo cosas",
   "recomendaciones.title": "Recomendaciones",
   "recomendaciones.subtitle": "libros que leí.",
@@ -155,9 +155,9 @@ const es: Translations = {
 };
 
 const en: Translations = {
-  "nav.about": "About me",
-  "nav.observando": "observando",
-  "nav.projects": "Apps",
+  "nav.about": "about me",
+  "nav.observando": "my writing",
+  "nav.projects": "apps",
 
   "lang.label": "ES",
 
@@ -171,7 +171,7 @@ const en: Translations = {
 
   "home.phrases": ["does things", "writes", "vibecodes", "designs", "reads", "runs"],
   "home.heroDesc1": "I write about how I see life in",
-  "home.heroDesc2": ". I also vibecode and design small apps.",
+  "home.heroDesc2": ", my newsletter. I also vibecode and design small apps.",
   "home.seeAll": "see more →",
   "home.projects": "Apps",
   "home.more": "more projects →",
@@ -218,7 +218,7 @@ const en: Translations = {
   "observandoPost.readOnSubstack": "read on substack ↗",
   "observandoPost.back": "← observando",
 
-  "nav.recomendaciones": "Recommendations",
+  "nav.recomendaciones": "recommendations",
   "meta.title.recomendaciones": "recommendations — axel doing things",
   "recomendaciones.title": "Recommendations",
   "recomendaciones.subtitle": "books I read.",
