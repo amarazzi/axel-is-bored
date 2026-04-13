@@ -44,6 +44,12 @@ src/data/
 - Para inline styles usar `var(--theme-border)`, etc.
 - **No hardcodear colores** — todo pasa por el sistema de temas
 
+### Recomendaciones
+- Agregar en `src/data/books.ts` siguiendo la estructura existente
+- Portadas en `public/covers/`
+- El campo `yearRead` se guarda siempre aunque no se muestre
+- El componente agrupa automáticamente por año con subtítulo cuando hay libros de más de un año; si todos son del mismo año, no muestra el encabezado
+
 ### Proyectos
 - Agregar en `src/data/projects.ts` siguiendo la estructura existente
 - Campos requeridos: `id`, `name`, `tagline`, `tagline_en`, `description`, `description_en`, `techStack`, `githubUrl`, `status`, `year`, `body`, `body_en`
@@ -65,6 +71,11 @@ Necesario porque el inline script modifica `lang` del HTML antes de que React hi
 
 ### ThemeProvider useEffect
 El tema se carga en `useEffect` (no en el estado inicial) para evitar hydration mismatch entre servidor y cliente.
+
+## Flujo de trabajo
+1. Hacer los cambios en local
+2. **Esperar confirmación del usuario** antes de hacer push — el usuario revisa primero en local que todo funcione y le guste
+3. Solo pushear cuando el usuario lo pida explícitamente
 
 ## Git
 - **Email:** marazzi.axel@gmail.com

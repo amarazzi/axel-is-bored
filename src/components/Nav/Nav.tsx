@@ -17,6 +17,7 @@ export function Nav() {
     { label: t["nav.about"], href: "/about" },
     { label: t["nav.observando"], href: "/observando" },
     { label: t["nav.projects"], href: "/projects" },
+    { label: t["nav.recomendaciones"], href: "/recomendaciones" },
   ];
 
   function openMenu() {

@@ -70,6 +70,14 @@ export interface Translations {
   // Observando post
   "observandoPost.readOnSubstack": string;
   "observandoPost.back": string;
+
+  // Recomendaciones
+  "nav.recomendaciones": string;
+  "meta.title.recomendaciones": string;
+  "recomendaciones.title": string;
+  "recomendaciones.subtitle": string;
+  "recomendaciones.empty": string;
+  "recomendaciones.back": string;
 }
 
 const es: Translations = {
@@ -135,6 +143,13 @@ const es: Translations = {
 
   "observandoPost.readOnSubstack": "leer en substack ↗",
   "observandoPost.back": "← observando",
+
+  "nav.recomendaciones": "Recomendaciones",
+  "meta.title.recomendaciones": "recomendaciones — axel haciendo cosas",
+  "recomendaciones.title": "Recomendaciones",
+  "recomendaciones.subtitle": "libros que leí.",
+  "recomendaciones.empty": "Próximamente.",
+  "recomendaciones.back": "← volver",
 };
 
 const en: Translations = {
@@ -200,6 +215,13 @@ const en: Translations = {
 
   "observandoPost.readOnSubstack": "read on substack ↗",
   "observandoPost.back": "← observando",
+
+  "nav.recomendaciones": "Recommendations",
+  "meta.title.recomendaciones": "recommendations — axel doing things",
+  "recomendaciones.title": "Recommendations",
+  "recomendaciones.subtitle": "books I read.",
+  "recomendaciones.empty": "Coming soon.",
+  "recomendaciones.back": "← back",
 };
 
 export const translations: Record<Locale, Translations> = { es, en };
