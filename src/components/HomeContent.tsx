@@ -148,14 +148,7 @@ export function HomeContent({
                   <p className="leading-relaxed mb-4 t-accent2" style={{ fontSize: "0.8rem", fontWeight: 300 }}>
                     {locale === "en" ? (p.tagline_en ?? p.tagline) : p.tagline}
                   </p>
-                  <p className="mb-5 t-muted" style={{ fontSize: "0.65rem", letterSpacing: "0.04em" }}>{p.techStack.join("  ·  ")}</p>
-                  <Link
-                    href={`/projects/${p.id}`}
-                    className="ff-link-muted"
-                    style={{ fontSize: "0.7rem" }}
-                  >
-                    {t["home.more"]}
-                  </Link>
+                  <p className="t-muted" style={{ fontSize: "0.65rem", letterSpacing: "0.04em" }}>{p.techStack.join("  ·  ")}</p>
                 </div>
                 {p.screenshotPath && (
                   <div className="shrink-0">
