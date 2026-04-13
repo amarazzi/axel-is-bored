@@ -3,10 +3,13 @@
 import { Project, ContentBlock } from "@/types/project";
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 import { useLanguage } from "@/components/Language/LanguageProvider";
+import { ImageLightbox } from "@/components/ImageLightbox";
 
 export function ProjectDetailContent({ project }: { project: Project }) {
   const { locale, t } = useLanguage();
+  const [lightbox, setLightbox] = useState(false);
 
   const statusLabel: Record<Project["status"], string> = {
     active: t["projects.status.active"],
@@ -51,8 +54,16 @@ export function ProjectDetailContent({ project }: { project: Project }) {
                 width={160}
                 height={178}
                 className="object-cover"
-                style={{ objectPosition: "center bottom", borderRadius: "12px", opacity: 1 }}
+                style={{ objectPosition: "center bottom", borderRadius: "12px", opacity: 1, cursor: "zoom-in" }}
+                onClick={() => setLightbox(true)}
               />
+              {lightbox && (
+                <ImageLightbox
+                  src={project.screenshotPath}
+                  alt={`${project.name} screenshot`}
+                  onClose={() => setLightbox(false)}
+                />
+              )}
             </div>
           )}
         </div>
