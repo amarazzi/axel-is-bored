@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { books } from "@/data/books";
 import { Book } from "@/types/book";
+import { CurrentlyReading } from "@/lib/goodreads";
 import { useLanguage } from "@/components/Language/LanguageProvider";
 
 function Stars({ rating }: { rating: number }) {
@@ -61,7 +62,7 @@ function BookCard({ book, locale }: { book: Book; locale: "es" | "en" }) {
   );
 }
 
-export function RecomendacionesContent() {
+export function RecomendacionesContent({ currentlyReading }: { currentlyReading: CurrentlyReading | null }) {
   const { locale, t } = useLanguage();
 
   return (
@@ -76,6 +77,24 @@ export function RecomendacionesContent() {
         <p className="mb-14 t-muted" style={{ fontSize: "0.65rem", letterSpacing: "0.1em" }}>
           {t["recomendaciones.subtitle"]}
         </p>
+
+        {currentlyReading && (
+          <div className="mb-8">
+            <p className="t-muted" style={{ fontSize: "0.65rem", letterSpacing: "0.04em" }}>
+              {t["recomendaciones.currentlyReading"]}:{" "}
+              <a
+                href={currentlyReading.bookUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="t-accent hover:opacity-70 transition-opacity duration-150"
+              >
+                {currentlyReading.title}
+              </a>
+              {" "}· {currentlyReading.author}
+            </p>
+            <div style={{ borderBottom: "1px solid var(--theme-border)", marginTop: "1.5rem" }} />
+          </div>
+        )}
 
         {books.length === 0 ? (
           <p className="t-muted" style={{ fontSize: "0.78rem" }}>

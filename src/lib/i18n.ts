@@ -78,18 +78,19 @@ export interface Translations {
   "recomendaciones.subtitle": string;
   "recomendaciones.empty": string;
   "recomendaciones.back": string;
+  "recomendaciones.currentlyReading": string;
 }
 
 const es: Translations = {
   "nav.about": "Sobre mí",
   "nav.observando": "observando",
-  "nav.projects": "Proyectos",
+  "nav.projects": "Apps",
 
   "lang.label": "EN",
 
   "meta.title.home": "axel haciendo cosas",
   "meta.title.about": "sobre mí — axel haciendo cosas",
-  "meta.title.projects": "proyectos — axel haciendo cosas",
+  "meta.title.projects": "apps — axel haciendo cosas",
   "meta.title.observando": "observando — axel haciendo cosas",
 
   "theme.light": "Modo claro",
@@ -99,7 +100,7 @@ const es: Translations = {
   "home.heroDesc1": "Escribo cómo veo la vida en",
   "home.heroDesc2": ". Además, vibecodeo y diseño pequeñas apps.",
   "home.seeAll": "más entregas →",
-  "home.projects": "Proyectos",
+  "home.projects": "Apps",
   "home.more": "más proyectos →",
   "home.footer": "axel haciendo cosas",
   "home.footer.claude": "* página vibecodeada con ayuda de",
@@ -117,8 +118,8 @@ const es: Translations = {
   "about.contact": "contacto",
   "about.back": "← volver",
 
-  "projects.title": "Proyectos",
-  "projects.subtitle": "Pequeñas apps que vibecodeo.",
+  "projects.title": "Apps",
+  "projects.subtitle": "Pequeñas aplicaciones que vibecodeo.",
   "projects.subtitle2": "* tienen muchos bugs jeje",
   "projects.code": "código ↗",
   "projects.live": "ver en vivo ↗",
@@ -127,7 +128,7 @@ const es: Translations = {
   "projects.status.wip": "en progreso",
   "projects.status.archived": "archivado",
 
-  "projectDetail.backProjects": "← proyectos",
+  "projectDetail.backProjects": "← apps",
 
   "observando.subtitle": "Un poco de verdad un poco de ficción.",
   "observando.p1":
@@ -150,18 +151,19 @@ const es: Translations = {
   "recomendaciones.subtitle": "libros que leí.",
   "recomendaciones.empty": "Próximamente.",
   "recomendaciones.back": "← volver",
+  "recomendaciones.currentlyReading": "Leyendo",
 };
 
 const en: Translations = {
   "nav.about": "About me",
   "nav.observando": "observando",
-  "nav.projects": "Projects",
+  "nav.projects": "Apps",
 
   "lang.label": "ES",
 
   "meta.title.home": "axel doing things",
   "meta.title.about": "about me — axel doing things",
-  "meta.title.projects": "projects — axel doing things",
+  "meta.title.projects": "apps — axel doing things",
   "meta.title.observando": "observando — axel doing things",
 
   "theme.light": "Light mode",
@@ -171,7 +173,7 @@ const en: Translations = {
   "home.heroDesc1": "I write about how I see life in",
   "home.heroDesc2": ". I also vibecode and design small apps.",
   "home.seeAll": "see more →",
-  "home.projects": "Projects",
+  "home.projects": "Apps",
   "home.more": "more projects →",
   "home.footer": "axel doing things",
   "home.footer.claude": "* vibecoded with help from",
@@ -189,8 +191,8 @@ const en: Translations = {
   "about.contact": "contact",
   "about.back": "← back",
 
-  "projects.title": "Projects",
-  "projects.subtitle": "Small apps I vibecode.",
+  "projects.title": "Apps",
+  "projects.subtitle": "Small applications I vibecode.",
   "projects.subtitle2": "* they have lots of bugs lol",
   "projects.code": "code ↗",
   "projects.live": "see live ↗",
@@ -199,7 +201,7 @@ const en: Translations = {
   "projects.status.wip": "in progress",
   "projects.status.archived": "archived",
 
-  "projectDetail.backProjects": "← projects",
+  "projectDetail.backProjects": "← apps",
 
   "observando.subtitle": "autofiction",
   "observando.p1":
@@ -222,6 +224,7 @@ const en: Translations = {
   "recomendaciones.subtitle": "books I read.",
   "recomendaciones.empty": "Coming soon.",
   "recomendaciones.back": "← back",
+  "recomendaciones.currentlyReading": "Reading",
 };
 
 export const translations: Record<Locale, Translations> = { es, en };
