@@ -90,7 +90,7 @@ const es: Translations = {
   "home.phrases": ["hace cosas", "escribe", "vibecodea", "diseña", "lee", "corre"],
   "home.heroDesc1": "Escribo cómo veo la vida en",
   "home.heroDesc2": ". Además, vibecodeo y diseño pequeñas apps.",
-  "home.seeAll": "ver más →",
+  "home.seeAll": "más entregas →",
   "home.projects": "Proyectos",
   "home.more": "más →",
   "home.footer": "axel haciendo cosas",
