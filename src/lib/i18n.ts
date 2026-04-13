@@ -92,7 +92,7 @@ const es: Translations = {
   "home.heroDesc2": ". Además, vibecodeo y diseño pequeñas apps.",
   "home.seeAll": "más entregas →",
   "home.projects": "Proyectos",
-  "home.more": "más →",
+  "home.more": "más proyectos →",
   "home.footer": "axel haciendo cosas",
   "home.footer.claude": "* página vibecodeada con ayuda de",
 
@@ -157,7 +157,7 @@ const en: Translations = {
   "home.heroDesc2": ". I also vibecode and design small apps.",
   "home.seeAll": "see more →",
   "home.projects": "Projects",
-  "home.more": "more →",
+  "home.more": "more projects →",
   "home.footer": "axel doing things",
   "home.footer.claude": "* vibecoded with help from",
 
