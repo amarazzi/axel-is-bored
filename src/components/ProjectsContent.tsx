@@ -4,9 +4,7 @@ import { projects } from "@/data/projects";
 import { Project } from "@/types/project";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
 import { useLanguage } from "@/components/Language/LanguageProvider";
-import { ImageLightbox } from "@/components/ImageLightbox";
 
 export function ProjectsContent() {
   const { locale, t } = useLanguage();
@@ -41,7 +39,6 @@ export function ProjectsContent() {
 
 function ProjectCard({ project, locale }: { project: Project; locale: "es" | "en" }) {
   const { t } = useLanguage();
-  const [lightbox, setLightbox] = useState(false);
 
   const statusLabel: Record<Project["status"], string> = {
     active: t["projects.status.active"],
@@ -62,24 +59,16 @@ function ProjectCard({ project, locale }: { project: Project; locale: "es" | "en
       <p className="leading-relaxed mb-5 t-accent2" style={{ fontSize: "0.82rem", fontWeight: 300 }}>{description}</p>
 
       {project.screenshotPath && (
-        <>
+        <Link href={`/projects/${project.id}`} tabIndex={-1}>
           <Image
             src={project.screenshotPath}
             alt={`${project.name} screenshot`}
             width={560}
             height={315}
             className="w-full h-auto mb-5 block"
-            style={{ borderRadius: "12px", border: "none", cursor: "zoom-in" }}
-            onClick={() => setLightbox(true)}
+            style={{ borderRadius: "12px", border: "none" }}
           />
-          {lightbox && (
-            <ImageLightbox
-              src={project.screenshotPath}
-              alt={`${project.name} screenshot`}
-              onClose={() => setLightbox(false)}
-            />
-          )}
-        </>
+        </Link>
       )}
 
       <p className="mb-6 t-muted" style={{ fontSize: "0.65rem", letterSpacing: "0.04em" }}>
