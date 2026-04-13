@@ -174,7 +174,7 @@ export function HomeContent({
 
           <div className="mt-10">
             <Link href="/projects" className="ff-link-muted" style={{ fontSize: "0.7rem" }}>
-              {t["home.seeAll"]}
+              {t["home.more"]}
             </Link>
           </div>
         </section>
