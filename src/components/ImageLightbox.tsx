@@ -70,7 +70,7 @@ export function ImageLightbox({ src, alt, onClose }: Props) {
       <img
         src={src}
         alt={alt}
-        onClick={(e) => e.stopPropagation()}
+        onClick={onClose}
         style={{
           maxWidth: "100%",
           maxHeight: "85vh",
