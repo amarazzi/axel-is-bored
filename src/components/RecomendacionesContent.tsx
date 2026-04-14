@@ -67,7 +67,7 @@ export function RecomendacionesContent({ currentlyReading }: { currentlyReading:
 
   return (
     <>
-      <main className="max-w-2xl mx-auto px-8 py-24">
+      <main className="ff-page max-w-2xl mx-auto px-8 py-16 sm:py-24">
         <h1
           className="text-2xl mb-2 t-accent"
           style={{ fontWeight: 300, letterSpacing: "-0.01em" }}

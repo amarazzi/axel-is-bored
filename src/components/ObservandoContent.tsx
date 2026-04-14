@@ -31,7 +31,7 @@ export function ObservandoContent({
 
   return (
     <>
-      <main className="max-w-4xl mx-auto px-8 py-24">
+      <main className="ff-page max-w-4xl mx-auto px-8 py-16 sm:py-24">
         <div className="flex items-baseline justify-between mb-2">
           <h1 className="text-2xl t-accent" style={{ fontWeight: 300, letterSpacing: "-0.01em" }}>observando</h1>
           <a
@@ -49,7 +49,7 @@ export function ObservandoContent({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-16" style={{ alignItems: "start" }}>
           {/* Columna izquierda */}
           <div className="flex flex-col" style={{ minHeight: "100%" }}>
-            <div className="space-y-5 t-accent2 flex-1" style={{ fontSize: "0.85rem", lineHeight: 1.75, fontWeight: 300 }}>
+            <div className="space-y-5 ff-body-text flex-1">
               <p>{t["observando.p1"]}</p>
               <p>{t["observando.p2"]}</p>
               <p>{t["observando.p3"]}</p>
@@ -69,7 +69,7 @@ export function ObservandoContent({
 
           {/* Columna derecha */}
           <div className="flex flex-col">
-            <p className="mb-6 t-muted" style={{ fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+            <p className="ff-section-label mb-6">
               {t["observando.latest"]}
             </p>
             <div className="flex-1">

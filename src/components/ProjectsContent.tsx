@@ -11,7 +11,7 @@ export function ProjectsContent() {
 
   return (
     <>
-      <main className="max-w-4xl mx-auto px-8 py-24">
+      <main className="ff-page max-w-4xl mx-auto px-8 py-16 sm:py-24">
         <h1 className="text-2xl mb-2 t-accent" style={{ fontWeight: 300, letterSpacing: "-0.01em" }}>{t["projects.title"]}</h1>
         <p className="mb-1 t-muted" style={{ fontSize: "0.65rem", letterSpacing: "0.1em" }}>
           {t["projects.subtitle"]}
@@ -51,7 +51,7 @@ function ProjectCard({ project, locale }: { project: Project; locale: "es" | "en
   return (
     <article id={project.id}>
       <h2 className="mb-3 t-accent" style={{ fontSize: "0.9rem", fontWeight: 400 }}>
-        <Link href={`/projects/${project.id}`} className="hover:opacity-70 transition-opacity duration-150">
+        <Link href={`/projects/${project.id}`} className="hover:opacity-60 transition-opacity duration-300">
           {project.name}
         </Link>
       </h2>

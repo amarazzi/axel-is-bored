@@ -23,7 +23,7 @@ export function ProjectDetailContent({ project }: { project: Project }) {
 
   return (
     <>
-      <main className="max-w-2xl mx-auto px-8 py-24">
+      <main className="ff-page max-w-2xl mx-auto px-8 py-16 sm:py-24">
         <p
           className="t-muted mb-6"
           style={{ fontSize: "0.65rem", letterSpacing: "0.1em" }}
@@ -47,7 +47,7 @@ export function ProjectDetailContent({ project }: { project: Project }) {
             </p>
           </div>
           {project.screenshotPath && (
-            <div className="shrink-0 hidden sm:block">
+            <div className="shrink-0">
               <Image
                 src={project.screenshotPath}
                 alt={`${project.name} screenshot`}

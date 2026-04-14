@@ -36,7 +36,7 @@ export function HomeContent({
 
   return (
     <div className="min-h-screen t-bg">
-      <main className="max-w-4xl mx-auto px-8 py-24">
+      <main className="ff-page max-w-4xl mx-auto px-8 py-16 sm:py-24">
 
         {/* Hero */}
         <section className="mb-28">
@@ -51,7 +51,7 @@ export function HomeContent({
                 {t["home.heroDesc2"]}
               </p>
             </div>
-            <div className="shrink-0 hidden sm:block">
+            <div className="shrink-0">
               <Image
                 src="/axel2.jpg"
                 alt="Axel"
@@ -72,10 +72,7 @@ export function HomeContent({
         {/* observando */}
         <section className="mb-28">
           <div className="flex items-baseline justify-between mb-10">
-            <p
-              className="t-muted"
-              style={{ fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase" }}
-            >
+            <p className="ff-section-label">
               observando
             </p>
             <a
@@ -129,10 +126,7 @@ export function HomeContent({
 
         {/* Proyectos */}
         <section>
-          <p
-            className="t-muted mb-10"
-            style={{ fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase" }}
-          >
+          <p className="ff-section-label mb-10">
             {t["home.projects"]}
           </p>
 
@@ -141,7 +135,7 @@ export function HomeContent({
               <div key={p.id} className="flex items-start gap-5">
                 <div className="flex-1 min-w-0">
                   <h3 className="text-sm mb-3 t-accent" style={{ fontWeight: 400 }}>
-                    <Link href={`/projects/${p.id}`} className="hover:opacity-70 transition-opacity duration-150">
+                    <Link href={`/projects/${p.id}`} className="hover:opacity-60 transition-opacity duration-300">
                       {p.name}
                     </Link>
                   </h3>
