@@ -47,14 +47,14 @@ export function ProjectDetailContent({ project }: { project: Project }) {
             </p>
           </div>
           {project.screenshotPath && (
-            <div className="shrink-0">
+            <div className="shrink-0 flex sm:block justify-center">
               <Image
                 src={project.screenshotPath}
                 alt={`${project.name} screenshot`}
                 width={160}
                 height={178}
-                className="object-cover w-full sm:w-auto"
-                style={{ objectPosition: "center bottom", borderRadius: "12px", opacity: 1, cursor: "zoom-in", maxWidth: "160px" }}
+                className="object-cover"
+                style={{ objectPosition: "center bottom", borderRadius: "12px", opacity: 1, cursor: "zoom-in" }}
                 onClick={() => setLightbox(true)}
               />
               {lightbox && (
