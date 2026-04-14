@@ -24,9 +24,14 @@ src/lib/
   i18n.ts         → todas las traducciones ES/EN
   themes.ts       → definición de temas (standard/light)
   rss.ts          → fetching del feed de Substack
+  goodreads.ts    → fetching del libro que se está leyendo (currently-reading shelf)
 src/data/
   projects.ts     → datos de proyectos (agregar proyectos acá)
+  books.ts        → datos de libros recomendados (agregar libros acá)
   posts.ts        → posts de fallback si falla el RSS
+public/
+  covers/         → portadas de libros
+  screenshots/    → capturas de proyectos
 ```
 
 ## Convenciones
@@ -71,6 +76,12 @@ Necesario porque el inline script modifica `lang` del HTML antes de que React hi
 
 ### ThemeProvider useEffect
 El tema se carga en `useEffect` (no en el estado inicial) para evitar hydration mismatch entre servidor y cliente.
+
+### ImageLightbox usa React Portal
+Renderiza via `createPortal(…, document.body)` para que `position: fixed` cubra toda la pantalla en iOS. Si se mueve el lightbox dentro del árbol de componentes normales, vuelve a romperse en Safari/Chrome iOS.
+
+### Animación `.ff-page` solo usa opacity
+La animación de entrada de página usa únicamente `opacity` (sin `transform`). Agregar `transform` crea un containing block que rompe `position: fixed` en iOS, haciendo que el lightbox no cubra la nav.
 
 ## Flujo de trabajo
 1. Hacer los cambios en local
