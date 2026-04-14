@@ -3,12 +3,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { ThemeSwitcher } from "@/components/Theme/ThemeSwitcher";
 import { LanguageSwitcher } from "@/components/Language/LanguageSwitcher";
 import { useLanguage } from "@/components/Language/LanguageProvider";
 
 export function Nav() {
   const { t } = useLanguage();
+  const pathname = usePathname();
   const [visible, setVisible] = useState(false);
   const [closing, setClosing] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -39,6 +41,10 @@ export function Nav() {
   }
 
   const isOpen = visible && !closing;
+
+  function isActive(href: string) {
+    return pathname === href || pathname.startsWith(href + "/");
+  }
 
   return (
     <nav style={{ borderBottom: "1px solid var(--theme-border)" }}>
@@ -77,7 +83,12 @@ export function Nav() {
         <div className="flex items-center gap-4 sm:gap-8">
           <div className="hidden sm:flex items-center gap-8">
             {links.map((link) => (
-              <Link key={link.href} href={link.href} className="ff-nav-link whitespace-nowrap">
+              <Link
+                key={link.href}
+                href={link.href}
+                className="ff-nav-link whitespace-nowrap"
+                style={{ color: isActive(link.href) ? "var(--theme-accent)" : undefined }}
+              >
                 {link.label}
               </Link>
             ))}
@@ -103,7 +114,12 @@ export function Nav() {
               href={link.href}
               className="ff-nav-link"
               onClick={() => closeMenu()}
-              style={{ display: "block", padding: "0.85rem 1.5rem", borderBottom: "1px solid var(--theme-border)" }}
+              style={{
+                display: "block",
+                padding: "0.85rem 1.5rem",
+                borderBottom: "1px solid var(--theme-border)",
+                color: isActive(link.href) ? "var(--theme-accent)" : undefined,
+              }}
             >
               {link.label}
             </Link>

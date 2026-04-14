@@ -59,7 +59,7 @@ function ProjectCard({ project, locale }: { project: Project; locale: "es" | "en
       <p className="leading-relaxed mb-5 t-accent2" style={{ fontSize: "0.82rem", fontWeight: 300 }}>{description}</p>
 
       {project.screenshotPath && (
-        <Link href={`/projects/${project.id}`} tabIndex={-1}>
+        <Link href={`/projects/${project.id}`} tabIndex={-1} className="ff-img-link">
           <Image
             src={project.screenshotPath}
             alt={`${project.name} screenshot`}
@@ -71,7 +71,7 @@ function ProjectCard({ project, locale }: { project: Project; locale: "es" | "en
         </Link>
       )}
 
-      <p className="mb-6 t-muted" style={{ fontSize: "0.65rem", letterSpacing: "0.04em" }}>
+      <p className="mb-6 t-muted" style={{ fontSize: "0.7rem", letterSpacing: "0.04em" }}>
         {project.techStack.join("  ·  ")}
       </p>
 

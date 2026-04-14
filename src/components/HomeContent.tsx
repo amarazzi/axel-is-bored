@@ -104,11 +104,11 @@ export function HomeContent({
                     <p className="text-sm mb-1 post-title" style={{ fontWeight: 400 }}>
                       {post.title}
                     </p>
-                    <p className="t-muted" style={{ fontSize: "0.72rem" }}>{post.subtitle}</p>
+                    <p className="t-muted" style={{ fontSize: "0.7rem" }}>{post.subtitle}</p>
                   </div>
                   <span
                     className="shrink-0"
-                    style={{ fontSize: "0.65rem", color: "var(--theme-muted)", whiteSpace: "nowrap" }}
+                    style={{ fontSize: "0.7rem", color: "var(--theme-muted)", whiteSpace: "nowrap" }}
                   >
                     {post.date}
                   </span>
@@ -142,11 +142,11 @@ export function HomeContent({
                   <p className="leading-relaxed mb-4 t-accent2" style={{ fontSize: "0.8rem", fontWeight: 300 }}>
                     {locale === "en" ? (p.tagline_en ?? p.tagline) : p.tagline}
                   </p>
-                  <p className="t-muted" style={{ fontSize: "0.65rem", letterSpacing: "0.04em" }}>{p.techStack.join("  ·  ")}</p>
+                  <p className="t-muted" style={{ fontSize: "0.7rem", letterSpacing: "0.04em" }}>{p.techStack.join("  ·  ")}</p>
                 </div>
                 {p.screenshotPath && (
                   <div className="shrink-0">
-                    <Link href={`/projects/${p.id}`} tabIndex={-1}>
+                    <Link href={`/projects/${p.id}`} tabIndex={-1} className="ff-img-link">
                       <Image
                         src={p.screenshotPath}
                         alt={`${p.name} screenshot`}
@@ -156,7 +156,6 @@ export function HomeContent({
                         style={{
                           objectPosition: "center bottom",
                           borderRadius: "10px",
-                          opacity: 1,
                         }}
                       />
                     </Link>

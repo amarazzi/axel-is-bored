@@ -79,20 +79,20 @@ export function RecomendacionesContent({ currentlyReading }: { currentlyReading:
         </p>
 
         {currentlyReading && (
-          <div className="mb-8">
-            <p className="t-muted" style={{ fontSize: "0.65rem", letterSpacing: "0.04em" }}>
-              {t["recomendaciones.currentlyReading"]}:{" "}
-              <a
-                href={currentlyReading.bookUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="t-accent hover:opacity-70 transition-opacity duration-150"
-              >
-                {currentlyReading.title}
-              </a>
-              {" "}· {currentlyReading.author}
-            </p>
-            <div style={{ borderBottom: "1px solid var(--theme-border)", marginTop: "1.5rem" }} />
+          <div className="mb-10" style={{ borderLeft: "2px solid var(--theme-border)", paddingLeft: "1rem" }}>
+            <p className="ff-section-label mb-2">{t["recomendaciones.currentlyReading"]}</p>
+            <a
+              href={currentlyReading.bookUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ff-touch"
+              style={{ fontSize: "0.82rem", color: "var(--theme-accent)", transition: "opacity 0.15s ease" }}
+              onMouseEnter={e => (e.currentTarget.style.opacity = "0.65")}
+              onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
+            >
+              {currentlyReading.title}
+              <span className="t-muted" style={{ fontWeight: 300 }}> · {currentlyReading.author}</span>
+            </a>
           </div>
         )}
 
