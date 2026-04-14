@@ -34,7 +34,12 @@ export function ImageLightbox({ src, alt, onClose }: Props) {
       onClick={onClose}
       style={{
         position: "fixed",
-        inset: 0,
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        width: "100%",
+        height: "100%",
         zIndex: 1000,
         backgroundColor: "rgba(0,0,0,0.85)",
         display: "flex",
