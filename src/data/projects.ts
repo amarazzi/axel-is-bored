@@ -18,7 +18,7 @@ export const projects: Project[] = [
     body: [
       {
         type: "paragraph",
-        text: "Crecí con la película <em>Hackers</em> y siempre me gustaron las aplicaciones que se usan desde la terminal. Uso la línea de comandos y me siento como Trinity en <em>Matrix</em> usando nmap para escanear los puertos de un servidor. Y como uso mucho Stremio y no encontré ninguna aplicación que hiciera eso mismo desde la terminal, le pedí al Claudito que me ayudara a hacerlo.",
+        text: "Crecí con la película <em>Hackers</em> y cuando uso la línea de comandos me siento Trinity en <em>Matrix</em> usando <a href=\"https://nmap.org/\">nmap</a> para escanear los puertos de un servidor. Y como uso mucho Stremio y no encontré ninguna aplicación que hiciera eso mismo desde la terminal, le pedí al Claudito que me ayudara a hacerlo.",
       },
       {
         type: "paragraph",
@@ -61,7 +61,7 @@ export const projects: Project[] = [
     body_en: [
       {
         type: "paragraph",
-        text: "I grew up watching <em>Hackers</em> and always loved terminal-based applications. I use the command line and feel like Trinity in <em>The Matrix</em> scanning server ports with map. Since I use Stremio a lot and couldn't find anything that did the same from the terminal, I asked Claudito to help me build it.",
+        text: "I grew up watching <em>Hackers</em> and when I use the command line I feel like Trinity in <em>The Matrix</em> scanning server ports with <a href=\"https://nmap.org/\">nmap</a>. Since I use Stremio a lot and couldn't find anything that did the same from the terminal, I asked Claudito to help me build it.",
       },
       {
         type: "paragraph",

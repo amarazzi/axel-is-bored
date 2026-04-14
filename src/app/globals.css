@@ -162,6 +162,19 @@
     color: var(--theme-muted);
   }
 
+  /* Links dentro de párrafos de proyectos */
+  .t-accent2 a {
+    color: var(--theme-accent2);
+    text-decoration: underline;
+    text-decoration-color: var(--theme-border);
+    text-underline-offset: 3px;
+    transition: color 0.15s ease, text-decoration-color 0.15s ease;
+  }
+  .t-accent2 a:hover {
+    color: var(--theme-fg);
+    text-decoration-color: var(--theme-muted);
+  }
+
   /* Body text — texto corrido estándar */
   .ff-body-text {
     font-size: 0.85rem;
