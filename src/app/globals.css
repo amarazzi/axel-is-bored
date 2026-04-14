@@ -162,17 +162,20 @@
     color: var(--theme-muted);
   }
 
-  /* Links dentro de párrafos de proyectos */
+  /* Links inline en textos desarrollados */
+  .ff-body-text a,
   .t-accent2 a {
-    color: var(--theme-accent2);
-    text-decoration: underline;
-    text-decoration-color: var(--theme-border);
-    text-underline-offset: 3px;
-    transition: color 0.15s ease, text-decoration-color 0.15s ease;
-  }
-  .t-accent2 a:hover {
-    color: var(--theme-fg);
+    color: inherit;
+    text-decoration: underline dotted;
     text-decoration-color: var(--theme-muted);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.15s ease;
+  }
+  .ff-body-text a:hover,
+  .t-accent2 a:hover {
+    text-decoration-style: solid;
+    text-decoration-color: var(--theme-accent);
   }
 
   /* Body text — texto corrido estándar */
