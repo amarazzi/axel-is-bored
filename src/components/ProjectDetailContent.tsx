@@ -31,7 +31,7 @@ export function ProjectDetailContent({ project }: { project: Project }) {
           {statusLabel[project.status]} · {project.year}
         </p>
 
-        <div className="flex items-start justify-between gap-8 mb-12">
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6 sm:gap-8 mb-12">
           <div className="flex-1 min-w-0">
             <h1
               className="t-accent mb-4"
@@ -53,8 +53,8 @@ export function ProjectDetailContent({ project }: { project: Project }) {
                 alt={`${project.name} screenshot`}
                 width={160}
                 height={178}
-                className="object-cover"
-                style={{ objectPosition: "center bottom", borderRadius: "12px", opacity: 1, cursor: "zoom-in" }}
+                className="object-cover w-full sm:w-auto"
+                style={{ objectPosition: "center bottom", borderRadius: "12px", opacity: 1, cursor: "zoom-in", maxWidth: "160px" }}
                 onClick={() => setLightbox(true)}
               />
               {lightbox && (
