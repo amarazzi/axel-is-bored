@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { createPortal } from "react-dom";
 
 interface Props {
   src: string;
@@ -29,7 +30,7 @@ export function ImageLightbox({ src, alt, onClose }: Props) {
     };
   }, [onClose]);
 
-  return (
+  return createPortal(
     <div
       onClick={onClose}
       style={{
@@ -38,10 +39,8 @@ export function ImageLightbox({ src, alt, onClose }: Props) {
         left: 0,
         right: 0,
         bottom: 0,
-        width: "100%",
-        height: "100%",
-        zIndex: 1000,
-        backgroundColor: "rgba(0,0,0,0.85)",
+        zIndex: 9999,
+        backgroundColor: "rgba(0,0,0,0.9)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -71,7 +70,7 @@ export function ImageLightbox({ src, alt, onClose }: Props) {
           background: "none",
           border: "none",
           cursor: "pointer",
-          color: "#888",
+          color: "#aaa",
           fontSize: "1.2rem",
           lineHeight: 1,
           padding: "0.25rem",
@@ -83,7 +82,7 @@ export function ImageLightbox({ src, alt, onClose }: Props) {
       <img
         src={src}
         alt={alt}
-        onClick={onClose}
+        onClick={(e) => { e.stopPropagation(); onClose(); }}
         style={{
           maxWidth: "100%",
           maxHeight: "85vh",
@@ -93,6 +92,7 @@ export function ImageLightbox({ src, alt, onClose }: Props) {
           cursor: "zoom-out",
         }}
       />
-    </div>
+    </div>,
+    document.body
   );
 }
