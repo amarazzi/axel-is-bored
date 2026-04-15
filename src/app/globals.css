@@ -54,7 +54,12 @@
     text-decoration: none;
   }
 
-  :focus-visible {
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible,
+  [tabindex]:focus-visible {
     outline: 1px solid var(--theme-muted);
     outline-offset: 3px;
   }
