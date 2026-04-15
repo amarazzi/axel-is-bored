@@ -51,7 +51,7 @@ export function HomeContent({
                 {t["home.heroDesc2"]}
               </p>
             </div>
-            <div className="shrink-0">
+            <div className="shrink-0 hidden sm:block">
               <Image
                 src="/axel2.jpg"
                 alt="Axel"

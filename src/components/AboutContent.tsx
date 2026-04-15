@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useLanguage } from "@/components/Language/LanguageProvider";
 
 const articles = [
@@ -57,6 +58,22 @@ export function AboutContent() {
         <h1 className="text-2xl mb-2 t-accent" style={{ fontWeight: 300, letterSpacing: "-0.01em" }}>{t["about.title"]}</h1>
         <p className="mb-14 t-muted" style={{ fontSize: "0.65rem", letterSpacing: "0.1em" }}>{t["about.subtitle"]}</p>
 
+        {/* Foto — solo mobile, arriba del bio */}
+        <div className="mb-8 md:hidden">
+          <Image
+            src="/axel2.jpg"
+            alt="Axel"
+            width={160}
+            height={160}
+            className="object-cover grayscale-[20%]"
+            style={{
+              objectPosition: "center 15%",
+              borderRadius: "12px",
+              opacity: 0.85,
+            }}
+          />
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
           <div className="space-y-5 ff-body-text">
             <p>{t["about.p1"]}</p>
@@ -72,6 +89,21 @@ export function AboutContent() {
           </div>
 
           <div className="space-y-8">
+            {/* Foto — solo desktop, en columna derecha */}
+            <div className="hidden md:block">
+              <Image
+                src="/axel2.jpg"
+                alt="Axel"
+                width={160}
+                height={160}
+                className="object-cover grayscale-[20%]"
+                style={{
+                  objectPosition: "center 15%",
+                  borderRadius: "12px",
+                  opacity: 0.85,
+                }}
+              />
+            </div>
             <div>
               <a
                 href="mailto:marazzi.axel@gmail.com"
