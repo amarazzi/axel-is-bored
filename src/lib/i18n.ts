@@ -40,6 +40,7 @@ export interface Translations {
   "about.p2pre": string;
   "about.p2post": string;
   "about.p3": string;
+  "about.articles": string;
   "about.contact": string;
   "about.back": string;
 
@@ -115,6 +116,7 @@ const es: Translations = {
     ", un newsletter que cambió un montón con el tiempo. Hoy es una especie de diario personal ficcionalizado donde exploro mi escritura y cuento cómo veo la vida.",
   "about.p3":
     "En mi tiempo libre vibecodeo pequeños proyectos que resuelven algunas de mis necesidades o que simplemente hago porque me pinta. Es totalmente por placer, sin presión, a ver qué sale.",
+  "about.articles": "Algunos artículos periodísticos",
   "about.contact": "contacto",
   "about.back": "← volver",
 
@@ -188,6 +190,7 @@ const en: Translations = {
     " for many years, a newsletter that has changed a lot over time. Today it's a kind of fictionalized personal diary where I explore my writing and tell how I see life.",
   "about.p3":
     "In my free time I vibecode small projects that solve some of my needs or that I simply do because I feel like it. It's totally for pleasure, no pressure, just to see what comes out.",
+  "about.articles": "Some journalism pieces",
   "about.contact": "contact",
   "about.back": "← back",
 

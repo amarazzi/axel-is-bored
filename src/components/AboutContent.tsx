@@ -92,13 +92,24 @@ export function AboutContent() {
                 cv ↗
               </a>
             </div>
+            <div>
+              <a
+                href="https://observando.substack.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ff-link-muted"
+                style={{ fontSize: "0.65rem", letterSpacing: "0.15em" }}
+              >
+                observando ↗
+              </a>
+            </div>
           </div>
         </div>
 
         {/* Artículos */}
         <div className="mt-24">
           <p className="ff-section-label mb-8">
-            Algunos artículos periodísticos
+            {t["about.articles"]}
           </p>
           <div style={{ borderTop: "1px solid var(--theme-border)" }}>
             {articles.map((article) => (

@@ -54,6 +54,11 @@
     text-decoration: none;
   }
 
+  :focus-visible {
+    outline: 1px solid var(--theme-muted);
+    outline-offset: 3px;
+  }
+
   ::selection {
     background-color: var(--theme-fg);
     color: var(--theme-bg);

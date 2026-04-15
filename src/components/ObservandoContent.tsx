@@ -32,13 +32,13 @@ export function ObservandoContent({
   return (
     <>
       <main className="ff-page max-w-4xl mx-auto px-8 py-16 sm:py-24">
-        <div className="flex items-baseline justify-between mb-2">
+        <div className="flex items-baseline justify-between gap-6 mb-2">
           <h1 className="text-2xl t-accent" style={{ fontWeight: 300, letterSpacing: "-0.01em" }}>observando</h1>
           <a
             href="https://observando.substack.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="ff-link-muted"
+            className="ff-link-muted shrink-0"
             style={{ fontSize: "0.65rem", letterSpacing: "0.04em" }}
           >
             newsletter ↗
@@ -73,63 +73,34 @@ export function ObservandoContent({
               {t["observando.latest"]}
             </p>
             <div className="flex-1">
-              {hasPosts
-                ? rssPosts.slice(0, 3).map((post, i) => (
-                    <a
-                      key={post.slug}
-                      href={post.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group block py-4"
-                      style={{
-                        borderBottom: "1px solid var(--theme-border)",
-                        borderTop: i === 0 ? "1px solid var(--theme-border)" : undefined,
-                      }}
+              {(hasPosts ? rssPosts : fallbackPosts).slice(0, 3).map((post, i) => (
+                <a
+                  key={post.url}
+                  href={post.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block py-4"
+                  style={{
+                    borderBottom: "1px solid var(--theme-border)",
+                    borderTop: i === 0 ? "1px solid var(--theme-border)" : undefined,
+                  }}
+                >
+                  <div className="flex items-baseline justify-between gap-4">
+                    <div className="min-w-0">
+                      <p className="mb-1 post-title" style={{ fontSize: "0.82rem", fontWeight: 400 }}>
+                        {post.title}
+                      </p>
+                      <p className="t-muted" style={{ fontSize: "0.7rem", fontWeight: 300 }}>{post.subtitle}</p>
+                    </div>
+                    <span
+                      className="shrink-0"
+                      style={{ fontSize: "0.65rem", color: "var(--theme-muted)", whiteSpace: "nowrap" }}
                     >
-                      <div className="flex items-baseline justify-between gap-4">
-                        <div className="min-w-0">
-                          <p className="mb-1 post-title" style={{ fontSize: "0.82rem", fontWeight: 400 }}>
-                            {post.title}
-                          </p>
-                          <p className="t-muted" style={{ fontSize: "0.7rem", fontWeight: 300 }}>{post.subtitle}</p>
-                        </div>
-                        <span
-                          className="shrink-0"
-                          style={{ fontSize: "0.65rem", color: "var(--theme-muted)", whiteSpace: "nowrap" }}
-                        >
-                          {post.date}
-                        </span>
-                      </div>
-                    </a>
-                  ))
-                : fallbackPosts.slice(0, 3).map((post, i) => (
-                    <a
-                      key={post.url}
-                      href={post.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group block py-4"
-                      style={{
-                        borderBottom: "1px solid var(--theme-border)",
-                        borderTop: i === 0 ? "1px solid var(--theme-border)" : undefined,
-                      }}
-                    >
-                      <div className="flex items-baseline justify-between gap-4">
-                        <div className="min-w-0">
-                          <p className="mb-1 post-title" style={{ fontSize: "0.82rem", fontWeight: 400 }}>
-                            {post.title}
-                          </p>
-                          <p className="t-muted" style={{ fontSize: "0.7rem", fontWeight: 300 }}>{post.subtitle}</p>
-                        </div>
-                        <span
-                          className="shrink-0"
-                          style={{ fontSize: "0.65rem", color: "var(--theme-muted)", whiteSpace: "nowrap" }}
-                        >
-                          {post.date}
-                        </span>
-                      </div>
-                    </a>
-                  ))}
+                      {post.date}
+                    </span>
+                  </div>
+                </a>
+              ))}
             </div>
             <div className="mt-6">
               <a
