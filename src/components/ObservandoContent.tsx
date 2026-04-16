@@ -31,7 +31,7 @@ export function ObservandoContent({
 
   return (
     <>
-      <main className="ff-page max-w-4xl mx-auto px-8 py-16 sm:py-24">
+      <main id="main-content" className="ff-page max-w-4xl mx-auto px-8 py-16 sm:py-24">
         <div className="flex items-baseline justify-between gap-6 mb-2">
           <h1 className="text-2xl t-accent" style={{ fontWeight: 300, letterSpacing: "-0.01em" }}>observando</h1>
           <a

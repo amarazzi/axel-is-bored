@@ -36,7 +36,7 @@ export function HomeContent({
 
   return (
     <div className="min-h-screen t-bg">
-      <main className="ff-page max-w-4xl mx-auto px-8 py-16 sm:py-24">
+      <main id="main-content" className="ff-page max-w-4xl mx-auto px-8 py-16 sm:py-24">
 
         {/* Hero */}
         <section className="mb-28">

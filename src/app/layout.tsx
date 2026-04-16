@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/Theme/ThemeProvider";
 import { LanguageProvider } from "@/components/Language/LanguageProvider";
 import { DynamicTitle } from "@/components/DynamicTitle";
 import { Analytics } from "@vercel/analytics/react";
+import { SkipLink } from "@/components/SkipLink";
 
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
@@ -37,8 +38,8 @@ const initScript = `
 (function(){
   try {
     var THEMES = {
-      standard: { bg:"#080808",fg:"#E8E8E8",accent:"#E8E8E8",accent2:"#ABABAB",muted:"#6C6C6C",border:"#282828",btnBg:"#141414",logoFilter:"none" },
-      light:    { bg:"#F0EFEC",fg:"#141414",accent:"#141414",accent2:"#4A4A4A",muted:"#767676",border:"#D8D6D1",btnBg:"#E4E2DE",logoFilter:"invert(1)" }
+      standard: { bg:"#080808",fg:"#E8E8E8",accent:"#E8E8E8",accent2:"#ABABAB",muted:"#7A7A7A",border:"#282828",btnBg:"#141414",logoFilter:"none" },
+      light:    { bg:"#F0EFEC",fg:"#141414",accent:"#141414",accent2:"#4A4A4A",muted:"#666666",border:"#D8D6D1",btnBg:"#E4E2DE",logoFilter:"invert(1)" }
     };
     var id = localStorage.getItem("axel-theme");
     if (!id && window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
@@ -77,6 +78,7 @@ export default function RootLayout({
       <body>
         <ThemeProvider>
           <LanguageProvider>
+            <SkipLink />
             <DynamicTitle />
             {children}
           </LanguageProvider>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 
 interface Props {
@@ -10,6 +10,19 @@ interface Props {
 }
 
 export function ImageLightbox({ src, alt, onClose }: Props) {
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const triggerRef = useRef<Element | null>(null);
+
+  // Capturar el elemento que abrió el lightbox, mover el foco al botón cerrar,
+  // y restaurar el foco al cerrar
+  useEffect(() => {
+    triggerRef.current = document.activeElement;
+    closeButtonRef.current?.focus();
+    return () => {
+      (triggerRef.current as HTMLElement)?.focus();
+    };
+  }, []);
+
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") onClose();
@@ -50,6 +63,7 @@ export function ImageLightbox({ src, alt, onClose }: Props) {
       }}
     >
       <button
+        ref={closeButtonRef}
         onClick={onClose}
         aria-label="cerrar"
         style={{

@@ -47,11 +47,11 @@ export function Nav() {
   }
 
   return (
-    <nav style={{ borderBottom: "1px solid var(--theme-border)" }}>
+    <nav aria-label={t["nav.primaryNav"]} style={{ borderBottom: "1px solid var(--theme-border)" }}>
       <div className="max-w-4xl mx-auto px-4 sm:px-8 py-5 flex items-center justify-between">
         {/* Left: logo + hamburger (mobile only) */}
         <div className="flex items-center gap-4">
-          <Link href="/" className="ff-logo" aria-label="inicio" onClick={() => visible && closeMenu()}>
+          <Link href="/" className="ff-logo" aria-label={t["nav.logo"]} onClick={() => visible && closeMenu()}>
             <Image src="/logo.svg" alt="logo" width={20} height={20} style={{ filter: "var(--logo-filter)", opacity: 0.7 }} />
           </Link>
 
@@ -59,6 +59,7 @@ export function Nav() {
           <button
             className="nav-hamburger"
             onClick={toggle}
+            aria-expanded={isOpen}
             aria-label={isOpen ? "cerrar menu" : "abrir menu"}
             style={{ background: "none", border: "none", cursor: "pointer", padding: 0, flexDirection: "column", gap: "5px" }}
           >

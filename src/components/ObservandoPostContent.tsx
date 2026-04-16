@@ -16,7 +16,7 @@ export function ObservandoPostContent({ post, sanitizedContent }: { post: PostDa
 
   return (
     <>
-      <main className="max-w-2xl mx-auto px-8 py-24">
+      <main id="main-content" className="max-w-2xl mx-auto px-8 py-24">
         <p
           className="t-muted mb-6"
           style={{ fontSize: "0.65rem", letterSpacing: "0.1em" }}

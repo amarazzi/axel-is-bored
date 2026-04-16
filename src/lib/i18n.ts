@@ -8,6 +8,9 @@ export interface Translations {
   "nav.about": string;
   "nav.observando": string;
   "nav.projects": string;
+  "nav.skipLink": string;
+  "nav.logo": string;
+  "nav.primaryNav": string;
 
   // Language switcher
   "lang.label": string;
@@ -86,6 +89,9 @@ const es: Translations = {
   "nav.about": "sobre mí",
   "nav.observando": "mis textos",
   "nav.projects": "apps",
+  "nav.skipLink": "Saltar al contenido",
+  "nav.logo": "Inicio",
+  "nav.primaryNav": "Navegación principal",
 
   "lang.label": "EN",
 
@@ -160,6 +166,9 @@ const en: Translations = {
   "nav.about": "about me",
   "nav.observando": "my writing",
   "nav.projects": "apps",
+  "nav.skipLink": "Skip to content",
+  "nav.logo": "Home",
+  "nav.primaryNav": "Primary navigation",
 
   "lang.label": "ES",
 

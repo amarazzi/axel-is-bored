@@ -11,7 +11,7 @@ export function ProjectsContent() {
 
   return (
     <>
-      <main className="ff-page max-w-4xl mx-auto px-8 py-16 sm:py-24">
+      <main id="main-content" className="ff-page max-w-4xl mx-auto px-8 py-16 sm:py-24">
         <h1 className="text-2xl mb-2 t-accent" style={{ fontWeight: 300, letterSpacing: "-0.01em" }}>{t["projects.title"]}</h1>
         <p className="mb-1 t-muted" style={{ fontSize: "0.7rem", letterSpacing: "0.1em" }}>
           {t["projects.subtitle"]}
