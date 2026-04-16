@@ -46,7 +46,7 @@
     min-height: 100vh;
     background-color: var(--theme-bg);
     color: var(--theme-fg);
-    transition: background-color 0.4s ease, color 0.4s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
 
   a {
@@ -60,8 +60,9 @@
   textarea:focus-visible,
   select:focus-visible,
   [tabindex]:focus-visible {
-    outline: 1px solid var(--theme-muted);
-    outline-offset: 3px;
+    outline: 2px solid var(--theme-fg);
+    outline-offset: 4px;
+    border-radius: 2px;
   }
 
   ::selection {
@@ -107,38 +108,12 @@
   }
   .ff-link-muted:hover { color: var(--theme-fg); }
 
-  /* Link accent */
-  .ff-link-accent {
-    color: var(--theme-muted);
-    transition: color 0.15s ease;
-  }
-  .ff-link-accent:hover { color: var(--theme-fg); }
-
   /* Link inline (texto corrido) — el toque que distingue */
   .ff-link-yellow {
     color: var(--theme-accent2);
     transition: color 0.15s ease;
   }
   .ff-link-yellow:hover { color: var(--theme-fg); }
-
-  /* Botón — mínimo, sin ruido */
-  .ff-btn {
-    display: inline-block;
-    font-size: 0.7rem;
-    font-weight: 400;
-    letter-spacing: 0.05em;
-    padding: 0.3rem 0.65rem;
-    background-color: transparent;
-    color: var(--theme-muted);
-    border: 1px solid var(--theme-border);
-    transition: color 0.15s ease, border-color 0.15s ease;
-    font-family: var(--font-mono);
-    cursor: pointer;
-  }
-  .ff-btn:hover {
-    color: var(--theme-fg);
-    border-color: var(--theme-muted);
-  }
 
   /* Back link */
   .ff-back {
@@ -154,7 +129,20 @@
   /* Touch target expandido para links pequeños */
   .ff-touch {
     display: inline-block;
-    padding: 0.4rem 0;
+    padding: 0.5rem 0;
+  }
+
+  /* Theme switcher — círculo pequeño con hit area expandida */
+  .ff-theme-btn {
+    position: relative;
+  }
+  .ff-theme-btn::before {
+    content: '';
+    position: absolute;
+    inset: -12px;
+  }
+  .ff-theme-btn:hover {
+    transform: scale(1.4);
   }
 
   /* Hamburger — mobile only */
@@ -214,6 +202,51 @@
     to   { opacity: 1; }
   }
 
+  /* Nav mobile menu */
+  @keyframes menuSlideDown {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes menuSlideUp {
+    from { opacity: 1; transform: translateY(0); }
+    to   { opacity: 0; transform: translateY(-6px); }
+  }
+
+  /* Typewriter cursor */
+  @keyframes tw-blink {
+    0%, 100% { opacity: 0.5; }
+    50%       { opacity: 0; }
+  }
+  .tw-cursor {
+    display: inline-block;
+    width: 1px;
+    height: 0.85em;
+    background-color: currentColor;
+    margin-left: 3px;
+    vertical-align: middle;
+    animation: tw-blink 1s step-end infinite;
+  }
+
+  /* Lightbox */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.96); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .ff-page { animation: none; }
+    .tw-cursor { animation: none; opacity: 0.5; }
+    @keyframes menuSlideDown { from { opacity: 1; } to { opacity: 1; } }
+    @keyframes menuSlideUp   { from { opacity: 0; } to { opacity: 0; } }
+    @keyframes fadeIn  { from { opacity: 1; } to { opacity: 1; } }
+    @keyframes scaleIn { from { opacity: 1; transform: scale(1); } to { opacity: 1; transform: scale(1); } }
+  }
+
   /* Imagen clickeable — affordance */
   .ff-img-link {
     display: block;
@@ -264,7 +297,7 @@
     font-style: italic;
   }
   .post-content blockquote {
-    border-left: 2px solid var(--theme-border);
+    border-left: 3px solid var(--theme-muted);
     padding-left: 1.25rem;
     margin: 1.5em 0;
     color: var(--theme-muted);
@@ -306,6 +339,29 @@
     font-size: 0.75rem;
     color: var(--theme-muted);
     margin-top: 0.5em;
+  }
+  .post-content code {
+    font-family: var(--font-mono);
+    font-size: 0.82em;
+    background-color: var(--theme-btn-bg);
+    color: var(--theme-accent2);
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+    border: 1px solid var(--theme-border);
+  }
+  .post-content pre {
+    background-color: var(--theme-btn-bg);
+    border: 1px solid var(--theme-border);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    overflow-x: auto;
+    margin: 1.5em 0;
+  }
+  .post-content pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 0.82rem;
   }
   /* Ocultar elementos de Substack que no queremos mostrar */
   .post-content .subscription-widget-wrap,

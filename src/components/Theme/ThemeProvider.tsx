@@ -33,7 +33,15 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     const saved = localStorage.getItem("axel-theme");
     if (saved) {
       const found = themes.find((t) => t.id === saved);
-      if (found) setTheme(found);
+      if (found) {
+        setTheme(found);
+        return;
+      }
+    }
+    // Sin preferencia guardada → detectar preferencia del sistema
+    if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+      const lightTheme = themes.find((t) => t.id === "light");
+      if (lightTheme) setTheme(lightTheme);
     }
   }, []);
 

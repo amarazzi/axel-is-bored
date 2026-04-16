@@ -19,6 +19,9 @@ export function TypewriterHeading() {
   }, [phrases]);
 
   useEffect(() => {
+    // Respetar preferencia de usuario de movimiento reducido
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
     let timer: ReturnType<typeof setTimeout>;
     let phraseIdx = 0;
 
@@ -51,26 +54,9 @@ export function TypewriterHeading() {
   }, []);
 
   return (
-    <>
-      <style>{`
-        @keyframes tw-blink {
-          0%, 100% { opacity: 0.5; }
-          50%       { opacity: 0; }
-        }
-        .tw-cursor {
-          display: inline-block;
-          width: 1px;
-          height: 0.85em;
-          background-color: currentColor;
-          margin-left: 3px;
-          vertical-align: middle;
-          animation: tw-blink 1s step-end infinite;
-        }
-      `}</style>
-      <h1 className="text-3xl mb-8 leading-tight t-accent font-light tracking-tight">
-        axel {suffix}
-        <span aria-hidden className="tw-cursor" />
-      </h1>
-    </>
+    <h1 className="text-3xl mb-8 leading-tight t-accent font-light tracking-tight">
+      axel {suffix}
+      <span aria-hidden className="tw-cursor" />
+    </h1>
   );
 }

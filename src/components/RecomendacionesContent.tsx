@@ -9,7 +9,7 @@ import { useLanguage } from "@/components/Language/LanguageProvider";
 
 function Stars({ rating }: { rating: number }) {
   return (
-    <span style={{ letterSpacing: "0.1em", fontSize: "0.7rem" }}>
+    <span role="img" aria-label={`${rating} de 5 estrellas`} style={{ letterSpacing: "0.1em", fontSize: "0.7rem" }}>
       {Array.from({ length: 5 }, (_, i) => {
         const full = i + 1 <= Math.floor(rating);
         const half = !full && i < rating;
@@ -49,7 +49,7 @@ function BookCard({ book, locale }: { book: Book; locale: "es" | "en" }) {
           <h2 className="t-accent" style={{ fontSize: "0.85rem", fontWeight: 400, lineHeight: 1.4 }}>
             {book.title}
           </h2>
-          <p className="t-muted" style={{ fontSize: "0.65rem", letterSpacing: "0.04em", marginTop: "2px" }}>
+          <p className="t-muted" style={{ fontSize: "0.7rem", letterSpacing: "0.04em", marginTop: "2px" }}>
             {book.author} · {book.yearPublished} · {book.pages}p
           </p>
         </div>
@@ -74,12 +74,12 @@ export function RecomendacionesContent({ currentlyReading }: { currentlyReading:
         >
           {t["recomendaciones.title"]}
         </h1>
-        <p className="mb-14 t-muted" style={{ fontSize: "0.65rem", letterSpacing: "0.1em" }}>
+        <p className="mb-14 t-muted" style={{ fontSize: "0.7rem", letterSpacing: "0.1em" }}>
           {t["recomendaciones.subtitle"]}
         </p>
 
         {currentlyReading && (
-          <div className="mb-10" style={{ borderLeft: "2px solid var(--theme-border)", paddingLeft: "1rem" }}>
+          <div className="mb-10" style={{ borderLeft: "2px solid var(--theme-muted)", paddingLeft: "1rem" }}>
             <p className="ff-section-label mb-2">{t["recomendaciones.currentlyReading"]}</p>
             <a
               href={currentlyReading.bookUrl}
@@ -110,7 +110,7 @@ export function RecomendacionesContent({ currentlyReading }: { currentlyReading:
                   {multiYear && (
                     <p
                       className="t-muted mb-8"
-                      style={{ fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase" }}
+                      style={{ fontSize: "0.68rem", letterSpacing: "0.2em", textTransform: "uppercase" }}
                     >
                       {year}
                     </p>

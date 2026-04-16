@@ -56,7 +56,7 @@ export function AboutContent() {
     <>
       <main className="ff-page max-w-4xl mx-auto px-8 py-16 sm:py-24">
         <h1 className="text-2xl mb-2 t-accent" style={{ fontWeight: 300, letterSpacing: "-0.01em" }}>{t["about.title"]}</h1>
-        <p className="mb-14 t-muted" style={{ fontSize: "0.65rem", letterSpacing: "0.1em" }}>{t["about.subtitle"]}</p>
+        <p className="mb-14 t-muted" style={{ fontSize: "0.7rem", letterSpacing: "0.1em" }}>{t["about.subtitle"]}</p>
 
         {/* Foto — solo mobile, arriba del bio */}
         <div className="mb-8 md:hidden">
@@ -108,7 +108,7 @@ export function AboutContent() {
               <a
                 href="mailto:marazzi.axel@gmail.com"
                 className="ff-link-muted"
-                style={{ fontSize: "0.65rem", letterSpacing: "0.15em" }}
+                style={{ fontSize: "0.72rem", letterSpacing: "0.15em" }}
               >
                 {t["about.contact"]} ↗
               </a>
@@ -119,7 +119,7 @@ export function AboutContent() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="ff-link-muted"
-                style={{ fontSize: "0.65rem", letterSpacing: "0.15em" }}
+                style={{ fontSize: "0.72rem", letterSpacing: "0.15em" }}
               >
                 cv ↗
               </a>
@@ -130,7 +130,7 @@ export function AboutContent() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="ff-link-muted"
-                style={{ fontSize: "0.65rem", letterSpacing: "0.15em" }}
+                style={{ fontSize: "0.72rem", letterSpacing: "0.15em" }}
               >
                 observando ↗
               </a>
@@ -157,7 +157,7 @@ export function AboutContent() {
                   <span className="post-title" style={{ fontSize: "0.85rem", fontWeight: 300 }}>
                     {article.title}
                   </span>
-                  <span className="t-muted shrink-0" style={{ fontSize: "0.65rem" }}>
+                  <span className="t-muted shrink-0" style={{ fontSize: "0.7rem" }}>
                     {article.publication}
                   </span>
                 </div>

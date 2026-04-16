@@ -26,7 +26,7 @@ export function ProjectDetailContent({ project }: { project: Project }) {
       <main className="ff-page max-w-2xl mx-auto px-8 py-16 sm:py-24">
         <p
           className="t-muted mb-6"
-          style={{ fontSize: "0.65rem", letterSpacing: "0.1em" }}
+          style={{ fontSize: "0.7rem", letterSpacing: "0.1em" }}
         >
           {statusLabel[project.status]} · {project.year}
         </p>
@@ -147,7 +147,7 @@ export function ProjectDetailContent({ project }: { project: Project }) {
                 {t["projects.live"]}
               </a>
             )}
-            <span className="t-muted" style={{ fontSize: "0.65rem", letterSpacing: "0.04em" }}>
+            <span className="t-muted" style={{ fontSize: "0.7rem", letterSpacing: "0.04em" }}>
               {project.techStack.join("  ·  ")}
             </span>
           </div>

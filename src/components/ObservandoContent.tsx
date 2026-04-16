@@ -44,7 +44,7 @@ export function ObservandoContent({
             newsletter ↗
           </a>
         </div>
-        <p className="mb-14 t-muted" style={{ fontSize: "0.65rem", letterSpacing: "0.1em" }}>{t["observando.subtitle"]}</p>
+        <p className="mb-14 t-muted" style={{ fontSize: "0.7rem", letterSpacing: "0.1em" }}>{t["observando.subtitle"]}</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-16" style={{ alignItems: "start" }}>
           {/* Columna izquierda */}
@@ -94,7 +94,7 @@ export function ObservandoContent({
                     </div>
                     <span
                       className="shrink-0"
-                      style={{ fontSize: "0.65rem", color: "var(--theme-muted)", whiteSpace: "nowrap" }}
+                      style={{ fontSize: "0.7rem", color: "var(--theme-muted)", whiteSpace: "nowrap" }}
                     >
                       {post.date}
                     </span>

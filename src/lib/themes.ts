@@ -33,7 +33,7 @@ export const themes: Theme[] = [
     fg: "#141414",
     accent: "#141414",
     accent2: "#4A4A4A",
-    muted: "#909090",
+    muted: "#767676",
     border: "#D8D6D1",
     btnBg: "#E4E2DE",
     logoFilter: "invert(1)",

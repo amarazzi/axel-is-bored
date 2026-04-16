@@ -80,7 +80,7 @@ export function HomeContent({
               target="_blank"
               rel="noopener noreferrer"
               className="ff-link-muted"
-              style={{ fontSize: "0.65rem", letterSpacing: "0.04em" }}
+              style={{ fontSize: "0.72rem", letterSpacing: "0.04em" }}
             >
               newsletter ↗
             </a>
@@ -179,7 +179,7 @@ export function HomeContent({
         style={{ borderTop: "1px solid var(--theme-border)" }}
       >
         <div className="flex justify-between items-center">
-          <span style={{ fontSize: "0.65rem", color: "var(--theme-muted)" }}>
+          <span style={{ fontSize: "0.72rem", color: "var(--theme-muted)" }}>
             {t["home.footer"]} · <CurrentYear />
           </span>
           <a href="mailto:marazzi.axel@gmail.com" className="ff-back">

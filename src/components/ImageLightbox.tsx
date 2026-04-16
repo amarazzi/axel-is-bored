@@ -49,17 +49,6 @@ export function ImageLightbox({ src, alt, onClose }: Props) {
         cursor: "zoom-out",
       }}
     >
-      <style>{`
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to   { opacity: 1; }
-        }
-        @keyframes scaleIn {
-          from { opacity: 0; transform: scale(0.96); }
-          to   { opacity: 1; transform: scale(1); }
-        }
-      `}</style>
-
       <button
         onClick={onClose}
         aria-label="cerrar"
@@ -82,14 +71,14 @@ export function ImageLightbox({ src, alt, onClose }: Props) {
       <img
         src={src}
         alt={alt}
-        onClick={(e) => { e.stopPropagation(); onClose(); }}
+        onClick={(e) => e.stopPropagation()}
         style={{
           maxWidth: "100%",
           maxHeight: "85vh",
           borderRadius: "12px",
           objectFit: "contain",
           animation: "scaleIn 0.15s ease",
-          cursor: "zoom-out",
+          cursor: "default",
         }}
       />
     </div>,

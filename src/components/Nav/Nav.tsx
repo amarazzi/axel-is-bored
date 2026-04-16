@@ -48,17 +48,6 @@ export function Nav() {
 
   return (
     <nav style={{ borderBottom: "1px solid var(--theme-border)" }}>
-      <style>{`
-        @keyframes menuSlideDown {
-          from { opacity: 0; transform: translateY(-6px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes menuSlideUp {
-          from { opacity: 1; transform: translateY(0); }
-          to   { opacity: 0; transform: translateY(-6px); }
-        }
-      `}</style>
-
       <div className="max-w-4xl mx-auto px-4 sm:px-8 py-5 flex items-center justify-between">
         {/* Left: logo + hamburger (mobile only) */}
         <div className="flex items-center gap-4">
