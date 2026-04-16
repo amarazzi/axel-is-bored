@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/Theme/ThemeProvider";
 import { LanguageProvider } from "@/components/Language/LanguageProvider";
 import { DynamicTitle } from "@/components/DynamicTitle";
+import { Analytics } from "@vercel/analytics/react";
 
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
@@ -80,6 +81,7 @@ export default function RootLayout({
             {children}
           </LanguageProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
