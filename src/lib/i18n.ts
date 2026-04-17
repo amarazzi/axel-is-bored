@@ -42,7 +42,8 @@ export interface Translations {
   "about.p1b": string;
   "about.p2pre": string;
   "about.p2post": string;
-  "about.p3": string;
+  "about.p3pre": string;
+  "about.p3post": string;
   "about.articles": string;
   "about.contact": string;
   "about.back": string;
@@ -66,6 +67,7 @@ export interface Translations {
   "observando.p1": string;
   "observando.p2": string;
   "observando.p3": string;
+  "observando.p4": string;
   "observando.subscribe": string;
   "observando.latest": string;
   "observando.previous": string;
@@ -117,11 +119,11 @@ const es: Translations = {
   "about.p1":
     "Me llamo Axel Marazzi. Soy periodista y diseñador. Hoy trabajo para ueno bank, un banco paraguayo, diseñando experiencias con inteligencia artificial. Pero antes de eso pasé por varias redacciones analizando cómo la tecnología nos afectaba, tanto positivamente como negativamente. Publiqué algunos textos en VICE, Anfibia, Qué Pasa.",
   "about.p1b": "Mi trabajo, me gusta pensar, siempre mezcló tecnología y palabras.",
-  "about.p2pre": "Hace muchos años escribo ",
+  "about.p2pre": "Desde 2016 escribo ",
   "about.p2post":
     ", un newsletter que cambió un montón con el tiempo. Hoy es una especie de diario personal ficcionalizado donde exploro mi escritura y cuento cómo veo la vida.",
-  "about.p3":
-    "En mi tiempo libre vibecodeo pequeños proyectos que resuelven algunas de mis necesidades o que simplemente hago porque me pinta. Es totalmente por placer, sin presión, a ver qué sale.",
+  "about.p3pre": "En mi tiempo libre ",
+  "about.p3post": " pequeños proyectos que resuelven algunas de mis necesidades o que simplemente hago porque me pinta. Es totalmente por placer, sin presión, a ver qué sale.",
   "about.articles": "Algunos artículos periodísticos",
   "about.contact": "contacto",
   "about.back": "← volver",
@@ -140,11 +142,12 @@ const es: Translations = {
 
   "observando.subtitle": "Un poco de verdad un poco de ficción.",
   "observando.p1":
-    "Hace muchos años escribo observando, un newsletter que cambió muchísimo con los años. Empezó siendo una cosa y se fue convirtiendo en otra sin que yo lo planeara demasiado.",
+    "Desde 2016 escribo observando, un newsletter que cambió muchísimo con los años. Empezó siendo una cosa y se fue convirtiendo en otra sin que yo lo planeara demasiado.",
   "observando.p2":
     "Hoy es una especie de diario personal ficcionalizado donde exploro mi escritura e intento contar cómo veo la vida. Algunas situaciones pasaron tal cual las cuento. Otras nada que ver.",
   "observando.p3":
-    "Cambio nombres, lugares, fechas, el orden. La realidad me interesa como punto de partida. Espero que algo de lo que escribo te resuene.",
+    "Cambio nombres, lugares, fechas, el orden. La realidad me interesa como punto de partida.",
+  "observando.p4": "Espero que algo de lo que escribo te resuene.",
   "observando.subscribe": "suscribirse →",
   "observando.latest": "últimas entregas",
   "observando.previous": "leer ediciones anteriores →",
@@ -194,11 +197,11 @@ const en: Translations = {
   "about.p1":
     "My name is Axel Marazzi. I'm a journalist and designer. I currently work for ueno bank, a Paraguayan bank, designing experiences with artificial intelligence. But before that I worked in several newsrooms analyzing how technology affected us, both positively and negatively. I published some pieces in VICE, Anfibia, Qué Pasa.",
   "about.p1b": "My work, I like to think, has always mixed technology and words.",
-  "about.p2pre": "I've been writing ",
+  "about.p2pre": "Since 2016 I've been writing ",
   "about.p2post":
     " for many years, a newsletter that has changed a lot over time. Today it's a kind of fictionalized personal diary where I explore my writing and tell how I see life.",
-  "about.p3":
-    "In my free time I vibecode small projects that solve some of my needs or that I simply do because I feel like it. It's totally for pleasure, no pressure, just to see what comes out.",
+  "about.p3pre": "In my free time I ",
+  "about.p3post": " small projects that solve some of my needs or that I simply do because I feel like it. It's totally for pleasure, no pressure, just to see what comes out.",
   "about.articles": "Some journalism pieces",
   "about.contact": "contact",
   "about.back": "← back",
@@ -217,11 +220,12 @@ const en: Translations = {
 
   "observando.subtitle": "autofiction",
   "observando.p1":
-    "I've been writing observando for many years, a newsletter that has changed a lot over time. It started as one thing and gradually became something else without me planning it too much.",
+    "Since 2016 I've been writing observando, a newsletter that has changed a lot over time. It started as one thing and gradually became something else without me planning it too much.",
   "observando.p2":
     "Today it's a kind of fictionalized personal diary where I explore my writing and try to tell how I see life. Some situations happened exactly as I tell them. Others not at all.",
   "observando.p3":
-    "I change names, places, dates, the order. Reality interests me as a starting point. I hope something I write resonates with you.",
+    "I change names, places, dates, the order. Reality interests me as a starting point.",
+  "observando.p4": "I hope something I write resonates with you.",
   "observando.subscribe": "subscribe →",
   "observando.latest": "latest entries",
   "observando.previous": "read previous editions →",

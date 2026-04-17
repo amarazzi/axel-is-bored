@@ -53,6 +53,7 @@ export function ObservandoContent({
               <p>{t["observando.p1"]}</p>
               <p>{t["observando.p2"]}</p>
               <p>{t["observando.p3"]}</p>
+              <p>{t["observando.p4"]}</p>
             </div>
             <div className="mt-8">
               <a

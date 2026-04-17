@@ -85,7 +85,13 @@ export function AboutContent() {
               </Link>
               {t["about.p2post"]}
             </p>
-            <p>{t["about.p3"]}</p>
+            <p>
+              {t["about.p3pre"]}
+              <Link href="/projects" className="ff-link-yellow">
+                vibecodeo
+              </Link>
+              {t["about.p3post"]}
+            </p>
           </div>
 
           <div className="space-y-8">
