@@ -3,7 +3,7 @@ import { AboutContent } from "@/components/AboutContent";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "sobre mí — axel haciendo cosas",
+  title: "sobre axel",
   description: "Quién es Axel y qué hace.",
 };
 

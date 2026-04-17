@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "recomendaciones — axel haciendo cosas",
+  title: "axel hace recomendaciones",
   description: "Libros que leí y recomiendo.",
 };
 

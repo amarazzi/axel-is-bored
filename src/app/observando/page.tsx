@@ -7,7 +7,7 @@ import type { Metadata } from "next";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "observando — axel haciendo cosas",
+  title: "axel hace observando",
   description: "Autoficción. Cuento mi vida ficcionada.",
 };
 

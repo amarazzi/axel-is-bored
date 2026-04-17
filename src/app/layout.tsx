@@ -16,10 +16,10 @@ const ibmPlexMono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://axelmarazzi.com"),
-  title: "axel haciendo cosas",
+  title: "axel hace cosas",
   description: "Proyectos simples, listas, y autoficción.",
   openGraph: {
-    title: "axel haciendo cosas",
+    title: "axel hace cosas",
     description: "Proyectos simples, listas, y autoficción.",
     url: "https://axelmarazzi.com",
     siteName: "axel is bored",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "axel haciendo cosas",
+    title: "axel hace cosas",
     description: "Proyectos simples, listas, y autoficción.",
   },
 };

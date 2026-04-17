@@ -3,7 +3,7 @@ import { ProjectsContent } from "@/components/ProjectsContent";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "apps — axel haciendo cosas",
+  title: "axel hace apps",
   description: "Proyectos pequeños hechos por placer.",
 };
 

@@ -95,10 +95,10 @@ const es: Translations = {
 
   "lang.label": "EN",
 
-  "meta.title.home": "axel haciendo cosas",
-  "meta.title.about": "sobre mí — axel haciendo cosas",
-  "meta.title.projects": "apps — axel haciendo cosas",
-  "meta.title.observando": "observando — axel haciendo cosas",
+  "meta.title.home": "axel hace cosas",
+  "meta.title.about": "sobre axel",
+  "meta.title.projects": "axel hace apps",
+  "meta.title.observando": "axel hace observando",
 
   "theme.light": "Modo claro",
   "theme.dark": "Modo oscuro",
@@ -154,7 +154,7 @@ const es: Translations = {
   "observandoPost.back": "← observando",
 
   "nav.recomendaciones": "recomendaciones",
-  "meta.title.recomendaciones": "recomendaciones — axel haciendo cosas",
+  "meta.title.recomendaciones": "axel hace recomendaciones",
   "recomendaciones.title": "Recomendaciones",
   "recomendaciones.subtitle": "libros que leí.",
   "recomendaciones.empty": "Próximamente.",
@@ -172,10 +172,10 @@ const en: Translations = {
 
   "lang.label": "ES",
 
-  "meta.title.home": "axel doing things",
-  "meta.title.about": "about me — axel doing things",
-  "meta.title.projects": "apps — axel doing things",
-  "meta.title.observando": "observando — axel doing things",
+  "meta.title.home": "axel does things",
+  "meta.title.about": "about axel",
+  "meta.title.projects": "axel makes apps",
+  "meta.title.observando": "axel does observando",
 
   "theme.light": "Light mode",
   "theme.dark": "Dark mode",
@@ -231,7 +231,7 @@ const en: Translations = {
   "observandoPost.back": "← observando",
 
   "nav.recomendaciones": "recommendations",
-  "meta.title.recomendaciones": "recommendations — axel doing things",
+  "meta.title.recomendaciones": "axel makes recommendations",
   "recomendaciones.title": "Recommendations",
   "recomendaciones.subtitle": "books I read.",
   "recomendaciones.empty": "Coming soon.",
