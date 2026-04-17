@@ -76,7 +76,17 @@ export function AboutContent() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
           <div className="space-y-5 ff-body-text">
-            <p>{t["about.p1"]}</p>
+            <p>
+              {t["about.p1"]}
+              <a href="https://www.vice.com/es/contributor/axel-marazzi/" target="_blank" rel="noopener noreferrer" className="ff-link-yellow">VICE</a>
+              {", "}
+              <a href="https://www.revistaanfibia.com/autor/axel-marazzi/" target="_blank" rel="noopener noreferrer" className="ff-link-yellow">Anfibia</a>
+              {", "}
+              <a href="https://www.latercera.com/revista-que-pasa/yo_adicto_virtual/" target="_blank" rel="noopener noreferrer" className="ff-link-yellow">Qué Pasa</a>
+              {" y "}
+              <a href="https://www.lanacion.com.ar/autor/axel-marazzi-2361/" target="_blank" rel="noopener noreferrer" className="ff-link-yellow">La Nación</a>
+              {"."}
+            </p>
             <p>{t["about.p1b"]}</p>
             <p>
               {t["about.p2pre"]}

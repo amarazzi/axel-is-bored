@@ -117,7 +117,7 @@ const es: Translations = {
   "about.title": "Sobre mí",
   "about.subtitle": "periodista y diseñador. Escribo.",
   "about.p1":
-    "Me llamo Axel Marazzi. Soy periodista y diseñador. Hoy trabajo para ueno bank, un banco paraguayo, diseñando experiencias con inteligencia artificial. Pero antes de eso pasé por varias redacciones analizando cómo la tecnología nos afectaba, tanto positivamente como negativamente. Publiqué algunos textos en VICE, Anfibia, Qué Pasa.",
+    "Me llamo Axel Marazzi. Soy periodista y diseñador. Hoy trabajo para ueno bank, un banco paraguayo, diseñando experiencias con inteligencia artificial. Pero antes de eso pasé por varias redacciones analizando cómo la tecnología nos afectaba, tanto positivamente como negativamente. Publiqué algunos textos en ",
   "about.p1b": "Mi trabajo, me gusta pensar, siempre mezcló tecnología y palabras.",
   "about.p2pre": "Desde 2016 escribo ",
   "about.p2post":
@@ -195,7 +195,7 @@ const en: Translations = {
   "about.title": "About me",
   "about.subtitle": "journalist and designer. I write.",
   "about.p1":
-    "My name is Axel Marazzi. I'm a journalist and designer. I currently work for ueno bank, a Paraguayan bank, designing experiences with artificial intelligence. But before that I worked in several newsrooms analyzing how technology affected us, both positively and negatively. I published some pieces in VICE, Anfibia, Qué Pasa.",
+    "My name is Axel Marazzi. I'm a journalist and designer. I currently work for ueno bank, a Paraguayan bank, designing experiences with artificial intelligence. But before that I worked in several newsrooms analyzing how technology affected us, both positively and negatively. I published some pieces in ",
   "about.p1b": "My work, I like to think, has always mixed technology and words.",
   "about.p2pre": "Since 2016 I've been writing ",
   "about.p2post":
