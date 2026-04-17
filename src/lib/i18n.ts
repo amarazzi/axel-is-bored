@@ -109,7 +109,7 @@ const es: Translations = {
   "home.seeAll": "más entregas →",
   "home.projects": "Apps",
   "home.more": "más proyectos →",
-  "home.footer": "axel haciendo cosas",
+  "home.footer": "axel hace cosas",
   "home.footer.claude": "* página vibecodeada con ayuda de",
 
   "about.title": "Sobre mí",
