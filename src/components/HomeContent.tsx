@@ -50,23 +50,6 @@ export function HomeContent({
                 </Link>
                 {t["home.heroDesc2"]}
               </p>
-
-              {/* Micrographic label */}
-              <div
-                className="t-muted"
-                style={{
-                  marginTop: "1.75rem",
-                  fontSize: "0.55rem",
-                  letterSpacing: "0.14em",
-                  lineHeight: 1.9,
-                  textTransform: "uppercase",
-                  fontWeight: 300,
-                }}
-              >
-                <p>©axel marazzi · bue · ar</p>
-                <p>periodista / diseñador · [y 2026]</p>
-                <p>/observando · /apps · /diseño</p>
-              </div>
             </div>
             <div className="shrink-0 hidden sm:block">
               <Image
