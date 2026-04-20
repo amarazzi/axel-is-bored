@@ -82,7 +82,7 @@ export function HomeContent({
               className="ff-link-muted"
               style={{ fontSize: "0.72rem", letterSpacing: "0.04em" }}
             >
-              newsletter ↗
+              suscribite ↗
             </a>
           </div>
 
