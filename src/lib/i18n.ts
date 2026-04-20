@@ -117,7 +117,7 @@ const es: Translations = {
   "about.title": "Sobre mí",
   "about.subtitle": "periodista y diseñador. Escribo.",
   "about.p1":
-    "Me llamo Axel Marazzi. Soy periodista y diseñador. Hoy trabajo para ueno bank, un banco paraguayo, diseñando experiencias con inteligencia artificial. Pero antes de eso pasé por varias redacciones analizando cómo la tecnología nos afectaba, tanto positivamente como negativamente. Publiqué algunos textos en ",
+    "Me llamo Axel Marazzi. Soy periodista y UX Writer. Hoy trabajo para ueno bank, un banco paraguayo, diseñando experiencias con inteligencia artificial. Pero antes de eso pasé por varias redacciones analizando cómo la tecnología nos afectaba, tanto positivamente como negativamente. Publiqué algunos textos en ",
   "about.p1b": "Mi trabajo, me gusta pensar, siempre mezcló tecnología y palabras.",
   "about.p2pre": "Desde 2016 escribo ",
   "about.p2post":
