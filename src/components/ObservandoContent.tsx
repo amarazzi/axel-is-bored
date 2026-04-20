@@ -34,15 +34,6 @@ export function ObservandoContent({
       <main id="main-content" className="ff-page max-w-4xl mx-auto px-8 py-16 sm:py-24">
         <div className="flex items-baseline justify-between gap-6 mb-2">
           <h1 className="text-2xl t-accent" style={{ fontWeight: 300, letterSpacing: "-0.01em" }}>observando</h1>
-          <a
-            href="https://observando.substack.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="ff-link-muted shrink-0"
-            style={{ fontSize: "0.65rem", letterSpacing: "0.04em" }}
-          >
-            newsletter ↗
-          </a>
         </div>
         <p className="mb-14 t-muted" style={{ fontSize: "0.7rem", letterSpacing: "0.1em" }}>{t["observando.subtitle"]}</p>
 

@@ -148,7 +148,7 @@ const es: Translations = {
   "observando.p3":
     "Cambio nombres, lugares, fechas, el orden. La realidad me interesa como punto de partida.",
   "observando.p4": "Espero que algo de lo que escribo te resuene.",
-  "observando.subscribe": "suscribirse →",
+  "observando.subscribe": "suscribite ↗",
   "observando.latest": "últimas entregas",
   "observando.previous": "leer ediciones anteriores →",
   "observando.back": "← volver",
@@ -226,7 +226,7 @@ const en: Translations = {
   "observando.p3":
     "I change names, places, dates, the order. Reality interests me as a starting point.",
   "observando.p4": "I hope something I write resonates with you.",
-  "observando.subscribe": "subscribe →",
+  "observando.subscribe": "suscribite ↗",
   "observando.latest": "latest entries",
   "observando.previous": "read previous editions →",
   "observando.back": "← back",
