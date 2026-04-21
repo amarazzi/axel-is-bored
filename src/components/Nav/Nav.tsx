@@ -49,12 +49,8 @@ export function Nav() {
   return (
     <nav aria-label={t["nav.primaryNav"]} style={{ borderBottom: "1px solid var(--theme-border)" }}>
       <div className="max-w-4xl mx-auto px-4 sm:px-8 py-5 flex items-center justify-between">
-        {/* Left: logo + hamburger (mobile only) */}
+        {/* Left: hamburger (mobile only) + logo */}
         <div className="flex items-center gap-4">
-          <Link href="/" className="ff-logo" aria-label={t["nav.logo"]} onClick={() => visible && closeMenu()}>
-            <Image src="/logo.svg" alt="logo" width={20} height={20} style={{ filter: "var(--logo-filter)", opacity: 0.7 }} />
-          </Link>
-
           {/* Hamburger — mobile only */}
           <button
             className="nav-hamburger"
@@ -67,6 +63,10 @@ export function Nav() {
             <span style={{ display: "block", width: "18px", height: "1px", backgroundColor: "var(--theme-muted)", transition: "opacity 0.2s ease", opacity: isOpen ? 0 : 1 }} />
             <span style={{ display: "block", width: "18px", height: "1px", backgroundColor: "var(--theme-muted)", transition: "transform 0.2s ease, opacity 0.2s ease", transform: isOpen ? "translateY(-6px) rotate(-45deg)" : "none" }} />
           </button>
+
+          <Link href="/" className="ff-logo" aria-label={t["nav.logo"]} onClick={() => visible && closeMenu()}>
+            <Image src="/logo.svg" alt="logo" width={20} height={20} style={{ filter: "var(--logo-filter)", opacity: 0.7 }} />
+          </Link>
         </div>
 
         {/* Right: desktop links + theme + language */}
