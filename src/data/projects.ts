@@ -312,6 +312,108 @@ export const projects: Project[] = [
       },
     ],
   },
+  {
+    id: "spotty",
+    name: "spotty",
+    tagline: "Un cliente de Spotify para la terminal.",
+    tagline_en: "A Spotify client for the terminal.",
+    description:
+      "Una TUI de Spotify hecha en Python con Textual. Arte del álbum en alta calidad, barra de progreso en tiempo real, búsqueda, playlists y historial, todo sin salir de la terminal. Soporta spotifyd para reproducir audio sin ninguna app abierta.",
+    description_en:
+      "A Spotify TUI built in Python with Textual. High-quality album art, real-time progress bar, search, playlists and history — all without leaving the terminal. Supports spotifyd to play audio with no external app running.",
+    techStack: ["Python", "Textual", "spotipy"],
+    githubUrl: "https://github.com/amarazzi/spotty",
+    status: "active",
+    year: 2026,
+    body: [
+      {
+        type: "paragraph",
+        text: "Tengo Spotify abierto todo el tiempo. Pero también tengo la terminal abierta todo el tiempo. Y cada vez que quería cambiar de canción tenía que sacar las manos del teclado, ir al mouse, cambiar de ventana, hacer clic. Una pérdida de tiempo enorme para algo tan simple.",
+      },
+      {
+        type: "paragraph",
+        text: "Así nació spotty, un cliente de Spotify que vive en la terminal. Arte del álbum, barra de progreso, búsqueda, playlists, historial. Todo con el teclado, sin salir de donde estás.",
+      },
+      {
+        type: "heading",
+        text: "Cómo funciona",
+      },
+      {
+        type: "paragraph",
+        text: "Abrís spotty y ves lo que está sonando: el arte del álbum en alta resolución renderizado directamente en la terminal, el nombre de la canción, artista, álbum y una barra de progreso con cursor en tiempo real. Desde ahí podés controlar todo con el teclado.",
+      },
+      {
+        type: "heading",
+        text: "Sus features",
+      },
+      {
+        type: "list",
+        items: [
+          "Arte del álbum en alta calidad: usa Sixel o Kitty protocol si el terminal lo soporta; half-block Unicode como fallback.",
+          "Barra de progreso en tiempo real con cursor ●, interpolada localmente entre los polls a la API.",
+          "Búsqueda con /: overlay de búsqueda, navegá con j/k, Enter para reproducir.",
+          "Playlists con l: tus playlists de Spotify, Enter para reproducir.",
+          "Historial con r: tus últimas canciones escuchadas.",
+          "Control de volumen: + y - en incrementos de 5%.",
+          "Auto-activación de dispositivo: si no hay ninguno activo, spotty lo detecta y transfiere la reproducción automáticamente.",
+          "spotifyd integrado: instalá spotifyd y spotty lo configura solo para reproducir audio sin ninguna app abierta.",
+          "Token auto-refresh: la sesión dura indefinidamente, no hay que volver a autenticarse.",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Por qué existe",
+      },
+      {
+        type: "paragraph",
+        text: "Porque vivo en la terminal y quería controlar la música sin salir de ella. Y porque me gusta que las cosas que uso todos los días estén bien hechas.",
+      },
+    ],
+    body_en: [
+      {
+        type: "paragraph",
+        text: "I have Spotify open all the time. But I also have the terminal open all the time. And every time I wanted to change a song I had to take my hands off the keyboard, grab the mouse, switch windows, click. A huge waste of time for something so simple.",
+      },
+      {
+        type: "paragraph",
+        text: "That's how spotty was born — a Spotify client that lives in the terminal. Album art, progress bar, search, playlists, history. All with the keyboard, without leaving where you are.",
+      },
+      {
+        type: "heading",
+        text: "How it works",
+      },
+      {
+        type: "paragraph",
+        text: "You open spotty and see what's playing: high-resolution album art rendered directly in the terminal, track name, artist, album and a real-time progress bar with cursor. From there you can control everything with the keyboard.",
+      },
+      {
+        type: "heading",
+        text: "Features",
+      },
+      {
+        type: "list",
+        items: [
+          "High-quality album art: uses Sixel or Kitty protocol if the terminal supports it; half-block Unicode as fallback.",
+          "Real-time progress bar with ● cursor, locally interpolated between API polls.",
+          "Search with /: search overlay, navigate with j/k, Enter to play.",
+          "Playlists with l: your Spotify playlists, Enter to play.",
+          "History with r: your recently played tracks.",
+          "Volume control: + and - in 5% increments.",
+          "Auto device activation: if no device is active, spotty detects one and transfers playback automatically.",
+          "spotifyd integration: install spotifyd and spotty configures it automatically to play audio with no app open.",
+          "Auto token refresh: the session lasts indefinitely, no need to re-authenticate.",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Why it exists",
+      },
+      {
+        type: "paragraph",
+        text: "Because I live in the terminal and wanted to control music without leaving it. And because I like the things I use every day to be well built.",
+      },
+    ],
+  },
 ];
 
 export function getProjectBySlug(slug: string): Project | undefined {
