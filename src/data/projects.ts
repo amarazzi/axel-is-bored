@@ -2,6 +2,105 @@ import { Project } from "@/types/project";
 
 export const projects: Project[] = [
   {
+    id: "spotty",
+    name: "spotty",
+    tagline: "Un cliente de Spotify que vive en tu terminal y es tan lindo que te va a hacer escuchar más música que nunca.",
+    tagline_en: "A Spotify client that lives in your terminal and is so beautiful it'll make you listen to more music than ever.",
+    description:
+      "Un cliente de Spotify que vive en tu terminal y es tan lindo que te va a hacer escuchar más música que nunca.",
+    description_en:
+      "A Spotify client that lives in your terminal and is so beautiful it'll make you listen to more music than ever.",
+    techStack: ["Python", "Textual", "Spotify Web API"],
+    githubUrl: "https://github.com/amarazzi/spotty",
+    screenshotPath: "/screenshots/spotty.png",
+    status: "active",
+    year: 2026,
+    body: [
+      {
+        type: "paragraph",
+        text: "Como quizás sepas, las apps en la terminal siempre me atrajeron. Como quizás también sepas, estoy todo el día escuchando música. Así es como decidí crear spotty, un pequeño cliente de Spotify que funciona completamente en la terminal.",
+      },
+      {
+        type: "heading",
+        text: "Cómo funciona",
+      },
+      {
+        type: "paragraph",
+        text: "Abrís spotty y tenés una interfaz TUI completa para controlar Spotify: ves lo que está sonando con la portada del álbum, barra de progreso en tiempo real y toda la info del track. Desde ahí podés buscar canciones y álbumes, navegar playlists, ver la letra del tema actual y revisar tu historial. Todo con el teclado.",
+      },
+      {
+        type: "heading",
+        text: "Sus features",
+      },
+      {
+        type: "list",
+        items: [
+          "Now playing: portada del álbum (Sixel, Kitty o half-block según el terminal), info de la pista y barra de progreso en tiempo real.",
+          "Búsqueda: / abre un overlay de búsqueda; Tab alterna entre canciones y álbumes.",
+          "Navegación de álbumes: seleccioná un álbum para ver su tracklist y elegir desde dónde empezar.",
+          "Playlists: o abre tus playlists; seleccioná una para reproducirla.",
+          "Cola y recomendaciones: u muestra las próximas canciones; si la cola está vacía, sugiere artistas similares.",
+          "Letras: l busca y muestra la letra de la canción actual, scrolleable con j/k.",
+          "Historial: r muestra tus reproducciones recientes.",
+          "Smart next: n salta a la siguiente; si no hay cola, reproduce algo similar automáticamente.",
+          "Controles de reproducción: space para play/pause, n siguiente, p anterior, +/- para volumen.",
+          "Activación automática de dispositivo: si no hay ninguno activo, spotty encuentra uno y transfiere la reproducción.",
+          "Integración con spotifyd: daemon local opcional para que spotty funcione completamente standalone.",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Por qué existe",
+      },
+      {
+        type: "paragraph",
+        text: "Porque paso mucho tiempo en la terminal y escucho música todo el tiempo. Quería poder controlar Spotify sin cambiar de contexto, sin abrir una app aparte. Spotty resuelve exactamente eso.",
+      },
+    ],
+    body_en: [
+      {
+        type: "paragraph",
+        text: "As you may know, terminal apps have always appealed to me. As you may also know, I spend all day listening to music. That's how I decided to create spotty, a small Spotify client that runs entirely in the terminal.",
+      },
+      {
+        type: "heading",
+        text: "How it works",
+      },
+      {
+        type: "paragraph",
+        text: "You open spotty and get a full TUI to control Spotify: you see what's playing with the album art, a real-time progress bar and full track info. From there you can search for songs and albums, browse playlists, read the lyrics of the current track and check your listening history. All with the keyboard.",
+      },
+      {
+        type: "heading",
+        text: "Features",
+      },
+      {
+        type: "list",
+        items: [
+          "Now playing: album art (Sixel, Kitty or half-block depending on the terminal), track info and a real-time progress bar.",
+          "Search: / opens a search overlay; Tab toggles between tracks and albums.",
+          "Album browsing: select an album to see its tracklist and choose where to start.",
+          "Playlists: o opens your playlists; select one to start playing it.",
+          "Queue & recommendations: u shows upcoming tracks; falls back to similar artists if the queue is empty.",
+          "Lyrics: l fetches and displays lyrics for the current track, scrollable with j/k.",
+          "Recently played: r shows your listening history.",
+          "Smart next: n skips to the next track; if there is no queue, automatically plays something similar.",
+          "Playback controls: space play/pause, n next, p previous, +/- volume.",
+          "Auto device activation: if no device is active, spotty finds one and transfers playback automatically.",
+          "spotifyd integration: optional local audio daemon so spotty works completely standalone.",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Why it exists",
+      },
+      {
+        type: "paragraph",
+        text: "Because I spend a lot of time in the terminal and listen to music all day. I wanted to control Spotify without switching context, without opening a separate app. Spotty solves exactly that.",
+      },
+    ],
+  },
+  {
     id: "torr",
     name: "torr",
     tagline: "Un Stremio para la terminal.",
