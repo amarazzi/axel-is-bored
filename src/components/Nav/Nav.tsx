@@ -47,7 +47,7 @@ export function Nav() {
   }
 
   return (
-    <nav aria-label={t["nav.primaryNav"]} style={{ borderBottom: "1px solid var(--theme-border)" }}>
+    <nav aria-label={t["nav.primaryNav"]} style={{ borderBottom: "1px solid var(--theme-border)", backgroundColor: "var(--theme-bg)" }}>
       <div className="max-w-4xl mx-auto px-4 sm:px-8 py-5 flex items-center justify-between">
         {/* Left: hamburger (mobile only) + logo */}
         <div className="flex items-center gap-4">
