@@ -1,6 +1,7 @@
 import { Nav } from "@/components/Nav/Nav";
 import { RecomendacionesContent } from "@/components/RecomendacionesContent";
 import { fetchCurrentlyReading } from "@/lib/goodreads";
+import { fetchLetterboxdFilms } from "@/lib/letterboxd";
 import type { Metadata } from "next";
 
 export const revalidate = 3600;
@@ -11,12 +12,15 @@ export const metadata: Metadata = {
 };
 
 export default async function RecomendacionesPage() {
-  const currentlyReading = await fetchCurrentlyReading();
+  const [currentlyReading, films] = await Promise.all([
+    fetchCurrentlyReading(),
+    fetchLetterboxdFilms(),
+  ]);
 
   return (
     <div className="min-h-screen t-bg">
       <Nav />
-      <RecomendacionesContent currentlyReading={currentlyReading} />
+      <RecomendacionesContent currentlyReading={currentlyReading} films={films} />
     </div>
   );
 }

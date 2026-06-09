@@ -85,6 +85,9 @@ export interface Translations {
   "recomendaciones.empty": string;
   "recomendaciones.back": string;
   "recomendaciones.currentlyReading": string;
+  "recomendaciones.tab.books": string;
+  "recomendaciones.tab.films": string;
+  "recomendaciones.films.empty": string;
 }
 
 const es: Translations = {
@@ -159,10 +162,13 @@ const es: Translations = {
   "nav.recomendaciones": "recomendaciones",
   "meta.title.recomendaciones": "axel hace recomendaciones",
   "recomendaciones.title": "Recomendaciones",
-  "recomendaciones.subtitle": "libros que leí.",
+  "recomendaciones.subtitle": "libros y películas.",
   "recomendaciones.empty": "Próximamente.",
   "recomendaciones.back": "← volver",
   "recomendaciones.currentlyReading": "Leyendo",
+  "recomendaciones.tab.books": "libros",
+  "recomendaciones.tab.films": "películas y series",
+  "recomendaciones.films.empty": "Próximamente.",
 };
 
 const en: Translations = {
@@ -237,10 +243,13 @@ const en: Translations = {
   "nav.recomendaciones": "recommendations",
   "meta.title.recomendaciones": "axel makes recommendations",
   "recomendaciones.title": "Recommendations",
-  "recomendaciones.subtitle": "books I read.",
+  "recomendaciones.subtitle": "books and films.",
   "recomendaciones.empty": "Coming soon.",
   "recomendaciones.back": "← back",
   "recomendaciones.currentlyReading": "Reading",
+  "recomendaciones.tab.books": "books",
+  "recomendaciones.tab.films": "films & series",
+  "recomendaciones.films.empty": "Coming soon.",
 };
 
 export const translations: Record<Locale, Translations> = { es, en };

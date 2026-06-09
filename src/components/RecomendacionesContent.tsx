@@ -2,10 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { books } from "@/data/books";
 import { Book } from "@/types/book";
+import { LetterboxdFilm } from "@/lib/letterboxd";
 import { CurrentlyReading } from "@/lib/goodreads";
 import { useLanguage } from "@/components/Language/LanguageProvider";
+
+type Tab = "books" | "films";
 
 function Stars({ rating }: { rating: number }) {
   return (
@@ -62,8 +66,159 @@ function BookCard({ book, locale }: { book: Book; locale: "es" | "en" }) {
   );
 }
 
-export function RecomendacionesContent({ currentlyReading }: { currentlyReading: CurrentlyReading | null }) {
+function FilmCard({ film }: { film: LetterboxdFilm }) {
+  const meta = [film.director, film.yearReleased || null, film.runtime ? `${film.runtime} min` : null]
+    .filter(Boolean)
+    .join(" · ");
+
+  return (
+    <article className="flex gap-5">
+      <div className="shrink-0">
+        {film.posterUrl ? (
+          <Image
+            src={film.posterUrl}
+            alt={`${film.title} poster`}
+            width={90}
+            height={135}
+            className="object-cover"
+            style={{ borderRadius: "6px", opacity: 0.92 }}
+          />
+        ) : (
+          <div
+            style={{
+              width: 90,
+              height: 135,
+              borderRadius: "6px",
+              border: "1px dashed var(--theme-border)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <span className="t-muted" style={{ fontSize: "0.6rem", letterSpacing: "0.08em" }}>
+              {film.yearReleased}
+            </span>
+          </div>
+        )}
+      </div>
+      <div className="flex-1 min-w-0 flex flex-col gap-2 py-1">
+        <div>
+          <h2 className="t-accent" style={{ fontSize: "0.85rem", fontWeight: 400, lineHeight: 1.4 }}>
+            {film.title}
+          </h2>
+          <p className="t-muted" style={{ fontSize: "0.7rem", letterSpacing: "0.04em", marginTop: "2px" }}>
+            {meta}
+          </p>
+        </div>
+        <Stars rating={film.rating} />
+        {film.review && (
+          <p className="t-accent2" style={{ fontSize: "0.78rem", fontWeight: 300, lineHeight: 1.7 }}>
+            {film.review}
+          </p>
+        )}
+      </div>
+    </article>
+  );
+}
+
+function TabToggle({ active, onChange, labelBooks, labelFilms }: {
+  active: Tab;
+  onChange: (tab: Tab) => void;
+  labelBooks: string;
+  labelFilms: string;
+}) {
+  return (
+    <div className="flex gap-6 mb-14" role="tablist">
+      {(["books", "films"] as Tab[]).map((tab) => {
+        const label = tab === "books" ? labelBooks : labelFilms;
+        const isActive = active === tab;
+        return (
+          <button
+            key={tab}
+            role="tab"
+            aria-selected={isActive}
+            onClick={() => onChange(tab)}
+            style={{
+              background: "none",
+              border: "none",
+              padding: 0,
+              cursor: "pointer",
+              fontSize: "0.78rem",
+              letterSpacing: "0.08em",
+              fontFamily: "inherit",
+              color: isActive ? "var(--theme-accent)" : "var(--theme-muted)",
+              borderBottom: isActive ? "1px solid var(--theme-accent)" : "1px solid transparent",
+              paddingBottom: "2px",
+              transition: "color 0.15s ease, border-color 0.15s ease",
+            }}
+          >
+            {label}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+function BooksList({ locale }: { locale: "es" | "en" }) {
+  if (books.length === 0) return null;
+  const years = [...new Set(books.map((b) => b.yearRead))].sort((a, b) => b - a);
+  const multiYear = years.length > 1;
+  return (
+    <div className="flex flex-col gap-16">
+      {years.map((year) => (
+        <div key={year}>
+          {multiYear && (
+            <p className="t-muted mb-8" style={{ fontSize: "0.68rem", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+              {year}
+            </p>
+          )}
+          <div className="flex flex-col gap-12">
+            {books.filter((b) => b.yearRead === year).map((book) => (
+              <BookCard key={book.id} book={book} locale={locale} />
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function FilmsList({ films, emptyLabel }: { films: LetterboxdFilm[]; emptyLabel: string }) {
+  if (films.length === 0) {
+    return <p className="t-muted" style={{ fontSize: "0.78rem" }}>{emptyLabel}</p>;
+  }
+  const years = [...new Set(films.map((f) => f.yearWatched))].sort((a, b) => b - a);
+  const multiYear = years.length > 1;
+  return (
+    <div className="flex flex-col gap-16">
+      {years.map((year) => (
+        <div key={year}>
+          {multiYear && (
+            <p className="t-muted mb-8" style={{ fontSize: "0.68rem", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+              {year}
+            </p>
+          )}
+          <div className="flex flex-col gap-12">
+            {films.filter((f) => f.yearWatched === year).map((film) => (
+              <FilmCard key={film.id} film={film} />
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export function RecomendacionesContent({
+  currentlyReading,
+  films,
+}: {
+  currentlyReading: CurrentlyReading | null;
+  films: LetterboxdFilm[];
+}) {
   const { locale, t } = useLanguage();
+  const [activeTab, setActiveTab] = useState<Tab>("books");
 
   return (
     <>
@@ -74,59 +229,47 @@ export function RecomendacionesContent({ currentlyReading }: { currentlyReading:
         >
           {t["recomendaciones.title"]}
         </h1>
-        <p className="mb-14 t-muted" style={{ fontSize: "0.7rem", letterSpacing: "0.1em" }}>
+        <p className="mb-8 t-muted" style={{ fontSize: "0.7rem", letterSpacing: "0.1em" }}>
           {t["recomendaciones.subtitle"]}
         </p>
 
-        {currentlyReading && (
-          <div className="mb-10" style={{ borderLeft: "2px solid var(--theme-muted)", paddingLeft: "1rem" }}>
-            <p className="ff-section-label mb-2">{t["recomendaciones.currentlyReading"]}</p>
-            <a
-              href={currentlyReading.bookUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ff-touch"
-              style={{ fontSize: "0.82rem", color: "var(--theme-accent)", transition: "opacity 0.15s ease" }}
-              onMouseEnter={e => (e.currentTarget.style.opacity = "0.65")}
-              onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
-            >
-              {currentlyReading.title}
-              <span className="t-muted" style={{ fontWeight: 300 }}> · {currentlyReading.author}</span>
-            </a>
-          </div>
+        <TabToggle
+          active={activeTab}
+          onChange={setActiveTab}
+          labelBooks={t["recomendaciones.tab.books"]}
+          labelFilms={t["recomendaciones.tab.films"]}
+        />
+
+        {activeTab === "books" && (
+          <>
+            {currentlyReading && (
+              <div className="mb-10" style={{ borderLeft: "2px solid var(--theme-muted)", paddingLeft: "1rem" }}>
+                <p className="ff-section-label mb-2">{t["recomendaciones.currentlyReading"]}</p>
+                <a
+                  href={currentlyReading.bookUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ff-touch"
+                  style={{ fontSize: "0.82rem", color: "var(--theme-accent)", transition: "opacity 0.15s ease" }}
+                  onMouseEnter={e => (e.currentTarget.style.opacity = "0.65")}
+                  onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
+                >
+                  {currentlyReading.title}
+                  <span className="t-muted" style={{ fontWeight: 300 }}> · {currentlyReading.author}</span>
+                </a>
+              </div>
+            )}
+            {books.length === 0 ? (
+              <p className="t-muted" style={{ fontSize: "0.78rem" }}>{t["recomendaciones.empty"]}</p>
+            ) : (
+              <BooksList locale={locale} />
+            )}
+          </>
         )}
 
-        {books.length === 0 ? (
-          <p className="t-muted" style={{ fontSize: "0.78rem" }}>
-            {t["recomendaciones.empty"]}
-          </p>
-        ) : (() => {
-          const years = [...new Set(books.map((b) => b.yearRead))].sort((a, b) => b - a);
-          const multiYear = years.length > 1;
-          return (
-            <div className="flex flex-col gap-16">
-              {years.map((year) => (
-                <div key={year}>
-                  {multiYear && (
-                    <p
-                      className="t-muted mb-8"
-                      style={{ fontSize: "0.68rem", letterSpacing: "0.2em", textTransform: "uppercase" }}
-                    >
-                      {year}
-                    </p>
-                  )}
-                  <div className="flex flex-col gap-12">
-                    {books
-                      .filter((b) => b.yearRead === year)
-                      .map((book) => (
-                        <BookCard key={book.id} book={book} locale={locale} />
-                      ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          );
-        })()}
+        {activeTab === "films" && (
+          <FilmsList films={films} emptyLabel={t["recomendaciones.films.empty"]} />
+        )}
       </main>
 
       <footer
