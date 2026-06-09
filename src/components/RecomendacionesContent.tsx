@@ -244,7 +244,15 @@ export function RecomendacionesContent({
           <>
             {currentlyReading && (
               <div className="mb-10" style={{ borderLeft: "2px solid var(--theme-muted)", paddingLeft: "1rem" }}>
-                <p className="ff-section-label mb-2">{t["recomendaciones.currentlyReading"]}</p>
+                <div className="flex items-center gap-2 mb-2">
+                  <p className="ff-section-label">{t["recomendaciones.currentlyReading"]}</p>
+                  <img
+                    src="/exlibris.png"
+                    alt=""
+                    aria-hidden="true"
+                    style={{ width: 22, height: "auto", filter: "var(--exlibris-filter)" }}
+                  />
+                </div>
                 <a
                   href={currentlyReading.bookUrl}
                   target="_blank"

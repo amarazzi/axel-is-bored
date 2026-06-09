@@ -9,6 +9,7 @@ export interface Theme {
   border: string;
   btnBg: string;
   logoFilter: string;
+  exlibrisFilter: string;
 }
 
 export const themes: Theme[] = [
@@ -24,6 +25,7 @@ export const themes: Theme[] = [
     border: "#282828",
     btnBg: "#141414",
     logoFilter: "none",
+    exlibrisFilter: "invert(1) opacity(0.5)",
   },
   {
     // Papel. Como una página de libro bien impreso.
@@ -37,5 +39,6 @@ export const themes: Theme[] = [
     border: "#D8D6D1",
     btnBg: "#E4E2DE",
     logoFilter: "invert(1)",
+    exlibrisFilter: "opacity(0.5)",
   },
 ];

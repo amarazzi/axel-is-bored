@@ -56,6 +56,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     root.style.setProperty("--theme-border", theme.border);
     root.style.setProperty("--theme-btn-bg", theme.btnBg);
     root.style.setProperty("--logo-filter", theme.logoFilter);
+    root.style.setProperty("--exlibris-filter", theme.exlibrisFilter);
     document.body.style.backgroundColor = theme.bg;
     document.body.style.color = theme.fg;
   }, [theme]);

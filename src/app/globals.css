@@ -20,6 +20,7 @@
   --theme-muted:   #7A7A7A;
   --theme-border:  #282828;
   --theme-btn-bg:  #141414;
+  --exlibris-filter: invert(1) opacity(0.5);
 }
 
 /* ============================================================
