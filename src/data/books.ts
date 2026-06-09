@@ -2,6 +2,20 @@ import { Book } from "@/types/book";
 
 export const books: Book[] = [
   {
+    id: "diario-inconsciente",
+    title: "Diario inconsciente",
+    author: "Santiago Loza",
+    yearRead: 2026,
+    yearPublished: 2024,
+    pages: 160,
+    rating: 4,
+    review:
+      "Un libro que cuenta la internación psiquiátrica de Santiago, el escritor. Lo que él vivió, lo que su familia atravesó. Crudo, pero conciliador y esperanzador.",
+    review_en:
+      "A book about Santiago's psychiatric hospitalization. What he lived through, what his family went through. Raw, but conciliatory and hopeful.",
+    coverPath: "/covers/diarioinconsciente.jpg",
+  },
+  {
     id: "los-nuevos",
     title: "Los nuevos",
     author: "Pedro Mairal",
