@@ -5,6 +5,7 @@ import Image from "next/image";
 import { projects } from "@/data/projects";
 import { TypewriterHeading } from "@/components/TypewriterHeading";
 import { CurrentYear } from "@/components/ui/CurrentYear";
+import { PostRow } from "@/components/ui/PostRow";
 import { useLanguage } from "@/components/Language/LanguageProvider";
 
 interface RssPost {
@@ -43,7 +44,7 @@ export function HomeContent({
           <div className="flex items-start justify-between gap-16">
             <div className="flex-1 min-w-0">
               <TypewriterHeading />
-              <p className="text-sm leading-relaxed max-w-sm t-accent2" style={{ fontWeight: 300 }}>
+              <p className="ff-body-text max-w-sm">
                 {t["home.heroDesc1"]}{" "}
                 <Link href="/observando" className="ff-link-yellow">
                   observando
@@ -60,7 +61,7 @@ export function HomeContent({
                 className="object-cover grayscale-[20%]"
                 style={{
                   objectPosition: "center 15%",
-                  borderRadius: "12px",
+                  borderRadius: "var(--radius-lg)",
                   opacity: 0.85,
                 }}
                 priority
@@ -79,46 +80,27 @@ export function HomeContent({
               href="https://observando.substack.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="ff-link-muted"
-              style={{ fontSize: "0.72rem", letterSpacing: "0.04em" }}
+              className="ff-link-external"
             >
               suscribite ↗
             </a>
           </div>
 
-          <div>
-            {recentPosts.map((post, i) => (
-              <a
+          <div style={{ borderTop: "1px solid var(--theme-border)" }}>
+            {recentPosts.map((post) => (
+              <PostRow
                 key={post.url}
+                title={post.title}
+                meta={post.date}
+                description={post.subtitle}
                 href={post.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block py-5"
-                style={{
-                  borderBottom: "1px solid var(--theme-border)",
-                  borderTop: i === 0 ? "1px solid var(--theme-border)" : undefined,
-                }}
-              >
-                <div className="flex items-baseline justify-between gap-8">
-                  <div className="min-w-0">
-                    <p className="text-sm mb-1 post-title" style={{ fontWeight: 400 }}>
-                      {post.title}
-                    </p>
-                    <p className="t-muted" style={{ fontSize: "0.7rem" }}>{post.subtitle}</p>
-                  </div>
-                  <span
-                    className="shrink-0"
-                    style={{ fontSize: "0.7rem", color: "var(--theme-muted)", whiteSpace: "nowrap" }}
-                  >
-                    {post.date}
-                  </span>
-                </div>
-              </a>
+                external
+              />
             ))}
           </div>
 
           <div className="mt-6">
-            <a href="https://observando.substack.com" target="_blank" rel="noopener noreferrer" className="ff-link-muted" style={{ fontSize: "0.7rem" }}>
+            <a href="https://observando.substack.com" target="_blank" rel="noopener noreferrer" className="ff-link-muted" style={{ fontSize: "var(--text-xs)" }}>
               {t["home.seeAll"]}
             </a>
           </div>
@@ -134,15 +116,15 @@ export function HomeContent({
             {projects.map((p) => (
               <div key={p.id} className="flex items-start gap-5">
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-sm mb-3 t-accent" style={{ fontWeight: 400 }}>
+                  <h3 className="mb-3 t-accent" style={{ fontSize: "var(--text-md)", fontWeight: 400 }}>
                     <Link href={`/projects/${p.id}`} className="hover:opacity-60 transition-opacity duration-300">
                       {p.name}
                     </Link>
                   </h3>
-                  <p className="leading-relaxed mb-4 t-accent2" style={{ fontSize: "0.8rem", fontWeight: 300 }}>
+                  <p className="leading-relaxed mb-4 t-accent2" style={{ fontSize: "var(--text-sm)", fontWeight: 300 }}>
                     {locale === "en" ? (p.tagline_en ?? p.tagline) : p.tagline}
                   </p>
-                  <p className="t-muted" style={{ fontSize: "0.7rem", letterSpacing: "0.04em" }}>{p.techStack.join("  ·  ")}</p>
+                  <p className="t-muted" style={{ fontSize: "var(--text-xs)", letterSpacing: "0.04em" }}>{p.techStack.join("  ·  ")}</p>
                 </div>
                 {p.screenshotPath && (
                   <div className="shrink-0">
@@ -155,7 +137,7 @@ export function HomeContent({
                         className="object-cover"
                         style={{
                           objectPosition: "center bottom",
-                          borderRadius: "10px",
+                          borderRadius: "var(--radius-lg)",
                         }}
                       />
                     </Link>
@@ -166,7 +148,7 @@ export function HomeContent({
           </div>
 
           <div className="mt-10">
-            <Link href="/projects" className="ff-link-muted" style={{ fontSize: "0.7rem" }}>
+            <Link href="/projects" className="ff-link-muted" style={{ fontSize: "var(--text-xs)" }}>
               {t["home.more"]}
             </Link>
           </div>
@@ -179,7 +161,7 @@ export function HomeContent({
         style={{ borderTop: "1px solid var(--theme-border)" }}
       >
         <div className="flex justify-between items-center">
-          <span style={{ fontSize: "0.72rem", color: "var(--theme-muted)" }}>
+          <span className="t-muted" style={{ fontSize: "var(--text-xs)" }}>
             {t["home.footer"]} · <CurrentYear />
           </span>
           <a href="mailto:marazzi.axel@gmail.com" className="ff-back">

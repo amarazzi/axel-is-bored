@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
+import { useLanguage } from "@/components/Language/LanguageProvider";
 
 interface Props {
   src: string;
@@ -10,6 +11,7 @@ interface Props {
 }
 
 export function ImageLightbox({ src, alt, onClose }: Props) {
+  const { t } = useLanguage();
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const triggerRef = useRef<Element | null>(null);
 
@@ -65,7 +67,7 @@ export function ImageLightbox({ src, alt, onClose }: Props) {
       <button
         ref={closeButtonRef}
         onClick={onClose}
-        aria-label="cerrar"
+        aria-label={t["lightbox.close"]}
         style={{
           position: "absolute",
           top: "1.25rem",
@@ -89,7 +91,7 @@ export function ImageLightbox({ src, alt, onClose }: Props) {
         style={{
           maxWidth: "100%",
           maxHeight: "85vh",
-          borderRadius: "12px",
+          borderRadius: "var(--radius-lg)",
           objectFit: "contain",
           animation: "scaleIn 0.15s ease",
           cursor: "default",

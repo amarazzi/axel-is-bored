@@ -13,10 +13,10 @@ export function ProjectsContent() {
     <>
       <main id="main-content" className="ff-page max-w-4xl mx-auto px-8 py-16 sm:py-24">
         <h1 className="text-2xl mb-2 t-accent" style={{ fontWeight: 300, letterSpacing: "-0.01em" }}>{t["projects.title"]}</h1>
-        <p className="mb-1 t-muted" style={{ fontSize: "0.7rem", letterSpacing: "0.1em" }}>
+        <p className="mb-1 t-muted" style={{ fontSize: "var(--text-xs)", letterSpacing: "0.1em" }}>
           {t["projects.subtitle"]}
         </p>
-        <p className="mb-14 t-muted" style={{ fontSize: "0.68rem", letterSpacing: "0.05em" }}>
+        <p className="mb-14 t-muted" style={{ fontSize: "var(--text-2xs)", letterSpacing: "0.05em" }}>
           {t["projects.subtitle2"]}
         </p>
 
@@ -50,7 +50,7 @@ function ProjectCard({ project, locale }: { project: Project; locale: "es" | "en
 
   return (
     <article id={project.id}>
-      <h2 className="mb-3 t-accent" style={{ fontSize: "0.9rem", fontWeight: 400 }}>
+      <h2 className="mb-3 t-accent" style={{ fontSize: "var(--text-md)", fontWeight: 400 }}>
         <Link href={`/projects/${project.id}`} className="hover:opacity-60 transition-opacity duration-300">
           {project.name}
         </Link>
@@ -66,12 +66,12 @@ function ProjectCard({ project, locale }: { project: Project; locale: "es" | "en
             width={560}
             height={315}
             className="w-full h-auto mb-5 block"
-            style={{ borderRadius: "12px", border: "none" }}
+            style={{ borderRadius: "var(--radius-lg)", border: "none" }}
           />
         </Link>
       )}
 
-      <p className="mb-6 t-muted" style={{ fontSize: "0.7rem", letterSpacing: "0.04em" }}>
+      <p className="mb-6 t-muted" style={{ fontSize: "var(--text-xs)", letterSpacing: "0.04em" }}>
         {project.techStack.join("  ·  ")}
       </p>
 
@@ -81,7 +81,7 @@ function ProjectCard({ project, locale }: { project: Project; locale: "es" | "en
           target="_blank"
           rel="noopener noreferrer"
           className="ff-link-muted"
-          style={{ fontSize: "0.7rem" }}
+          style={{ fontSize: "var(--text-xs)" }}
         >
           {t["projects.code"]}
         </a>
@@ -91,12 +91,12 @@ function ProjectCard({ project, locale }: { project: Project; locale: "es" | "en
             target="_blank"
             rel="noopener noreferrer"
             className="ff-link-muted"
-            style={{ fontSize: "0.7rem" }}
+            style={{ fontSize: "var(--text-xs)" }}
           >
             {t["projects.live"]}
           </a>
         )}
-        <span className="t-muted" style={{ fontSize: "0.65rem", marginLeft: "0.5rem" }}>
+        <span className="t-muted" style={{ fontSize: "var(--text-2xs)", marginLeft: "0.5rem" }}>
           {statusLabel[project.status]} · {project.year}
         </span>
       </div>

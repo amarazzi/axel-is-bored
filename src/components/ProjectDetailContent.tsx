@@ -54,7 +54,7 @@ export function ProjectDetailContent({ project }: { project: Project }) {
                 width={160}
                 height={178}
                 className="object-cover"
-                style={{ objectPosition: "center bottom", borderRadius: "12px", opacity: 1, cursor: "zoom-in" }}
+                style={{ objectPosition: "center bottom", borderRadius: "var(--radius-lg)", opacity: 1, cursor: "zoom-in" }}
                 onClick={() => setLightbox(true)}
               />
               {lightbox && (

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { PostRow } from "@/components/ui/PostRow";
 import { useLanguage } from "@/components/Language/LanguageProvider";
 
 interface RssPost {
@@ -35,7 +36,7 @@ export function ObservandoContent({
         <div className="flex items-baseline justify-between gap-6 mb-2">
           <h1 className="text-2xl t-accent" style={{ fontWeight: 300, letterSpacing: "-0.01em" }}>observando</h1>
         </div>
-        <p className="mb-14 t-muted" style={{ fontSize: "0.7rem", letterSpacing: "0.1em" }}>{t["observando.subtitle"]}</p>
+        <p className="mb-14 t-muted" style={{ fontSize: "var(--text-xs)", letterSpacing: "0.1em" }}>{t["observando.subtitle"]}</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-16" style={{ alignItems: "start" }}>
           {/* Columna izquierda */}
@@ -52,7 +53,7 @@ export function ObservandoContent({
                 target="_blank"
                 rel="noopener noreferrer"
                 className="ff-link-muted"
-                style={{ fontSize: "0.7rem" }}
+                style={{ fontSize: "var(--text-xs)" }}
               >
                 {t["observando.subscribe"]}
               </a>
@@ -64,34 +65,16 @@ export function ObservandoContent({
             <p className="ff-section-label mb-6">
               {t["observando.latest"]}
             </p>
-            <div className="flex-1">
-              {(hasPosts ? rssPosts : fallbackPosts).slice(0, 3).map((post, i) => (
-                <a
+            <div className="flex-1" style={{ borderTop: "1px solid var(--theme-border)" }}>
+              {(hasPosts ? rssPosts : fallbackPosts).slice(0, 3).map((post) => (
+                <PostRow
                   key={post.url}
+                  title={post.title}
+                  meta={post.date}
+                  description={post.subtitle}
                   href={post.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group block py-4"
-                  style={{
-                    borderBottom: "1px solid var(--theme-border)",
-                    borderTop: i === 0 ? "1px solid var(--theme-border)" : undefined,
-                  }}
-                >
-                  <div className="flex items-baseline justify-between gap-4">
-                    <div className="min-w-0">
-                      <p className="mb-1 post-title" style={{ fontSize: "0.82rem", fontWeight: 400 }}>
-                        {post.title}
-                      </p>
-                      <p className="t-muted" style={{ fontSize: "0.7rem", fontWeight: 300 }}>{post.subtitle}</p>
-                    </div>
-                    <span
-                      className="shrink-0"
-                      style={{ fontSize: "0.7rem", color: "var(--theme-muted)", whiteSpace: "nowrap" }}
-                    >
-                      {post.date}
-                    </span>
-                  </div>
-                </a>
+                  external
+                />
               ))}
             </div>
             <div className="mt-6">
@@ -100,7 +83,7 @@ export function ObservandoContent({
                 target="_blank"
                 rel="noopener noreferrer"
                 className="ff-link-muted"
-                style={{ fontSize: "0.7rem" }}
+                style={{ fontSize: "var(--text-xs)" }}
               >
                 {t["observando.previous"]}
               </a>

@@ -13,7 +13,7 @@ type Tab = "books" | "films";
 
 function Stars({ rating }: { rating: number }) {
   return (
-    <span role="img" aria-label={`${rating} de 5 estrellas`} style={{ letterSpacing: "0.1em", fontSize: "0.7rem" }}>
+    <span role="img" aria-label={`${rating} de 5 estrellas`} style={{ letterSpacing: "0.1em", fontSize: "var(--text-xs)" }}>
       {Array.from({ length: 5 }, (_, i) => {
         const full = i + 1 <= Math.floor(rating);
         const half = !full && i < rating;
@@ -45,15 +45,15 @@ function BookCard({ book, locale }: { book: Book; locale: "es" | "en" }) {
           width={90}
           height={135}
           className="object-cover"
-          style={{ borderRadius: "6px", opacity: 0.92 }}
+          style={{ borderRadius: "var(--radius-md)", opacity: 0.92 }}
         />
       </div>
       <div className="flex-1 min-w-0 flex flex-col gap-2 py-1">
         <div>
-          <h2 className="t-accent" style={{ fontSize: "0.85rem", fontWeight: 400, lineHeight: 1.4 }}>
+          <h2 className="t-accent" style={{ fontSize: "var(--text-base)", fontWeight: 400, lineHeight: 1.4 }}>
             {book.title}
           </h2>
-          <p className="t-muted" style={{ fontSize: "0.7rem", letterSpacing: "0.04em", marginTop: "2px" }}>
+          <p className="t-muted" style={{ fontSize: "var(--text-xs)", letterSpacing: "0.04em", marginTop: "2px" }}>
             {book.author} · {book.yearPublished} · {book.pages}p
           </p>
         </div>
@@ -81,14 +81,14 @@ function FilmCard({ film }: { film: LetterboxdFilm }) {
             width={90}
             height={135}
             className="object-cover"
-            style={{ borderRadius: "6px", opacity: 0.92 }}
+            style={{ borderRadius: "var(--radius-md)", opacity: 0.92 }}
           />
         ) : (
           <div
             style={{
               width: 90,
               height: 135,
-              borderRadius: "6px",
+              borderRadius: "var(--radius-md)",
               border: "1px dashed var(--theme-border)",
               display: "flex",
               alignItems: "center",
@@ -103,10 +103,10 @@ function FilmCard({ film }: { film: LetterboxdFilm }) {
       </div>
       <div className="flex-1 min-w-0 flex flex-col gap-2 py-1">
         <div>
-          <h2 className="t-accent" style={{ fontSize: "0.85rem", fontWeight: 400, lineHeight: 1.4 }}>
+          <h2 className="t-accent" style={{ fontSize: "var(--text-base)", fontWeight: 400, lineHeight: 1.4 }}>
             {film.title}
           </h2>
-          <p className="t-muted" style={{ fontSize: "0.7rem", letterSpacing: "0.04em", marginTop: "2px" }}>
+          <p className="t-muted" style={{ fontSize: "var(--text-xs)", letterSpacing: "0.04em", marginTop: "2px" }}>
             {meta}
           </p>
         </div>
@@ -135,6 +135,7 @@ function TabToggle({ active, onChange, labelBooks, labelFilms }: {
         return (
           <button
             key={tab}
+            id={`tab-${tab}`}
             role="tab"
             aria-selected={isActive}
             onClick={() => onChange(tab)}
@@ -169,9 +170,7 @@ function BooksList({ locale }: { locale: "es" | "en" }) {
       {years.map((year) => (
         <div key={year}>
           {multiYear && (
-            <p className="t-muted mb-8" style={{ fontSize: "0.68rem", letterSpacing: "0.2em", textTransform: "uppercase" }}>
-              {year}
-            </p>
+            <p className="ff-section-label mb-8">{year}</p>
           )}
           <div className="flex flex-col gap-12">
             {books.filter((b) => b.yearRead === year).map((book) => (
@@ -195,9 +194,7 @@ function FilmsList({ films, emptyLabel }: { films: LetterboxdFilm[]; emptyLabel:
       {years.map((year) => (
         <div key={year}>
           {multiYear && (
-            <p className="t-muted mb-8" style={{ fontSize: "0.68rem", letterSpacing: "0.2em", textTransform: "uppercase" }}>
-              {year}
-            </p>
+            <p className="ff-section-label mb-8">{year}</p>
           )}
           <div className="flex flex-col gap-12">
             {films.filter((f) => f.yearWatched === year).map((film) => (
@@ -229,7 +226,7 @@ export function RecomendacionesContent({
         >
           {t["recomendaciones.title"]}
         </h1>
-        <p className="mb-8 t-muted" style={{ fontSize: "0.7rem", letterSpacing: "0.1em" }}>
+        <p className="mb-8 t-muted" style={{ fontSize: "var(--text-xs)", letterSpacing: "0.1em" }}>
           {t["recomendaciones.subtitle"]}
         </p>
 
@@ -241,7 +238,7 @@ export function RecomendacionesContent({
         />
 
         {activeTab === "books" && (
-          <>
+          <div role="tabpanel" aria-labelledby="tab-books">
             {currentlyReading && (
               <div className="mb-10" style={{ borderLeft: "2px solid var(--theme-muted)", paddingLeft: "1rem" }}>
                 <div className="flex items-center gap-2 mb-2">
@@ -257,10 +254,7 @@ export function RecomendacionesContent({
                   href={currentlyReading.bookUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="ff-touch"
-                  style={{ fontSize: "0.82rem", color: "var(--theme-accent)", transition: "opacity 0.15s ease" }}
-                  onMouseEnter={e => (e.currentTarget.style.opacity = "0.65")}
-                  onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
+                  className="ff-touch ff-cr-link"
                 >
                   {currentlyReading.title}
                   <span className="t-muted" style={{ fontWeight: 300 }}> · {currentlyReading.author}</span>
@@ -272,11 +266,13 @@ export function RecomendacionesContent({
             ) : (
               <BooksList locale={locale} />
             )}
-          </>
+          </div>
         )}
 
         {activeTab === "films" && (
-          <FilmsList films={films} emptyLabel={t["recomendaciones.films.empty"]} />
+          <div role="tabpanel" aria-labelledby="tab-films">
+            <FilmsList films={films} emptyLabel={t["recomendaciones.films.empty"]} />
+          </div>
         )}
       </main>
 

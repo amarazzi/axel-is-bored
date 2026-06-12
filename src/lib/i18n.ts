@@ -11,6 +11,11 @@ export interface Translations {
   "nav.skipLink": string;
   "nav.logo": string;
   "nav.primaryNav": string;
+  "nav.menu.open": string;
+  "nav.menu.close": string;
+
+  // Lightbox
+  "lightbox.close": string;
 
   // Language switcher
   "lang.label": string;
@@ -97,6 +102,10 @@ const es: Translations = {
   "nav.skipLink": "Saltar al contenido",
   "nav.logo": "Inicio",
   "nav.primaryNav": "Navegación principal",
+  "nav.menu.open": "abrir menú",
+  "nav.menu.close": "cerrar menú",
+
+  "lightbox.close": "cerrar",
 
   "lang.label": "EN",
 
@@ -178,6 +187,10 @@ const en: Translations = {
   "nav.skipLink": "Skip to content",
   "nav.logo": "Home",
   "nav.primaryNav": "Primary navigation",
+  "nav.menu.open": "open menu",
+  "nav.menu.close": "close menu",
+
+  "lightbox.close": "close",
 
   "lang.label": "ES",
 

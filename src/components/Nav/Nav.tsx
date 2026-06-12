@@ -56,7 +56,7 @@ export function Nav() {
             className="nav-hamburger"
             onClick={toggle}
             aria-expanded={isOpen}
-            aria-label={isOpen ? "cerrar menu" : "abrir menu"}
+            aria-label={isOpen ? t["nav.menu.close"] : t["nav.menu.open"]}
             style={{ background: "none", border: "none", cursor: "pointer", padding: 0, flexDirection: "column", gap: "5px" }}
           >
             <span style={{ display: "block", width: "18px", height: "1px", backgroundColor: "var(--theme-muted)", transition: "transform 0.2s ease, opacity 0.2s ease", transform: isOpen ? "translateY(6px) rotate(45deg)" : "none" }} />

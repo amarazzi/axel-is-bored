@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { PostRow } from "@/components/ui/PostRow";
 import { useLanguage } from "@/components/Language/LanguageProvider";
 
 const articles = [
@@ -56,7 +57,7 @@ export function AboutContent() {
     <>
       <main id="main-content" className="ff-page max-w-4xl mx-auto px-8 py-16 sm:py-24">
         <h1 className="text-2xl mb-2 t-accent" style={{ fontWeight: 300, letterSpacing: "-0.01em" }}>{t["about.title"]}</h1>
-        <p className="mb-14 t-muted" style={{ fontSize: "0.7rem", letterSpacing: "0.1em" }}>{t["about.subtitle"]}</p>
+        <p className="mb-14 t-muted" style={{ fontSize: "var(--text-xs)", letterSpacing: "0.1em" }}>{t["about.subtitle"]}</p>
 
         {/* Foto — solo mobile, arriba del bio */}
         <div className="mb-8 md:hidden">
@@ -68,7 +69,7 @@ export function AboutContent() {
             className="object-cover grayscale-[20%]"
             style={{
               objectPosition: "center 15%",
-              borderRadius: "12px",
+              borderRadius: "var(--radius-lg)",
               opacity: 0.85,
             }}
           />
@@ -115,7 +116,7 @@ export function AboutContent() {
                 className="object-cover grayscale-[20%]"
                 style={{
                   objectPosition: "center 15%",
-                  borderRadius: "12px",
+                  borderRadius: "var(--radius-lg)",
                   opacity: 0.85,
                 }}
               />
@@ -123,8 +124,7 @@ export function AboutContent() {
             <div>
               <a
                 href="mailto:marazzi.axel@gmail.com"
-                className="ff-link-muted"
-                style={{ fontSize: "0.72rem", letterSpacing: "0.15em" }}
+                className="ff-link-external"
               >
                 {t["about.contact"]} ↗
               </a>
@@ -134,8 +134,7 @@ export function AboutContent() {
                 href="https://axelmarazzi.notion.site/Axel-Marazzi-9f827fe896524669a3ffc670a18460d3"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="ff-link-muted"
-                style={{ fontSize: "0.72rem", letterSpacing: "0.15em" }}
+                className="ff-link-external"
               >
                 cv ↗
               </a>
@@ -145,8 +144,7 @@ export function AboutContent() {
                 href="https://observando.substack.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="ff-link-muted"
-                style={{ fontSize: "0.72rem", letterSpacing: "0.15em" }}
+                className="ff-link-external"
               >
                 observando ↗
               </a>
@@ -161,26 +159,14 @@ export function AboutContent() {
           </p>
           <div style={{ borderTop: "1px solid var(--theme-border)" }}>
             {articles.map((article) => (
-              <a
+              <PostRow
                 key={article.url}
+                title={article.title}
+                meta={article.publication}
+                description={article.description}
                 href={article.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group"
-                style={{ display: "block", padding: "1.1rem 0", borderBottom: "1px solid var(--theme-border)" }}
-              >
-                <div className="flex items-baseline justify-between gap-8">
-                  <span className="post-title" style={{ fontSize: "0.85rem", fontWeight: 300 }}>
-                    {article.title}
-                  </span>
-                  <span className="t-muted shrink-0" style={{ fontSize: "0.7rem" }}>
-                    {article.publication}
-                  </span>
-                </div>
-                <p className="t-muted mt-1" style={{ fontSize: "0.75rem", fontWeight: 300, lineHeight: 1.6 }}>
-                  {article.description}
-                </p>
-              </a>
+                external
+              />
             ))}
           </div>
         </div>
