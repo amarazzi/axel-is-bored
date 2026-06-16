@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { projects } from "@/data/projects";
 import { TypewriterHeading } from "@/components/TypewriterHeading";
 import { CurrentYear } from "@/components/ui/CurrentYear";
 import { PostRow } from "@/components/ui/PostRow";
@@ -31,7 +30,7 @@ export function HomeContent({
   rssPosts: RssPost[];
   fallbackPosts: FallbackPost[];
 }) {
-  const { locale, t } = useLanguage();
+  const { t } = useLanguage();
   const hasPosts = rssPosts.length > 0;
   const recentPosts = hasPosts ? rssPosts.slice(0, 3) : fallbackPosts.slice(0, 3);
 
@@ -106,50 +105,27 @@ export function HomeContent({
           </div>
         </section>
 
-        {/* Proyectos */}
+        {/* Sobre mí */}
         <section>
           <p className="ff-section-label mb-10">
-            {t["home.projects"]}
+            {t["home.about"]}
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-14">
-            {projects.map((p) => (
-              <div key={p.id} className="flex items-start gap-5">
-                <div className="flex-1 min-w-0">
-                  <h3 className="mb-3 t-accent" style={{ fontSize: "var(--text-md)", fontWeight: 400 }}>
-                    <Link href={`/projects/${p.id}`} className="hover:opacity-60 transition-opacity duration-300">
-                      {p.name}
-                    </Link>
-                  </h3>
-                  <p className="leading-relaxed mb-4 t-accent2" style={{ fontSize: "var(--text-sm)", fontWeight: 300 }}>
-                    {locale === "en" ? (p.tagline_en ?? p.tagline) : p.tagline}
-                  </p>
-                  <p className="t-muted" style={{ fontSize: "var(--text-xs)", letterSpacing: "0.04em" }}>{p.techStack.join("  ·  ")}</p>
-                </div>
-                {p.screenshotPath && (
-                  <div className="shrink-0">
-                    <Link href={`/projects/${p.id}`} tabIndex={-1} className="ff-img-link">
-                      <Image
-                        src={p.screenshotPath}
-                        alt={`${p.name} screenshot`}
-                        width={110}
-                        height={122}
-                        className="object-cover"
-                        style={{
-                          objectPosition: "center bottom",
-                          borderRadius: "var(--radius-lg)",
-                        }}
-                      />
-                    </Link>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
+          <p className="ff-body-text">
+            {t["about.p1"]}
+            <a href="https://www.vice.com/es/contributor/axel-marazzi/" target="_blank" rel="noopener noreferrer" className="ff-link-yellow">VICE</a>
+            {", "}
+            <a href="https://www.revistaanfibia.com/autor/axel-marazzi/" target="_blank" rel="noopener noreferrer" className="ff-link-yellow">Anfibia</a>
+            {", "}
+            <a href="https://www.latercera.com/revista-que-pasa/yo_adicto_virtual/" target="_blank" rel="noopener noreferrer" className="ff-link-yellow">Qué Pasa</a>
+            {" y "}
+            <a href="https://www.lanacion.com.ar/autor/axel-marazzi-2361/" target="_blank" rel="noopener noreferrer" className="ff-link-yellow">La Nación</a>
+            {"."}
+          </p>
 
           <div className="mt-10">
-            <Link href="/projects" className="ff-link-muted" style={{ fontSize: "var(--text-xs)" }}>
-              {t["home.more"]}
+            <Link href="/about" className="ff-link-muted" style={{ fontSize: "var(--text-xs)" }}>
+              {t["home.aboutMore"]}
             </Link>
           </div>
         </section>

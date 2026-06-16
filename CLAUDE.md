@@ -61,6 +61,12 @@ public/
 - `screenshotPath` opcional → poner la imagen en `public/screenshots/`
 - Los párrafos del `body` soportan HTML básico (`<em>`, `<strong>`) gracias a `dangerouslySetInnerHTML`
 
+### Design System
+- Antes de crear un nuevo componente o clase utilitaria, revisá `/design-system` (ruta en el sitio) o `src/components/DesignSystemContent.tsx`
+- Reutilizá las clases `.ff-*` existentes para tipografía y links antes de escribir estilos ad hoc
+- Usá siempre los tokens de color (`--theme-*`), radius (`--radius-*`) y los valores de spacing documentados
+- Si necesitás una variante nueva (componente, clase, token), agregala primero al design system antes de usarla en producción
+
 ### Componentes
 - Páginas en `app/` son thin wrappers — importan Nav + ContentComponent
 - Lógica y UI van en `src/components/`

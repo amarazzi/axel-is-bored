@@ -37,6 +37,8 @@ export interface Translations {
   "home.seeAll": string;
   "home.projects": string;
   "home.more": string;
+  "home.about": string;
+  "home.aboutMore": string;
   "home.footer": string;
   "home.footer.claude": string;
 
@@ -123,6 +125,8 @@ const es: Translations = {
   "home.seeAll": "más entregas →",
   "home.projects": "Apps",
   "home.more": "más proyectos →",
+  "home.about": "Sobre mí",
+  "home.aboutMore": "leer más →",
   "home.footer": "axel hace cosas",
   "home.footer.claude": "* página vibecodeada con ayuda de",
 
@@ -208,6 +212,8 @@ const en: Translations = {
   "home.seeAll": "see more →",
   "home.projects": "Apps",
   "home.more": "more projects →",
+  "home.about": "About me",
+  "home.aboutMore": "read more →",
   "home.footer": "axel doing things",
   "home.footer.claude": "* vibecoded with help from",
 
