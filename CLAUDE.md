@@ -25,6 +25,9 @@ src/lib/
   themes.ts       → definición de temas (standard/light)
   rss.ts          → fetching del feed de Substack
   goodreads.ts    → fetching del libro que se está leyendo (currently-reading shelf)
+  letterboxd.ts   → fetching de películas/series vistas desde el RSS de Letterboxd
+  cositas.ts      → fetching/push/remove de items de cositas (Redis)
+  feed.ts         → agrega cositas + libros + películas/series en un solo FeedItem[] (ver src/types/feed.ts)
 src/data/
   projects.ts     → datos de proyectos (agregar proyectos acá)
   books.ts        → datos de libros recomendados (agregar libros acá)
@@ -51,11 +54,11 @@ extension/        → extensión de Chrome (MV3) para compartir cositas (ver ext
 - Para inline styles usar `var(--theme-border)`, etc.
 - **No hardcodear colores** — todo pasa por el sistema de temas
 
-### Recomendaciones
+### Libros (dentro del feed de cositas)
 - Agregar en `src/data/books.ts` siguiendo la estructura existente
 - Portadas en `public/covers/`
-- El campo `yearRead` se guarda siempre aunque no se muestre
-- El componente agrupa automáticamente por año con subtítulo cuando hay libros de más de un año; si todos son del mismo año, no muestra el encabezado
+- `dateRead` (`YYYY-MM-DD`) es la fecha real (o, si no hay fecha exacta recordada, una fecha sintética que preserva el orden real de lectura) usada para ordenar el libro dentro del feed — los libros se publican en el array en el orden en que se leyeron
+- No existe más `/recomendaciones`: la ruta redirige a `/cositas`, donde libros y películas/series se ven completos (review + rating) mezclados con el resto de las cositas
 
 ### Proyectos
 - Agregar en `src/data/projects.ts` siguiendo la estructura existente
@@ -75,9 +78,12 @@ extension/        → extensión de Chrome (MV3) para compartir cositas (ver ext
 - Todos los componentes que usan hooks son `"use client"`
 
 ### Cositas
-- Tipos en `src/types/stuff.ts`: `quote` / `link` / `note` / `image` / `video`
+- `/cositas` es el feed único del sitio: junta los shares de la extensión (Redis) con los libros (`src/data/books.ts`) y las películas/series de Letterboxd, ordenados por fecha descendente
+- Tipos de share (extensión) en `src/types/stuff.ts`: `quote` / `link` / `note` / `image` / `video` / `song` / `album`. Tipo unificado del feed en `src/types/feed.ts` (`FeedItem` = `StuffItem` | `BookFeedItem` | `FilmFeedItem`, agrega también `book` y `film`)
+- `src/lib/feed.ts` (`fetchFeedItems`) hace el `Promise.all` de `fetchStuffItems` + `fetchLetterboxdFilms` + `books` y devuelve el array ya ordenado — es lo único que debe llamar `app/cositas/page.tsx`
 - `src/lib/cositas.ts` lee de Upstash Redis (`fetchStuffItems`) y cae a `src/data/stuff.ts` si no hay env vars o falla — mismo patrón que el RSS/Goodreads
 - La extensión de Chrome en `extension/` escribe vía `POST /api/cositas` (`src/app/api/cositas/route.ts`), autenticado con header `Authorization: Bearer <COSITAS_API_SECRET>`
+- Los chips de filtro en `CositasContent.tsx` son single-select (mismo mecanismo ARIA tablist/tab que el viejo `TabToggle` de Recomendaciones), nunca multi-select
 - `/cositas` es `dynamic = "force-dynamic"` para reflejar lo compartido al instante, sin redeploy
 - Env vars necesarias en Vercel: `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`, `COSITAS_API_SECRET` — setup completo en `extension/README.md`
 

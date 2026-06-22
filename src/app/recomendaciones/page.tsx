@@ -1,26 +1,5 @@
-import { Nav } from "@/components/Nav/Nav";
-import { RecomendacionesContent } from "@/components/RecomendacionesContent";
-import { fetchCurrentlyReading } from "@/lib/goodreads";
-import { fetchLetterboxdFilms } from "@/lib/letterboxd";
-import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 
-export const revalidate = 3600;
-
-export const metadata: Metadata = {
-  title: "axel hace recomendaciones",
-  description: "Libros que leí y recomiendo.",
-};
-
-export default async function RecomendacionesPage() {
-  const [currentlyReading, films] = await Promise.all([
-    fetchCurrentlyReading(),
-    fetchLetterboxdFilms(),
-  ]);
-
-  return (
-    <div className="min-h-screen t-bg">
-      <Nav />
-      <RecomendacionesContent currentlyReading={currentlyReading} films={films} />
-    </div>
-  );
+export default function RecomendacionesPage() {
+  redirect("/cositas");
 }

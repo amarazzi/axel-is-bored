@@ -3,10 +3,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, type CSSProperties } from "react";
-import { StuffItem, QuoteItem, LinkItem, NoteItem, ImageItem, VideoItem, SongItem, AlbumItem } from "@/types/stuff";
+import { QuoteItem, LinkItem, NoteItem, ImageItem, VideoItem, SongItem, AlbumItem } from "@/types/stuff";
+import { FeedItem, BookFeedItem, FilmFeedItem } from "@/types/feed";
 import { useLanguage } from "@/components/Language/LanguageProvider";
 import { ImageLightbox } from "@/components/ImageLightbox";
 import type { Locale } from "@/lib/i18n";
+import type { CurrentlyReading } from "@/lib/goodreads";
 
 function formatDate(date: string, locale: Locale): string {
   const parsed = date.includes("T") ? new Date(date) : new Date(`${date}T00:00:00`);
@@ -225,7 +227,162 @@ function MusicCard({ item, locale }: { item: SongItem | AlbumItem; locale: Local
   );
 }
 
-function StuffRow({ item, locale }: { item: StuffItem; locale: Locale }) {
+function Stars({ rating }: { rating: number }) {
+  return (
+    <span role="img" aria-label={`${rating} de 5 estrellas`} style={{ letterSpacing: "0.1em", fontSize: "var(--text-xs)" }}>
+      {Array.from({ length: 5 }, (_, i) => {
+        const full = i + 1 <= Math.floor(rating);
+        const half = !full && i < rating;
+        if (half) {
+          return (
+            <span key={i} style={{ position: "relative", display: "inline-block" }}>
+              <span style={{ color: "var(--theme-border)" }}>★</span>
+              <span style={{ position: "absolute", left: 0, top: 0, width: "50%", overflow: "hidden", color: "var(--theme-accent)" }}>★</span>
+            </span>
+          );
+        }
+        return <span key={i} style={{ color: full ? "var(--theme-accent)" : "var(--theme-border)" }}>★</span>;
+      })}
+    </span>
+  );
+}
+
+function BookCard({ item, locale }: { item: BookFeedItem; locale: Locale }) {
+  const { book } = item;
+  const review = locale === "en" ? (book.review_en ?? book.review) : book.review;
+
+  return (
+    <article className="flex gap-5">
+      <div className="shrink-0">
+        <Image
+          src={book.coverPath}
+          alt={`${book.title} cover`}
+          width={90}
+          height={135}
+          className="object-cover"
+          style={{ borderRadius: "var(--radius-md)", opacity: 0.92 }}
+        />
+      </div>
+      <div className="flex-1 min-w-0 flex flex-col gap-2 py-1">
+        <div>
+          <h2 className="t-accent" style={{ fontSize: "var(--text-base)", fontWeight: 400, lineHeight: 1.4 }}>
+            {book.title}
+          </h2>
+          <p className="t-muted" style={{ fontSize: "var(--text-xs)", letterSpacing: "0.04em", marginTop: "2px" }}>
+            {book.author} · {book.yearPublished} · {book.pages}p
+          </p>
+        </div>
+        <Stars rating={book.rating} />
+        <p className="t-accent2" style={{ fontSize: "0.78rem", fontWeight: 300, lineHeight: 1.7 }}>
+          {review}
+        </p>
+      </div>
+    </article>
+  );
+}
+
+function FilmCard({ item }: { item: FilmFeedItem }) {
+  const { film } = item;
+  const meta = [film.director, film.yearReleased || null, film.runtime ? `${film.runtime} min` : null]
+    .filter(Boolean)
+    .join(" · ");
+
+  return (
+    <article className="flex gap-5">
+      <div className="shrink-0">
+        {film.posterUrl ? (
+          <Image
+            src={film.posterUrl}
+            alt={`${film.title} poster`}
+            width={90}
+            height={135}
+            className="object-cover"
+            style={{ borderRadius: "var(--radius-md)", opacity: 0.92 }}
+          />
+        ) : (
+          <div
+            style={{
+              width: 90,
+              height: 135,
+              borderRadius: "var(--radius-md)",
+              border: "1px dashed var(--theme-border)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <span className="t-muted" style={{ fontSize: "0.6rem", letterSpacing: "0.08em" }}>
+              {film.yearReleased}
+            </span>
+          </div>
+        )}
+      </div>
+      <div className="flex-1 min-w-0 flex flex-col gap-2 py-1">
+        <div>
+          <h2 className="t-accent" style={{ fontSize: "var(--text-base)", fontWeight: 400, lineHeight: 1.4 }}>
+            {film.title}
+          </h2>
+          <p className="t-muted" style={{ fontSize: "var(--text-xs)", letterSpacing: "0.04em", marginTop: "2px" }}>
+            {meta}
+          </p>
+        </div>
+        <Stars rating={film.rating} />
+        {film.review && (
+          <p className="t-accent2" style={{ fontSize: "0.78rem", fontWeight: 300, lineHeight: 1.7 }}>
+            {film.review}
+          </p>
+        )}
+      </div>
+    </article>
+  );
+}
+
+type Filter = "all" | FeedItem["type"];
+
+function FilterChips({
+  active,
+  onChange,
+  labels,
+}: {
+  active: Filter;
+  onChange: (filter: Filter) => void;
+  labels: Record<Filter, string>;
+}) {
+  const filters: Filter[] = ["all", "book", "film", "quote", "album", "song", "note", "link", "image", "video"];
+
+  return (
+    <div className="flex flex-wrap gap-x-6 gap-y-3 mb-14" role="tablist">
+      {filters.map((filter) => {
+        const isActive = active === filter;
+        return (
+          <button
+            key={filter}
+            role="tab"
+            aria-selected={isActive}
+            onClick={() => onChange(filter)}
+            style={{
+              background: "none",
+              border: "none",
+              padding: 0,
+              cursor: "pointer",
+              fontSize: "0.78rem",
+              letterSpacing: "0.08em",
+              fontFamily: "inherit",
+              color: isActive ? "var(--theme-accent)" : "var(--theme-muted)",
+              borderBottom: isActive ? "1px solid var(--theme-accent)" : "1px solid transparent",
+              paddingBottom: "2px",
+              transition: "color 0.15s ease, border-color 0.15s ease",
+            }}
+          >
+            {labels[filter]}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+function StuffRow({ item, locale }: { item: FeedItem; locale: Locale }) {
   return (
     <div className="flex flex-col gap-2">
       <p className="ff-section-label" style={{ fontSize: "0.6rem" }}>
@@ -237,38 +394,85 @@ function StuffRow({ item, locale }: { item: StuffItem; locale: Locale }) {
       {item.type === "image" && <ImageCard item={item} locale={locale} />}
       {item.type === "video" && <VideoCard item={item} locale={locale} />}
       {(item.type === "song" || item.type === "album") && <MusicCard item={item} locale={locale} />}
+      {item.type === "book" && <BookCard item={item} locale={locale} />}
+      {item.type === "film" && <FilmCard item={item} />}
     </div>
   );
 }
 
-export function CositasContent({ items: itemsProp }: { items: StuffItem[] }) {
+export function CositasContent({
+  items: itemsProp,
+  currentlyReading,
+}: {
+  items: FeedItem[];
+  currentlyReading: CurrentlyReading | null;
+}) {
   const { locale, t } = useLanguage();
+  const [filter, setFilter] = useState<Filter>("all");
   const items = [...itemsProp].sort((a, b) => b.date.localeCompare(a.date));
+  const filtered = filter === "all" ? items : items.filter((item) => item.type === filter);
+  const showCurrentlyReading = currentlyReading && (filter === "all" || filter === "book");
+
+  const filterLabels: Record<Filter, string> = {
+    all: t["cositas.filter.all"],
+    book: t["cositas.filter.books"],
+    film: t["cositas.filter.films"],
+    quote: t["cositas.filter.quotes"],
+    album: t["cositas.filter.albums"],
+    song: t["cositas.filter.songs"],
+    note: t["cositas.filter.notes"],
+    link: t["cositas.filter.links"],
+    image: t["cositas.filter.images"],
+    video: t["cositas.filter.videos"],
+  };
 
   return (
     <>
-      <main id="main-content" className="ff-page max-w-2xl mx-auto px-8 py-16 sm:py-24">
+      <main id="main-content" className="ff-page max-w-4xl mx-auto px-8 py-16 sm:py-24">
         <h1 className="text-2xl mb-2 t-accent" style={{ fontWeight: 300, letterSpacing: "-0.01em" }}>
           {t["cositas.title"]}
         </h1>
-        <p className="mb-14 t-muted" style={{ fontSize: "var(--text-xs)", letterSpacing: "0.1em" }}>
+        <p className="mb-8 t-muted" style={{ fontSize: "var(--text-xs)", letterSpacing: "0.1em" }}>
           {t["cositas.subtitle"]}
         </p>
 
-        {items.length === 0 ? (
+        <FilterChips active={filter} onChange={setFilter} labels={filterLabels} />
+
+        {showCurrentlyReading && (
+          <div className="mb-12" style={{ borderLeft: "2px solid var(--theme-muted)", paddingLeft: "1rem" }}>
+            <div className="flex items-center gap-2 mb-2">
+              <p className="ff-section-label">{t["cositas.currentlyReading"]}</p>
+              <img
+                src="/exlibris.png"
+                alt=""
+                aria-hidden="true"
+                style={{ width: 22, height: "auto", filter: "var(--exlibris-filter)" }}
+              />
+            </div>
+            <a href={currentlyReading.bookUrl} target="_blank" rel="noopener noreferrer" className="ff-touch ff-cr-link">
+              {currentlyReading.title}
+              <span className="t-muted" style={{ fontWeight: 300 }}>
+                {" "}
+                · {currentlyReading.author}
+              </span>
+            </a>
+          </div>
+        )}
+
+        {filtered.length === 0 ? (
           <p className="t-muted" style={{ fontSize: "0.78rem" }}>
             {t["cositas.empty"]}
           </p>
         ) : (
           <div className="flex flex-col gap-12">
-            {items.map((item) => (
+            {filtered.map((item) => (
               <StuffRow key={item.id} item={item} locale={locale} />
             ))}
           </div>
         )}
       </main>
 
-      <footer className="max-w-2xl mx-auto px-8 py-8" style={{ borderTop: "1px solid var(--theme-border)" }}>
+      <footer className="max-w-4xl mx-auto px-8 py-8" style={{ borderTop: "1px solid var(--theme-border)" }}>
         <Link href="/" className="ff-back">
           {t["cositas.back"]}
         </Link>

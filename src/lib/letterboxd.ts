@@ -5,7 +5,7 @@ export interface LetterboxdFilm {
   title: string;
   director: string | null;
   yearReleased: number;
-  yearWatched: number;
+  dateWatched: string;
   runtime: number | null;
   rating: number;
   review: string | null;
@@ -90,7 +90,7 @@ export async function fetchLetterboxdFilms(): Promise<LetterboxdFilm[]> {
       title: string;
       tmdbId: string;
       yearReleased: number;
-      yearWatched: number;
+      dateWatched: string;
       rating: number;
       review: string | null;
       posterUrl: string | null;
@@ -109,9 +109,7 @@ export async function fetchLetterboxdFilms(): Promise<LetterboxdFilm[]> {
       const tmdbId = extractText(item["tmdb:movieId"]);
 
       const watchedStr = extractText(item["letterboxd:watchedDate"]);
-      const yearWatched = watchedStr
-        ? parseInt(watchedStr.split("-")[0])
-        : new Date().getFullYear();
+      const dateWatched = watchedStr || new Date().toISOString().split("T")[0];
 
       const yearReleased = parseInt(extractText(item["letterboxd:filmYear"])) || 0;
 
@@ -129,7 +127,7 @@ export async function fetchLetterboxdFilms(): Promise<LetterboxdFilm[]> {
       }
       seen.add(key);
 
-      entries.push({ id, title, tmdbId, yearReleased, yearWatched, rating, review, posterUrl });
+      entries.push({ id, title, tmdbId, yearReleased, dateWatched, rating, review, posterUrl });
     }
 
     const tmdbDetails = await Promise.all(
@@ -141,7 +139,7 @@ export async function fetchLetterboxdFilms(): Promise<LetterboxdFilm[]> {
       title: e.title,
       director: tmdbDetails[i].director,
       yearReleased: e.yearReleased,
-      yearWatched: e.yearWatched,
+      dateWatched: e.dateWatched,
       runtime: tmdbDetails[i].runtime,
       rating: e.rating,
       review: e.review,

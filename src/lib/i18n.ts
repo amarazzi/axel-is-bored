@@ -84,18 +84,6 @@ export interface Translations {
   "observandoPost.readOnSubstack": string;
   "observandoPost.back": string;
 
-  // Recomendaciones
-  "nav.recomendaciones": string;
-  "meta.title.recomendaciones": string;
-  "recomendaciones.title": string;
-  "recomendaciones.subtitle": string;
-  "recomendaciones.empty": string;
-  "recomendaciones.back": string;
-  "recomendaciones.currentlyReading": string;
-  "recomendaciones.tab.books": string;
-  "recomendaciones.tab.films": string;
-  "recomendaciones.films.empty": string;
-
   // Cositas
   "nav.cositas": string;
   "meta.title.cositas": string;
@@ -103,6 +91,17 @@ export interface Translations {
   "cositas.subtitle": string;
   "cositas.empty": string;
   "cositas.back": string;
+  "cositas.currentlyReading": string;
+  "cositas.filter.all": string;
+  "cositas.filter.books": string;
+  "cositas.filter.films": string;
+  "cositas.filter.quotes": string;
+  "cositas.filter.albums": string;
+  "cositas.filter.songs": string;
+  "cositas.filter.notes": string;
+  "cositas.filter.links": string;
+  "cositas.filter.images": string;
+  "cositas.filter.videos": string;
 }
 
 const es: Translations = {
@@ -180,23 +179,23 @@ const es: Translations = {
   "observandoPost.readOnSubstack": "leer en substack ↗",
   "observandoPost.back": "← observando",
 
-  "nav.recomendaciones": "recomendaciones",
-  "meta.title.recomendaciones": "axel hace recomendaciones",
-  "recomendaciones.title": "Recomendaciones",
-  "recomendaciones.subtitle": "Algunas cosas que leí y vi y quizás te gusten.",
-  "recomendaciones.empty": "Próximamente.",
-  "recomendaciones.back": "← volver",
-  "recomendaciones.currentlyReading": "Leyendo",
-  "recomendaciones.tab.books": "libros",
-  "recomendaciones.tab.films": "películas y series",
-  "recomendaciones.films.empty": "Próximamente.",
-
   "nav.cositas": "cositas",
   "meta.title.cositas": "axel hace cositas",
   "cositas.title": "Cositas",
   "cositas.subtitle": "Frases, canciones, links y cosas que cruce por internet que me parecieron interesantes.",
   "cositas.empty": "Próximamente.",
   "cositas.back": "← volver",
+  "cositas.currentlyReading": "Leyendo",
+  "cositas.filter.all": "todo",
+  "cositas.filter.books": "libros",
+  "cositas.filter.films": "películas y series",
+  "cositas.filter.quotes": "quotes",
+  "cositas.filter.albums": "discos",
+  "cositas.filter.songs": "canciones",
+  "cositas.filter.notes": "notas",
+  "cositas.filter.links": "links",
+  "cositas.filter.images": "imágenes",
+  "cositas.filter.videos": "videos",
 };
 
 const en: Translations = {
@@ -274,23 +273,23 @@ const en: Translations = {
   "observandoPost.readOnSubstack": "read on substack ↗",
   "observandoPost.back": "← observando",
 
-  "nav.recomendaciones": "recommendations",
-  "meta.title.recomendaciones": "axel makes recommendations",
-  "recomendaciones.title": "Recommendations",
-  "recomendaciones.subtitle": "Some things I read and watched that you might enjoy.",
-  "recomendaciones.empty": "Coming soon.",
-  "recomendaciones.back": "← back",
-  "recomendaciones.currentlyReading": "Reading",
-  "recomendaciones.tab.books": "books",
-  "recomendaciones.tab.films": "films & series",
-  "recomendaciones.films.empty": "Coming soon.",
-
   "nav.cositas": "stuff",
   "meta.title.cositas": "axel makes stuff",
   "cositas.title": "Stuff",
   "cositas.subtitle": "Quotes, songs, links and things I came across online that I found interesting.",
   "cositas.empty": "Coming soon.",
   "cositas.back": "← back",
+  "cositas.currentlyReading": "Reading",
+  "cositas.filter.all": "all",
+  "cositas.filter.books": "books",
+  "cositas.filter.films": "films & series",
+  "cositas.filter.quotes": "quotes",
+  "cositas.filter.albums": "albums",
+  "cositas.filter.songs": "songs",
+  "cositas.filter.notes": "notes",
+  "cositas.filter.links": "links",
+  "cositas.filter.images": "images",
+  "cositas.filter.videos": "videos",
 };
 
 export const translations: Record<Locale, Translations> = { es, en };
