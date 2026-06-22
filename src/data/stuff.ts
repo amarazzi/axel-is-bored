@@ -7,8 +7,8 @@ export const stuff: StuffItem[] = [
     id: "nota-1",
     type: "note",
     date: "2026-06-21",
-    text: "A veces programar de noche se parece más a no querer dormir que a tener ganas de programar.",
-    text_en: "Sometimes coding at night is less about wanting to code and more about not wanting to sleep.",
+    text: "Solo un pensamiento de prueba para testear la sección de cositas.",
+    text_en: "Just a test thought to try out the cositas section.",
   },
   {
     id: "quote-borges-tiempo",
