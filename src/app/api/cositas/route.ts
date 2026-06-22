@@ -21,6 +21,13 @@ function nonEmptyString(value: unknown): string | undefined {
   return typeof value === "string" && value.trim() ? value.trim() : undefined;
 }
 
+function toFiniteNumber(value: unknown): number | undefined {
+  const n = Number(value);
+  return Number.isFinite(n) ? n : undefined;
+}
+
+const ALLOWED_RATINGS = [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
+
 function buildItem(body: Record<string, unknown>): StuffItem | null {
   const id = randomUUID();
   const date = new Date().toISOString();
@@ -77,6 +84,26 @@ function buildItem(body: Record<string, unknown>): StuffItem | null {
       artist: nonEmptyString(body.artist),
       albumImageUrl: nonEmptyString(body.albumImageUrl),
       description: nonEmptyString(body.description),
+    };
+  }
+
+  if (type === "book") {
+    const title = nonEmptyString(body.title);
+    const author = nonEmptyString(body.author);
+    const coverImageUrl = nonEmptyString(body.coverImageUrl);
+    const rating = Number(body.rating);
+    if (!title || !author || !coverImageUrl || !ALLOWED_RATINGS.includes(rating)) return null;
+    return {
+      id,
+      type,
+      date,
+      title,
+      author,
+      coverImageUrl,
+      rating: rating as 1 | 1.5 | 2 | 2.5 | 3 | 3.5 | 4 | 4.5 | 5,
+      yearPublished: toFiniteNumber(body.yearPublished),
+      pages: toFiniteNumber(body.pages),
+      review: nonEmptyString(body.review),
     };
   }
 

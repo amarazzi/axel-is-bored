@@ -1,13 +1,5 @@
 import { StuffItem } from "@/types/stuff";
-import { Book } from "@/types/book";
 import { LetterboxdFilm } from "@/lib/letterboxd";
-
-export interface BookFeedItem {
-  id: string;
-  type: "book";
-  date: string;
-  book: Book;
-}
 
 export interface FilmFeedItem {
   id: string;
@@ -16,6 +8,6 @@ export interface FilmFeedItem {
   film: LetterboxdFilm;
 }
 
-export type FeedItem = StuffItem | BookFeedItem | FilmFeedItem;
+export type FeedItem = StuffItem | FilmFeedItem;
 
 export type FeedItemType = FeedItem["type"];

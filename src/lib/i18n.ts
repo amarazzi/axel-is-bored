@@ -96,8 +96,7 @@ export interface Translations {
   "cositas.filter.books": string;
   "cositas.filter.films": string;
   "cositas.filter.quotes": string;
-  "cositas.filter.albums": string;
-  "cositas.filter.songs": string;
+  "cositas.filter.music": string;
   "cositas.filter.notes": string;
   "cositas.filter.links": string;
   "cositas.filter.images": string;
@@ -188,10 +187,9 @@ const es: Translations = {
   "cositas.currentlyReading": "Leyendo",
   "cositas.filter.all": "todo",
   "cositas.filter.books": "libros",
-  "cositas.filter.films": "películas y series",
+  "cositas.filter.films": "cine",
   "cositas.filter.quotes": "quotes",
-  "cositas.filter.albums": "discos",
-  "cositas.filter.songs": "canciones",
+  "cositas.filter.music": "música",
   "cositas.filter.notes": "notas",
   "cositas.filter.links": "links",
   "cositas.filter.images": "imágenes",
@@ -282,10 +280,9 @@ const en: Translations = {
   "cositas.currentlyReading": "Reading",
   "cositas.filter.all": "all",
   "cositas.filter.books": "books",
-  "cositas.filter.films": "films & series",
+  "cositas.filter.films": "film",
   "cositas.filter.quotes": "quotes",
-  "cositas.filter.albums": "albums",
-  "cositas.filter.songs": "songs",
+  "cositas.filter.music": "music",
   "cositas.filter.notes": "notes",
   "cositas.filter.links": "links",
   "cositas.filter.images": "images",

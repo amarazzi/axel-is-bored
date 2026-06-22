@@ -71,4 +71,28 @@ export interface AlbumItem {
   description_en?: string;
 }
 
-export type StuffItem = QuoteItem | LinkItem | NoteItem | ImageItem | VideoItem | SongItem | AlbumItem;
+export interface BookItem {
+  id: string;
+  type: "book";
+  // Fecha en la que se terminó de leer.
+  date: string;
+  title: string;
+  author: string;
+  yearPublished?: number;
+  pages?: number;
+  rating: 1 | 1.5 | 2 | 2.5 | 3 | 3.5 | 4 | 4.5 | 5;
+  review?: string;
+  review_en?: string;
+  // Path local (/covers/x.jpg) o URL externa/data URL subida desde la extensión.
+  coverImageUrl: string;
+}
+
+export type StuffItem =
+  | QuoteItem
+  | LinkItem
+  | NoteItem
+  | ImageItem
+  | VideoItem
+  | SongItem
+  | AlbumItem
+  | BookItem;

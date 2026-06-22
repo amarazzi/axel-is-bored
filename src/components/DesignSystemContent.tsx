@@ -366,8 +366,8 @@ function TabToggleDemo({ locale }: { locale: Locale }) {
   const [active, setActive] = useState<"a" | "b" | "c" | "d">("a");
   const labels =
     locale === "en"
-      ? { a: "all", b: "books", c: "films & series", d: "quotes" }
-      : { a: "todo", b: "libros", c: "películas y series", d: "quotes" };
+      ? { a: "all", b: "books", c: "film", d: "quotes" }
+      : { a: "todo", b: "libros", c: "cine", d: "quotes" };
   return (
     <div className="flex flex-wrap gap-x-6 gap-y-2" role="tablist">
       {(["a", "b", "c", "d"] as const).map((tab) => {
@@ -485,8 +485,8 @@ function StuffCardDemo({ locale }: { locale: Locale }) {
           <StarsDemo />
           <p className="t-accent2" style={{ fontSize: "0.72rem", fontWeight: 300, lineHeight: 1.6 }}>
             {locale === "en"
-              ? "Book / Film — cover + star rating + review, no border. Lives in the cositas feed, sourced from books.ts / Letterboxd."
-              : "Libro / Película — portada + rating de estrellas + review, sin borde. Vive en el feed de cositas, viene de books.ts / Letterboxd."}
+              ? "Book / Film — cover + star rating + review, no border. Lives in the cositas feed; books are shared from the Chrome extension (stored in Redis), films come from Letterboxd."
+              : "Libro / Película — portada + rating de estrellas + review, sin borde. Vive en el feed de cositas; los libros se comparten desde la extensión de Chrome (se guardan en Redis), las películas vienen de Letterboxd."}
           </p>
         </div>
       </div>
@@ -523,7 +523,7 @@ function Components({ locale }: { locale: Locale }) {
     },
     {
       name: "FilterChips",
-      description: { es: "Chips de filtro single-select con roles ARIA (tablist/tab). Activo: accent + underline. Inactivo: muted. Se usan en el feed de cositas (todo / libros / películas y series / quotes / discos / canciones / notas / links / imágenes / videos) — misma mecánica que el viejo TabToggle de Recomendaciones, ahora con flex-wrap para más opciones.", en: "Single-select filter chips with ARIA roles (tablist/tab). Active: accent + underline. Inactive: muted. Used in the cositas feed (all / books / films & series / quotes / albums / songs / notes / links / images / videos) — same mechanics as the old Recomendaciones TabToggle, now with flex-wrap for more options." },
+      description: { es: "Chips de filtro single-select con roles ARIA (tablist/tab). Activo: accent + underline. Inactivo: muted. Se usan en el feed de cositas (todo / libros / cine / quotes / música / notas / links / imágenes / videos) — \"cine\" agrupa películas y series, \"música\" agrupa canciones y discos. Misma mecánica que el viejo TabToggle de Recomendaciones, ahora con flex-wrap para más opciones.", en: "Single-select filter chips with ARIA roles (tablist/tab). Active: accent + underline. Inactive: muted. Used in the cositas feed (all / books / film / quotes / music / notes / links / images / videos) — \"film\" groups movies and series, \"music\" groups songs and albums. Same mechanics as the old Recomendaciones TabToggle, now with flex-wrap for more options." },
       demo: <TabToggleDemo locale={locale} />,
     },
     {

@@ -3,8 +3,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, type CSSProperties } from "react";
-import { QuoteItem, LinkItem, NoteItem, ImageItem, VideoItem, SongItem, AlbumItem } from "@/types/stuff";
-import { FeedItem, BookFeedItem, FilmFeedItem } from "@/types/feed";
+import { QuoteItem, LinkItem, NoteItem, ImageItem, VideoItem, SongItem, AlbumItem, BookItem } from "@/types/stuff";
+import { FeedItem, FilmFeedItem } from "@/types/feed";
 import { useLanguage } from "@/components/Language/LanguageProvider";
 import { ImageLightbox } from "@/components/ImageLightbox";
 import type { Locale } from "@/lib/i18n";
@@ -247,35 +247,49 @@ function Stars({ rating }: { rating: number }) {
   );
 }
 
-function BookCard({ item, locale }: { item: BookFeedItem; locale: Locale }) {
-  const { book } = item;
-  const review = locale === "en" ? (book.review_en ?? book.review) : book.review;
+function BookCard({ item, locale }: { item: BookItem; locale: Locale }) {
+  const review = locale === "en" ? (item.review_en ?? item.review) : item.review;
+  const isLocal = item.coverImageUrl.startsWith("/");
+  const meta = [item.author, item.yearPublished || null, item.pages ? `${item.pages}p` : null]
+    .filter(Boolean)
+    .join(" · ");
 
   return (
     <article className="flex gap-5">
       <div className="shrink-0">
-        <Image
-          src={book.coverPath}
-          alt={`${book.title} cover`}
-          width={90}
-          height={135}
-          className="object-cover"
-          style={{ borderRadius: "var(--radius-md)", opacity: 0.92 }}
-        />
+        {isLocal ? (
+          <Image
+            src={item.coverImageUrl}
+            alt={`${item.title} cover`}
+            width={90}
+            height={135}
+            className="object-cover"
+            style={{ borderRadius: "var(--radius-md)", opacity: 0.92 }}
+          />
+        ) : (
+          // eslint-disable-next-line @next/next/no-img-element -- portada subida desde la extensión (data URL o URL externa), no se puede pasar por next/image
+          <img
+            src={item.coverImageUrl}
+            alt={`${item.title} cover`}
+            style={{ width: 90, height: 135, objectFit: "cover", borderRadius: "var(--radius-md)", opacity: 0.92, display: "block" }}
+          />
+        )}
       </div>
       <div className="flex-1 min-w-0 flex flex-col gap-2 py-1">
         <div>
           <h2 className="t-accent" style={{ fontSize: "var(--text-base)", fontWeight: 400, lineHeight: 1.4 }}>
-            {book.title}
+            {item.title}
           </h2>
           <p className="t-muted" style={{ fontSize: "var(--text-xs)", letterSpacing: "0.04em", marginTop: "2px" }}>
-            {book.author} · {book.yearPublished} · {book.pages}p
+            {meta}
           </p>
         </div>
-        <Stars rating={book.rating} />
-        <p className="t-accent2" style={{ fontSize: "0.78rem", fontWeight: 300, lineHeight: 1.7 }}>
-          {review}
-        </p>
+        <Stars rating={item.rating} />
+        {review && (
+          <p className="t-accent2" style={{ fontSize: "0.78rem", fontWeight: 300, lineHeight: 1.7 }}>
+            {review}
+          </p>
+        )}
       </div>
     </article>
   );
@@ -337,7 +351,13 @@ function FilmCard({ item }: { item: FilmFeedItem }) {
   );
 }
 
-type Filter = "all" | FeedItem["type"];
+type Filter = "all" | "book" | "film" | "quote" | "music" | "note" | "link" | "image" | "video";
+
+function matchesFilter(item: FeedItem, filter: Filter): boolean {
+  if (filter === "all") return true;
+  if (filter === "music") return item.type === "song" || item.type === "album";
+  return item.type === filter;
+}
 
 function FilterChips({
   active,
@@ -348,7 +368,7 @@ function FilterChips({
   onChange: (filter: Filter) => void;
   labels: Record<Filter, string>;
 }) {
-  const filters: Filter[] = ["all", "book", "film", "quote", "album", "song", "note", "link", "image", "video"];
+  const filters: Filter[] = ["all", "book", "film", "music", "quote", "link", "image", "video", "note"];
 
   return (
     <div className="flex flex-wrap gap-x-6 gap-y-3 mb-14" role="tablist">
@@ -410,7 +430,7 @@ export function CositasContent({
   const { locale, t } = useLanguage();
   const [filter, setFilter] = useState<Filter>("all");
   const items = [...itemsProp].sort((a, b) => b.date.localeCompare(a.date));
-  const filtered = filter === "all" ? items : items.filter((item) => item.type === filter);
+  const filtered = items.filter((item) => matchesFilter(item, filter));
   const showCurrentlyReading = currentlyReading && (filter === "all" || filter === "book");
 
   const filterLabels: Record<Filter, string> = {
@@ -418,8 +438,7 @@ export function CositasContent({
     book: t["cositas.filter.books"],
     film: t["cositas.filter.films"],
     quote: t["cositas.filter.quotes"],
-    album: t["cositas.filter.albums"],
-    song: t["cositas.filter.songs"],
+    music: t["cositas.filter.music"],
     note: t["cositas.filter.notes"],
     link: t["cositas.filter.links"],
     image: t["cositas.filter.images"],

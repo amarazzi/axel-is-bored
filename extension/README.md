@@ -28,6 +28,8 @@ Comparte frases, links, imágenes, videos de YouTube y pensamientos directo a
 - **Link**: click derecho sobre un link → "Compartir este link a cositas". O abrí el popup y tocá "compartir esta pestaña como link" para compartir la página actual.
 - **Imagen**: click derecho sobre una imagen → "Compartir esta imagen a cositas".
 - **Video**: en una página de YouTube (watch o shorts), click derecho → "Compartir este video a cositas".
+- **Canción / Álbum**: en una página de Spotify, click derecho sobre el link de la canción o álbum → "Compartir esta canción/álbum a cositas". Si estás directamente en la página del track/álbum, también aparece un botón en el popup.
+- **Libro**: abrí el popup → "📖 agregar libro". Se abre una ventana para completar título, autor, año, tu rating, tu review y subir la portada (se redimensiona automáticamente antes de enviarse).
 - **Pensamiento**: abrí el popup, escribilo en la cajita y tocá "compartir pensamiento".
 
 Cada acción muestra una notificación del sistema confirmando si se compartió bien o si hubo un error.

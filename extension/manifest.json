@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "cositas — axel is bored",
   "version": "1.0.0",
-  "description": "Compartí frases, links, videos de YouTube, canciones de Spotify, imágenes y pensamientos a la sección cositas de axelmarazzi.com.",
+  "description": "Compartí frases, links, videos de YouTube, canciones de Spotify, imágenes, libros y pensamientos a la sección cositas de axelmarazzi.com.",
   "permissions": ["contextMenus", "storage", "activeTab", "notifications"],
   "host_permissions": ["https://axelmarazzi.com/*", "http://localhost/*", "https://open.spotify.com/*"],
   "background": {

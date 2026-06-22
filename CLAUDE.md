@@ -26,15 +26,14 @@ src/lib/
   rss.ts          → fetching del feed de Substack
   goodreads.ts    → fetching del libro que se está leyendo (currently-reading shelf)
   letterboxd.ts   → fetching de películas/series vistas desde el RSS de Letterboxd
-  cositas.ts      → fetching/push/remove de items de cositas (Redis)
-  feed.ts         → agrega cositas + libros + películas/series en un solo FeedItem[] (ver src/types/feed.ts)
+  cositas.ts      → fetching/push/remove de items de cositas (Redis, incluye libros)
+  feed.ts         → agrega cositas (incluye libros) + películas/series en un solo FeedItem[] (ver src/types/feed.ts)
 src/data/
   projects.ts     → datos de proyectos (agregar proyectos acá)
-  books.ts        → datos de libros recomendados (agregar libros acá)
   posts.ts        → posts de fallback si falla el RSS
   stuff.ts        → cositas de fallback si Redis no está configurado o falla
 public/
-  covers/         → portadas de libros
+  covers/         → portadas de los libros migrados desde el viejo books.ts (los nuevos se suben desde la extensión y quedan en Redis)
   screenshots/    → capturas de proyectos
 extension/        → extensión de Chrome (MV3) para compartir cositas (ver extension/README.md)
 ```
@@ -55,9 +54,9 @@ extension/        → extensión de Chrome (MV3) para compartir cositas (ver ext
 - **No hardcodear colores** — todo pasa por el sistema de temas
 
 ### Libros (dentro del feed de cositas)
-- Agregar en `src/data/books.ts` siguiendo la estructura existente
-- Portadas en `public/covers/`
-- `dateRead` (`YYYY-MM-DD`) es la fecha real (o, si no hay fecha exacta recordada, una fecha sintética que preserva el orden real de lectura) usada para ordenar el libro dentro del feed — los libros se publican en el array en el orden en que se leyeron
+- Los libros **no viven en el repo**: son un tipo más de cosita (`type: "book"` en `src/types/stuff.ts`), guardados en Redis igual que quotes/links/etc. — se agregan desde la extensión de Chrome (botón "📖 agregar libro"), nunca editando código
+- Campos: `title`, `author`, `rating` (1 a 5 de a 0.5), `coverImageUrl` (portada — local `/covers/x.jpg` para los migrados, o data URL subida desde la extensión para los nuevos), y opcionalmente `yearPublished`, `pages`, `review`
+- `date` es la fecha en la que se comparte (se usa para ordenar dentro del feed)
 - No existe más `/recomendaciones`: la ruta redirige a `/cositas`, donde libros y películas/series se ven completos (review + rating) mezclados con el resto de las cositas
 
 ### Proyectos
@@ -78,9 +77,9 @@ extension/        → extensión de Chrome (MV3) para compartir cositas (ver ext
 - Todos los componentes que usan hooks son `"use client"`
 
 ### Cositas
-- `/cositas` es el feed único del sitio: junta los shares de la extensión (Redis) con los libros (`src/data/books.ts`) y las películas/series de Letterboxd, ordenados por fecha descendente
-- Tipos de share (extensión) en `src/types/stuff.ts`: `quote` / `link` / `note` / `image` / `video` / `song` / `album`. Tipo unificado del feed en `src/types/feed.ts` (`FeedItem` = `StuffItem` | `BookFeedItem` | `FilmFeedItem`, agrega también `book` y `film`)
-- `src/lib/feed.ts` (`fetchFeedItems`) hace el `Promise.all` de `fetchStuffItems` + `fetchLetterboxdFilms` + `books` y devuelve el array ya ordenado — es lo único que debe llamar `app/cositas/page.tsx`
+- `/cositas` es el feed único del sitio: junta los shares de la extensión (Redis, incluye libros) con las películas/series de Letterboxd, ordenados por fecha descendente
+- Tipos de share (extensión) en `src/types/stuff.ts`: `quote` / `link` / `note` / `image` / `video` / `song` / `album` / `book`. Tipo unificado del feed en `src/types/feed.ts` (`FeedItem` = `StuffItem` | `FilmFeedItem`, agrega `film` ya que es la única fuente externa al Redis)
+- `src/lib/feed.ts` (`fetchFeedItems`) hace el `Promise.all` de `fetchStuffItems` + `fetchLetterboxdFilms` y devuelve el array ya ordenado — es lo único que debe llamar `app/cositas/page.tsx`
 - `src/lib/cositas.ts` lee de Upstash Redis (`fetchStuffItems`) y cae a `src/data/stuff.ts` si no hay env vars o falla — mismo patrón que el RSS/Goodreads
 - La extensión de Chrome en `extension/` escribe vía `POST /api/cositas` (`src/app/api/cositas/route.ts`), autenticado con header `Authorization: Bearer <COSITAS_API_SECRET>`
 - Los chips de filtro en `CositasContent.tsx` son single-select (mismo mecanismo ARIA tablist/tab que el viejo `TabToggle` de Recomendaciones), nunca multi-select

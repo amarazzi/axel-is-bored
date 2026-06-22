@@ -5,7 +5,23 @@
 <title>cositas — confirmar</title>
 <link rel="stylesheet" href="popup.css" />
 <style>
-  body { width: 320px; }
+  body { width: 320px; max-height: 600px; overflow-y: auto; }
+  select {
+    width: 100%;
+    background: var(--btn-bg);
+    border: 1px solid var(--border);
+    color: var(--fg);
+    font-family: inherit;
+    font-size: 12px;
+    padding: 8px;
+    border-radius: 4px;
+  }
+  input[type="file"] {
+    width: 100%;
+    color: var(--muted);
+    font-size: 11px;
+    margin-bottom: 4px;
+  }
   .type-pill {
     display: inline-block;
     text-transform: uppercase;
@@ -97,6 +113,33 @@
     <input id="album-artist" type="text" />
     <label for="album-description">descripción (opcional)</label>
     <textarea id="album-description" rows="2"></textarea>
+  </div>
+
+  <div id="section-book" hidden>
+    <label for="book-cover">portada</label>
+    <input id="book-cover" type="file" accept="image/*" />
+    <img id="book-cover-preview" class="video-thumb" alt="" hidden />
+    <label for="book-title">título</label>
+    <input id="book-title" type="text" />
+    <label for="book-author">autor</label>
+    <input id="book-author" type="text" />
+    <label for="book-year">año de publicación (opcional)</label>
+    <input id="book-year" type="number" />
+    <label for="book-rating">tu rating</label>
+    <select id="book-rating">
+      <option value="">elegí…</option>
+      <option value="1">★ 1</option>
+      <option value="1.5">★ 1.5</option>
+      <option value="2">★ 2</option>
+      <option value="2.5">★ 2.5</option>
+      <option value="3">★ 3</option>
+      <option value="3.5">★ 3.5</option>
+      <option value="4">★ 4</option>
+      <option value="4.5">★ 4.5</option>
+      <option value="5">★ 5</option>
+    </select>
+    <label for="book-review">tu review (opcional)</label>
+    <textarea id="book-review" rows="3"></textarea>
   </div>
 
   <p id="status" class="status" hidden></p>

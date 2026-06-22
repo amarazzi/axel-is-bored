@@ -7,6 +7,7 @@ const sharePageBtn = document.getElementById("share-page");
 const shareVideoBtn = document.getElementById("share-video");
 const shareSongBtn = document.getElementById("share-song");
 const shareAlbumBtn = document.getElementById("share-album");
+const shareBookBtn = document.getElementById("share-book");
 const statusEl = document.getElementById("status");
 const apiUrlInput = document.getElementById("api-url");
 const secretInput = document.getElementById("secret");
@@ -63,7 +64,7 @@ async function openConfirmWindow(payload) {
     url: chrome.runtime.getURL("confirm.html"),
     type: "popup",
     width: 360,
-    height: 480,
+    height: payload.type === "book" ? 660 : 480,
   });
   window.close();
 }
@@ -132,6 +133,10 @@ shareAlbumBtn.addEventListener("click", async () => {
     return;
   }
   await openConfirmWindow({ type: "album", url: tab.url });
+});
+
+shareBookBtn.addEventListener("click", async () => {
+  await openConfirmWindow({ type: "book" });
 });
 
 saveSettingsBtn.addEventListener("click", async () => {

@@ -1,4 +1,4 @@
-const TYPE_LABELS = { quote: "frase", link: "link", image: "imagen", video: "video", song: "canción", album: "álbum" };
+const TYPE_LABELS = { quote: "frase", link: "link", image: "imagen", video: "video", song: "canción", album: "álbum", book: "libro" };
 
 function youtubeId(url) {
   try {
@@ -95,7 +95,59 @@ function render(payload) {
   if (payload.type === "song" || payload.type === "album") {
     renderMusicSection(payload, payload.type);
   }
+
+  if (payload.type === "book") {
+    document.getElementById("book-title").value = payload.title || "";
+    document.getElementById("book-author").value = payload.author || "";
+    document.getElementById("book-year").value = payload.yearPublished || "";
+    document.getElementById("book-rating").value = payload.rating || "";
+    document.getElementById("book-review").value = payload.review || "";
+    if (payload.coverImageUrl) {
+      const preview = document.getElementById("book-cover-preview");
+      preview.src = payload.coverImageUrl;
+      preview.hidden = false;
+    }
+    document.getElementById("book-title").focus();
+  }
 }
+
+function resizeImageFile(file, maxDim, quality) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onerror = () => reject(reader.error);
+    reader.onload = () => {
+      const img = new Image();
+      img.onerror = reject;
+      img.onload = () => {
+        let { width, height } = img;
+        if (width > height && width > maxDim) {
+          height = Math.round((height * maxDim) / width);
+          width = maxDim;
+        } else if (height >= width && height > maxDim) {
+          width = Math.round((width * maxDim) / height);
+          height = maxDim;
+        }
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext("2d").drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL("image/jpeg", quality));
+      };
+      img.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+document.getElementById("book-cover").addEventListener("change", async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const dataUrl = await resizeImageFile(file, 480, 0.82);
+  currentPayload.coverImageUrl = dataUrl;
+  const preview = document.getElementById("book-cover-preview");
+  preview.src = dataUrl;
+  preview.hidden = false;
+});
 
 function renderMusicSection(payload, prefix) {
   const titleInput = document.getElementById(`${prefix}-title`);
@@ -151,7 +203,26 @@ function buildFinalPayload() {
     payload.description = document.getElementById(`${prefix}-description`).value.trim() || undefined;
   }
 
+  if (payload.type === "book") {
+    payload.title = document.getElementById("book-title").value.trim();
+    payload.author = document.getElementById("book-author").value.trim();
+    const year = document.getElementById("book-year").value.trim();
+    payload.yearPublished = year ? Number(year) : undefined;
+    const rating = document.getElementById("book-rating").value;
+    payload.rating = rating ? Number(rating) : undefined;
+    payload.review = document.getElementById("book-review").value.trim() || undefined;
+  }
+
   return payload;
+}
+
+function validatePayload(payload) {
+  if (payload.type === "book") {
+    if (!payload.title || !payload.author || !payload.rating || !payload.coverImageUrl) {
+      return "Completá título, autor, rating y portada.";
+    }
+  }
+  return null;
 }
 
 async function init() {
@@ -170,6 +241,12 @@ document.getElementById("btn-cancel").addEventListener("click", async () => {
 
 document.getElementById("btn-share").addEventListener("click", async () => {
   const payload = buildFinalPayload();
+  const validationError = validatePayload(payload);
+  if (validationError) {
+    showStatus(validationError, false);
+    return;
+  }
+
   const btn = document.getElementById("btn-share");
   btn.disabled = true;
 
