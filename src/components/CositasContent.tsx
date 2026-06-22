@@ -69,23 +69,23 @@ function QuoteCard({ item }: { item: QuoteItem }) {
 function LinkCard({ item, locale }: { item: LinkItem; locale: Locale }) {
   const description = locale === "en" ? (item.description_en ?? item.description) : item.description;
   return (
-    <a href={item.url} target="_blank" rel="noopener noreferrer" className="ff-link-card">
-      <div className="flex items-baseline justify-between gap-4">
-        <p className="t-accent2" style={{ fontSize: "var(--text-base)", fontWeight: 400, lineHeight: 1.4 }}>
+    <a href={item.url} target="_blank" rel="noopener noreferrer" style={{ display: "block" }}>
+      <div className="flex items-baseline gap-2">
+        <p className="t-accent" style={{ fontSize: "0.95rem", fontWeight: 400, lineHeight: 1.4 }}>
           {item.title}
         </p>
         <span className="t-muted shrink-0" aria-hidden="true" style={{ fontSize: "var(--text-xs)" }}>
           ↗
         </span>
       </div>
+      <p className="t-muted" style={{ fontSize: "var(--text-2xs)", letterSpacing: "0.06em", marginTop: "2px" }}>
+        {domainOf(item.url)}
+      </p>
       {description && (
-        <p className="t-muted mt-1" style={{ fontSize: "var(--text-xs)", lineHeight: 1.6 }}>
+        <p className="t-accent2 mt-2" style={{ fontSize: "var(--text-base)", fontWeight: 300, lineHeight: 1.7 }}>
           {description}
         </p>
       )}
-      <p className="t-muted mt-2" style={{ fontSize: "var(--text-2xs)", letterSpacing: "0.06em" }}>
-        {domainOf(item.url)}
-      </p>
     </a>
   );
 }

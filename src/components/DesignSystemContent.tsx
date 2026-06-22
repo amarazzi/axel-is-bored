@@ -280,11 +280,11 @@ function Classes({ locale }: { locale: Locale }) {
     },
     {
       name: ".ff-link-card",
-      description: { es: "Tarjeta de link clickeable (cositas). Borde sutil, se oscurece en hover.", en: "Clickable link card (stuff). Subtle border, darkens on hover." },
+      description: { es: "Tarjeta con borde para video/song/album (cositas). Se oscurece en hover.", en: "Bordered card for video/song/album (stuff). Darkens on hover." },
       demo: (
         <a href="#" className="ff-link-card" style={{ fontSize: "0.72rem" }} onClick={(e) => e.preventDefault()}>
           <div className="flex items-baseline justify-between gap-4">
-            <span className="t-accent2" style={{ fontWeight: 400 }}>{locale === "en" ? "link title" : "título del link"}</span>
+            <span className="t-accent2" style={{ fontWeight: 400 }}>{locale === "en" ? "video / song / album title" : "título de video / song / album"}</span>
             <span className="t-muted" style={{ fontSize: "0.65rem" }}>↗</span>
           </div>
         </a>
@@ -424,11 +424,15 @@ function StuffCardDemo({ locale }: { locale: Locale }) {
           {locale === "en" ? "Quote — set apart by the opening mark, no border." : "Quote — distinguida por la comilla de apertura, sin borde."}
         </p>
       </div>
-      <a href="#" className="ff-link-card" style={{ fontSize: "0.72rem" }} onClick={(e) => e.preventDefault()}>
-        <div className="flex items-baseline justify-between gap-4">
-          <span className="t-accent2" style={{ fontWeight: 400 }}>{locale === "en" ? "Link — bordered card, ↗ affordance" : "Link — tarjeta con borde, affordance ↗"}</span>
+      <a href="#" style={{ display: "block" }} onClick={(e) => e.preventDefault()}>
+        <div className="flex items-baseline gap-2">
+          <span className="t-accent" style={{ fontSize: "0.85rem", fontWeight: 400 }}>{locale === "en" ? "Link title, big" : "Título del link, grande"}</span>
           <span className="t-muted" style={{ fontSize: "0.65rem" }}>↗</span>
         </div>
+        <span className="t-muted" style={{ fontSize: "0.6rem", letterSpacing: "0.06em", display: "block", marginTop: "2px" }}>domain.com</span>
+        <p className="t-accent2" style={{ fontSize: "0.72rem", fontWeight: 300, lineHeight: 1.6, marginTop: "6px" }}>
+          {locale === "en" ? "Link — no border, big title, domain below it, then your comment on why you're sharing it as flowing body text." : "Link — sin borde, título grande, dominio debajo, y tu comentario de por qué lo compartís como texto corrido."}
+        </p>
       </a>
       <div className="flex gap-3">
         <span className="t-muted shrink-0" aria-hidden="true">·</span>
@@ -449,7 +453,7 @@ function StuffCardDemo({ locale }: { locale: Locale }) {
           </span>
         </div>
         <p className="t-accent2" style={{ fontSize: "0.72rem", fontWeight: 300, lineHeight: 1.6, alignSelf: "center" }}>
-          {locale === "en" ? "Video — same bordered card as link, with a square thumbnail + play icon." : "Video — misma tarjeta con borde que el link, con thumbnail cuadrado + ícono de play."}
+          {locale === "en" ? "Video — bordered card (.ff-link-card) with a square thumbnail + play icon." : "Video — tarjeta con borde (.ff-link-card), con thumbnail cuadrado + ícono de play."}
         </p>
       </a>
       <a href="#" className="ff-link-card" style={{ display: "flex", gap: "1rem" }} onClick={(e) => e.preventDefault()}>
@@ -508,7 +512,7 @@ function Components({ locale }: { locale: Locale }) {
     },
     {
       name: "StuffCard",
-      description: { es: "Variantes de cositas (quote / link / note / image / video / song / album). Cada tipo se distingue por estructura, no por color: comilla decorativa, tarjeta con borde, marca de punto, imagen con caption, thumbnail/cover cuadrado.", en: "Stuff item variants (quote / link / note / image / video / song / album). Each type is distinguished by structure, not color: decorative quote mark, bordered card, dot marker, image with caption, square thumbnail/cover." },
+      description: { es: "Variantes de cositas (quote / link / note / image / video / song / album). Cada tipo se distingue por estructura, no por color: comilla decorativa, título grande sin caja, marca de punto, imagen con caption, tarjeta con borde + thumbnail/cover cuadrado.", en: "Stuff item variants (quote / link / note / image / video / song / album). Each type is distinguished by structure, not color: decorative quote mark, big unboxed title, dot marker, image with caption, bordered card + square thumbnail/cover." },
       demo: <StuffCardDemo locale={locale} />,
     },
   ];
