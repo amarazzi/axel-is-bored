@@ -181,13 +181,15 @@ function VideoCard({ item, locale }: { item: VideoItem; locale: Locale }) {
 
 function StuffRow({ item, locale }: { item: StuffItem; locale: Locale }) {
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-2">
+      <p className="ff-section-label" style={{ fontSize: "0.6rem" }}>
+        {formatDate(item.date, locale)}
+      </p>
       {item.type === "quote" && <QuoteCard item={item} />}
       {item.type === "link" && <LinkCard item={item} locale={locale} />}
       {item.type === "note" && <NoteCard item={item} locale={locale} />}
       {item.type === "image" && <ImageCard item={item} locale={locale} />}
       {item.type === "video" && <VideoCard item={item} locale={locale} />}
-      <p className="ff-section-label">{formatDate(item.date, locale)}</p>
     </div>
   );
 }
