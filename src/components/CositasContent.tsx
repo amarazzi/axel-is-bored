@@ -142,7 +142,7 @@ function VideoCard({ item, locale }: { item: VideoItem; locale: Locale }) {
   const thumbnail = videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : null;
 
   return (
-    <a href={item.url} target="_blank" rel="noopener noreferrer" style={{ display: "flex", gap: "1rem", padding: "2px 0" }}>
+    <a href={item.url} target="_blank" rel="noopener noreferrer" className="ff-link-card" style={{ display: "flex", gap: "1rem" }}>
       <div
         className="shrink-0"
         style={{ width: 72, height: 72, borderRadius: "var(--radius-md)", overflow: "hidden", position: "relative" }}

@@ -436,7 +436,7 @@ function StuffCardDemo({ locale }: { locale: Locale }) {
           {locale === "en" ? "Note — loose thought, dot marker, no border or quote mark." : "Note — pensamiento suelto, marca de punto, sin borde ni comilla."}
         </p>
       </div>
-      <div className="flex gap-4">
+      <a href="#" className="ff-link-card" style={{ display: "flex", gap: "1rem" }} onClick={(e) => e.preventDefault()}>
         <div
           className="shrink-0"
           style={{ width: 56, height: 56, borderRadius: "var(--radius-md)", backgroundColor: "var(--theme-btn-bg)", position: "relative" }}
@@ -448,10 +448,10 @@ function StuffCardDemo({ locale }: { locale: Locale }) {
             ▶
           </span>
         </div>
-        <p className="t-accent2" style={{ fontSize: "0.78rem", fontWeight: 300, lineHeight: 1.6, alignSelf: "center" }}>
-          {locale === "en" ? "Video — square thumbnail with a play icon, no border (unboxed, like quote/note)." : "Video — thumbnail cuadrado con ícono de play, sin caja (editorial, como quote/note)."}
+        <p className="t-accent2" style={{ fontSize: "0.72rem", fontWeight: 300, lineHeight: 1.6, alignSelf: "center" }}>
+          {locale === "en" ? "Video — same bordered card as link, with a square thumbnail + play icon." : "Video — misma tarjeta con borde que el link, con thumbnail cuadrado + ícono de play."}
         </p>
-      </div>
+      </a>
     </div>
   );
 }
