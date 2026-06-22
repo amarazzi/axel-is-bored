@@ -84,6 +84,7 @@ export function ImageLightbox({ src, alt, onClose }: Props) {
         ✕
       </button>
 
+      {/* eslint-disable-next-line @next/next/no-img-element -- src puede ser local o externo/data URL, y el tamaño se ajusta libremente al viewport (maxWidth/maxHeight), no se puede pasar por next/image */}
       <img
         src={src}
         alt={alt}

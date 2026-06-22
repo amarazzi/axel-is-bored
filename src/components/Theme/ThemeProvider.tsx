@@ -29,11 +29,15 @@ const DEFAULT_THEME = themes.find((t) => t.id === "standard")!;
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>(DEFAULT_THEME);
 
+  // Se lee localStorage/matchMedia en un efecto (no en el estado inicial)
+  // a propósito: en el server no existen, así que el estado inicial debe
+  // ser el mismo en server y cliente para evitar un hydration mismatch.
   useEffect(() => {
     const saved = localStorage.getItem("axel-theme");
     if (saved) {
       const found = themes.find((t) => t.id === saved);
       if (found) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect -- sincroniza el theme guardado client-side después del mount, no puede ir en el estado inicial (ver comentario arriba)
         setTheme(found);
         return;
       }

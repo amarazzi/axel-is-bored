@@ -37,7 +37,11 @@ export function Nav() {
   }
 
   function toggle() {
-    visible && !closing ? closeMenu() : openMenu();
+    if (visible && !closing) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
   }
 
   const isOpen = visible && !closing;

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { QuoteItem, LinkItem, NoteItem, ImageItem, VideoItem, SongItem, AlbumItem, BookItem } from "@/types/stuff";
 import { FeedItem, FilmFeedItem } from "@/types/feed";
 import { useLanguage } from "@/components/Language/LanguageProvider";
@@ -353,6 +353,9 @@ function FilmCard({ item }: { item: FilmFeedItem }) {
 
 type Filter = "all" | "book" | "film" | "quote" | "music" | "note" | "link" | "image" | "video";
 
+const FADE_OUT_MS = 200;
+const FADE_OVERLAP_MS = 30;
+
 function matchesFilter(item: FeedItem, filter: Filter): boolean {
   if (filter === "all") return true;
   if (filter === "music") return item.type === "song" || item.type === "album";
@@ -429,9 +432,38 @@ export function CositasContent({
 }) {
   const { locale, t } = useLanguage();
   const [filter, setFilter] = useState<Filter>("all");
+  const [displayFilter, setDisplayFilter] = useState<Filter>("all");
+  const [fadePhase, setFadePhase] = useState<"in" | "out">("in");
+  const fadeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (fadeTimeoutRef.current) clearTimeout(fadeTimeoutRef.current);
+    };
+  }, []);
+
+  function changeFilter(next: Filter) {
+    if (next === filter) return;
+    setFilter(next);
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) {
+      setDisplayFilter(next);
+      return;
+    }
+
+    if (fadeTimeoutRef.current) clearTimeout(fadeTimeoutRef.current);
+    setFadePhase("out");
+    fadeTimeoutRef.current = setTimeout(() => {
+      setDisplayFilter(next);
+      setFadePhase("in");
+    }, FADE_OUT_MS - FADE_OVERLAP_MS);
+  }
+
   const items = [...itemsProp].sort((a, b) => b.date.localeCompare(a.date));
-  const filtered = items.filter((item) => matchesFilter(item, filter));
-  const showCurrentlyReading = currentlyReading && (filter === "all" || filter === "book");
+  const filtered = items.filter((item) => matchesFilter(item, displayFilter));
+  const showCurrentlyReading = currentlyReading && displayFilter === "book";
+  const fadeClass = fadePhase === "out" ? "ff-filter-fade-out" : "ff-filter-fade-in";
 
   const filterLabels: Record<Filter, string> = {
     all: t["cositas.filter.all"],
@@ -455,16 +487,18 @@ export function CositasContent({
           {t["cositas.subtitle"]}
         </p>
 
-        <FilterChips active={filter} onChange={setFilter} labels={filterLabels} />
+        <FilterChips active={filter} onChange={changeFilter} labels={filterLabels} />
 
         {showCurrentlyReading && (
-          <div className="mb-12" style={{ borderLeft: "2px solid var(--theme-muted)", paddingLeft: "1rem" }}>
+          <div key={`cr-${displayFilter}`} className={`${fadeClass} mb-12`} style={{ borderLeft: "2px solid var(--theme-muted)", paddingLeft: "1rem" }}>
             <div className="flex items-center gap-2 mb-2">
               <p className="ff-section-label">{t["cositas.currentlyReading"]}</p>
-              <img
+              <Image
                 src="/exlibris.png"
                 alt=""
                 aria-hidden="true"
+                width={22}
+                height={17}
                 style={{ width: 22, height: "auto", filter: "var(--exlibris-filter)" }}
               />
             </div>
@@ -479,11 +513,11 @@ export function CositasContent({
         )}
 
         {filtered.length === 0 ? (
-          <p className="t-muted" style={{ fontSize: "0.78rem" }}>
+          <p key={`list-${displayFilter}`} className={`${fadeClass} t-muted`} style={{ fontSize: "0.78rem" }}>
             {t["cositas.empty"]}
           </p>
         ) : (
-          <div className="flex flex-col gap-12">
+          <div key={`list-${displayFilter}`} className={`${fadeClass} flex flex-col gap-12`}>
             {filtered.map((item) => (
               <StuffRow key={item.id} item={item} locale={locale} />
             ))}

@@ -153,7 +153,7 @@ export function HomeContent({
             style={{ display: "inline-flex", alignItems: "center" }}
             title="Claude"
           >
-            <img
+            <Image
               src="/claude-icon.svg"
               alt="Claude"
               width={12}
