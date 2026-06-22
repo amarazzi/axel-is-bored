@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<title>cositas</title>
+<link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header>
+    <h1>cositas</h1>
+    <p class="subtitle">compartí algo a axelmarazzi.com/cositas</p>
+  </header>
+
+  <section>
+    <label for="note-text">pensamiento</label>
+    <textarea id="note-text" rows="3" placeholder="algo que se te ocurrió…"></textarea>
+    <button id="share-note">compartir pensamiento</button>
+  </section>
+
+  <section>
+    <button id="share-page" class="secondary">compartir esta pestaña como link</button>
+  </section>
+
+  <p id="status" class="status" hidden></p>
+
+  <details>
+    <summary>configuración</summary>
+    <div class="settings">
+      <label for="api-url">URL del sitio</label>
+      <input id="api-url" type="text" placeholder="https://axelmarazzi.com/api/cositas" />
+      <label for="secret">secret</label>
+      <input id="secret" type="password" placeholder="el mismo valor que COSITAS_API_SECRET" />
+      <button id="save-settings" class="secondary">guardar</button>
+      <p id="settings-status" class="status" hidden></p>
+    </div>
+  </details>
+
+  <footer>
+    <p>click derecho en una selección, link, imagen o video de YouTube para compartirlos directo.</p>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>

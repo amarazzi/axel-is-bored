@@ -31,9 +31,16 @@ export const stuff: StuffItem[] = [
     id: "imagen-spotty-now-playing",
     type: "image",
     date: "2026-06-15",
-    imagePath: "/screenshots/spotty.png",
+    imageUrl: "/screenshots/spotty.png",
     caption: "La pantalla de now playing de spotty con el album art renderizado en Sixel.",
     caption_en: "spotty's now playing screen with the album art rendered in Sixel.",
+  },
+  {
+    id: "video-de-prueba",
+    type: "video",
+    date: "2026-06-14",
+    url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    title: "Video de prueba para testear la tarjeta de video.",
   },
 ];
 

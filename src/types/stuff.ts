@@ -30,10 +30,21 @@ export interface ImageItem {
   id: string;
   type: "image";
   date: string;
-  imagePath: string;
+  // Path local (/screenshots/x.png) o URL externa compartida desde la extensión.
+  imageUrl: string;
   caption?: string;
   caption_en?: string;
   sourceUrl?: string;
 }
 
-export type StuffItem = QuoteItem | LinkItem | NoteItem | ImageItem;
+export interface VideoItem {
+  id: string;
+  type: "video";
+  date: string;
+  url: string;
+  title?: string;
+  description?: string;
+  description_en?: string;
+}
+
+export type StuffItem = QuoteItem | LinkItem | NoteItem | ImageItem | VideoItem;

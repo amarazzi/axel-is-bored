@@ -436,6 +436,17 @@ function StuffCardDemo({ locale }: { locale: Locale }) {
           {locale === "en" ? "Note — loose thought, dot marker, no border or quote mark." : "Note — pensamiento suelto, marca de punto, sin borde ni comilla."}
         </p>
       </div>
+      <div className="flex gap-4">
+        <div
+          className="shrink-0 t-muted"
+          style={{ width: 80, height: 45, borderRadius: "var(--radius-md)", border: "1px solid var(--theme-border)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.7rem" }}
+        >
+          ▶
+        </div>
+        <p className="t-accent2" style={{ fontSize: "0.78rem", fontWeight: 300, lineHeight: 1.6, alignSelf: "center" }}>
+          {locale === "en" ? "Video — small YouTube thumbnail (smaller than the image card) with a play icon." : "Video — thumbnail chico de YouTube (más chico que la card de imagen) con ícono de play."}
+        </p>
+      </div>
     </div>
   );
 }

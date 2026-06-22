@@ -29,9 +29,11 @@ src/data/
   projects.ts     → datos de proyectos (agregar proyectos acá)
   books.ts        → datos de libros recomendados (agregar libros acá)
   posts.ts        → posts de fallback si falla el RSS
+  stuff.ts        → cositas de fallback si Redis no está configurado o falla
 public/
   covers/         → portadas de libros
   screenshots/    → capturas de proyectos
+extension/        → extensión de Chrome (MV3) para compartir cositas (ver extension/README.md)
 ```
 
 ## Convenciones
@@ -71,6 +73,13 @@ public/
 - Páginas en `app/` son thin wrappers — importan Nav + ContentComponent
 - Lógica y UI van en `src/components/`
 - Todos los componentes que usan hooks son `"use client"`
+
+### Cositas
+- Tipos en `src/types/stuff.ts`: `quote` / `link` / `note` / `image` / `video`
+- `src/lib/cositas.ts` lee de Upstash Redis (`fetchStuffItems`) y cae a `src/data/stuff.ts` si no hay env vars o falla — mismo patrón que el RSS/Goodreads
+- La extensión de Chrome en `extension/` escribe vía `POST /api/cositas` (`src/app/api/cositas/route.ts`), autenticado con header `Authorization: Bearer <COSITAS_API_SECRET>`
+- `/cositas` es `dynamic = "force-dynamic"` para reflejar lo compartido al instante, sin redeploy
+- Env vars necesarias en Vercel: `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`, `COSITAS_API_SECRET` — setup completo en `extension/README.md`
 
 ## Cosas que NO tocar sin entender por qué
 

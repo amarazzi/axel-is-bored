@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "cositas — axel is bored",
+  "version": "1.0.0",
+  "description": "Compartí frases, links, videos de YouTube, imágenes y pensamientos a la sección cositas de axelmarazzi.com.",
+  "permissions": ["contextMenus", "storage", "activeTab", "notifications"],
+  "host_permissions": ["https://axelmarazzi.com/*", "http://localhost/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "cositas",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

@@ -2,9 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
-import { stuff as stuffData } from "@/data/stuff";
-import { StuffItem, QuoteItem, LinkItem, NoteItem, ImageItem } from "@/types/stuff";
+import { useState, type CSSProperties } from "react";
+import { StuffItem, QuoteItem, LinkItem, NoteItem, ImageItem, VideoItem } from "@/types/stuff";
 import { useLanguage } from "@/components/Language/LanguageProvider";
 import { ImageLightbox } from "@/components/ImageLightbox";
 import type { Locale } from "@/lib/i18n";
@@ -22,6 +21,21 @@ function domainOf(url: string): string {
     return new URL(url).hostname.replace(/^www\./, "");
   } catch {
     return url;
+  }
+}
+
+function youtubeId(url: string): string | null {
+  try {
+    const u = new URL(url);
+    if (u.hostname.includes("youtu.be")) return u.pathname.slice(1) || null;
+    if (u.hostname.includes("youtube.com")) {
+      if (u.pathname === "/watch") return u.searchParams.get("v");
+      const shortsMatch = u.pathname.match(/^\/shorts\/([^/]+)/);
+      if (shortsMatch) return shortsMatch[1];
+    }
+    return null;
+  } catch {
+    return null;
   }
 }
 
@@ -92,24 +106,75 @@ function NoteCard({ item, locale }: { item: NoteItem; locale: Locale }) {
 function ImageCard({ item, locale }: { item: ImageItem; locale: Locale }) {
   const [open, setOpen] = useState(false);
   const caption = locale === "en" ? (item.caption_en ?? item.caption) : item.caption;
+  const isLocal = item.imageUrl.startsWith("/");
+  const imgStyle: CSSProperties = { borderRadius: "var(--radius-md)", width: "100%", height: "auto", display: "block" };
+
   return (
     <figure>
-      <Image
-        src={item.imagePath}
-        alt={caption ?? ""}
-        width={640}
-        height={400}
-        className="ff-img-link"
-        style={{ borderRadius: "var(--radius-md)", width: "100%", height: "auto" }}
-        onClick={() => setOpen(true)}
-      />
-      {open && <ImageLightbox src={item.imagePath} alt={caption ?? ""} onClose={() => setOpen(false)} />}
+      {isLocal ? (
+        <Image
+          src={item.imageUrl}
+          alt={caption ?? ""}
+          width={640}
+          height={400}
+          className="ff-img-link"
+          style={imgStyle}
+          onClick={() => setOpen(true)}
+        />
+      ) : (
+        // eslint-disable-next-line @next/next/no-img-element -- URL externa compartida desde la extensión, no se puede pasar por next/image
+        <img src={item.imageUrl} alt={caption ?? ""} className="ff-img-link" style={imgStyle} onClick={() => setOpen(true)} />
+      )}
+      {open && <ImageLightbox src={item.imageUrl} alt={caption ?? ""} onClose={() => setOpen(false)} />}
       {caption && (
         <figcaption className="t-muted mt-2" style={{ fontSize: "var(--text-xs)", lineHeight: 1.6 }}>
           {caption}
         </figcaption>
       )}
     </figure>
+  );
+}
+
+function VideoCard({ item, locale }: { item: VideoItem; locale: Locale }) {
+  const description = locale === "en" ? (item.description_en ?? item.description) : item.description;
+  const videoId = youtubeId(item.url);
+  const thumbnail = videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : null;
+
+  return (
+    <a href={item.url} target="_blank" rel="noopener noreferrer" className="flex gap-4 ff-touch">
+      <div
+        className="shrink-0"
+        style={{ width: 120, height: 68, borderRadius: "var(--radius-md)", overflow: "hidden", position: "relative", border: "1px solid var(--theme-border)" }}
+      >
+        {thumbnail ? (
+          // eslint-disable-next-line @next/next/no-img-element -- thumbnail de YouTube, host externo no whitelisteable de antemano
+          <img src={thumbnail} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+        ) : (
+          <div className="t-muted" style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }} />
+        )}
+        <span
+          aria-hidden="true"
+          style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.9rem", color: "#fff", textShadow: "0 1px 3px rgba(0,0,0,0.6)" }}
+        >
+          ▶
+        </span>
+      </div>
+      <div className="flex-1 min-w-0 flex flex-col justify-center gap-1">
+        {item.title && (
+          <p className="t-accent2" style={{ fontSize: "var(--text-base)", fontWeight: 400, lineHeight: 1.4 }}>
+            {item.title}
+          </p>
+        )}
+        {description && (
+          <p className="t-muted" style={{ fontSize: "var(--text-xs)", lineHeight: 1.5 }}>
+            {description}
+          </p>
+        )}
+        <span className="t-muted" style={{ fontSize: "var(--text-2xs)", letterSpacing: "0.06em" }}>
+          youtube
+        </span>
+      </div>
+    </a>
   );
 }
 
@@ -120,14 +185,15 @@ function StuffRow({ item, locale }: { item: StuffItem; locale: Locale }) {
       {item.type === "link" && <LinkCard item={item} locale={locale} />}
       {item.type === "note" && <NoteCard item={item} locale={locale} />}
       {item.type === "image" && <ImageCard item={item} locale={locale} />}
+      {item.type === "video" && <VideoCard item={item} locale={locale} />}
       <p className="ff-section-label">{formatDate(item.date, locale)}</p>
     </div>
   );
 }
 
-export function CositasContent() {
+export function CositasContent({ items: itemsProp }: { items: StuffItem[] }) {
   const { locale, t } = useLanguage();
-  const items = [...stuffData].sort((a, b) => b.date.localeCompare(a.date));
+  const items = [...itemsProp].sort((a, b) => b.date.localeCompare(a.date));
 
   return (
     <>
