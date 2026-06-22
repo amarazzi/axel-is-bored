@@ -142,27 +142,27 @@ function VideoCard({ item, locale }: { item: VideoItem; locale: Locale }) {
   const thumbnail = videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : null;
 
   return (
-    <a href={item.url} target="_blank" rel="noopener noreferrer" className="flex gap-4 ff-touch">
+    <a href={item.url} target="_blank" rel="noopener noreferrer" style={{ display: "flex", gap: "1rem", padding: "2px 0" }}>
       <div
         className="shrink-0"
-        style={{ width: 120, height: 68, borderRadius: "var(--radius-md)", overflow: "hidden", position: "relative", border: "1px solid var(--theme-border)" }}
+        style={{ width: 72, height: 72, borderRadius: "var(--radius-md)", overflow: "hidden", position: "relative" }}
       >
         {thumbnail ? (
           // eslint-disable-next-line @next/next/no-img-element -- thumbnail de YouTube, host externo no whitelisteable de antemano
           <img src={thumbnail} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
         ) : (
-          <div className="t-muted" style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }} />
+          <div className="t-muted" style={{ width: "100%", height: "100%", backgroundColor: "var(--theme-btn-bg)" }} />
         )}
         <span
           aria-hidden="true"
-          style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.9rem", color: "#fff", textShadow: "0 1px 3px rgba(0,0,0,0.6)" }}
+          style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.3rem", color: "#fff", backgroundColor: "rgba(0,0,0,0.28)" }}
         >
           ▶
         </span>
       </div>
-      <div className="flex-1 min-w-0 flex flex-col justify-center gap-1">
+      <div className="flex-1 min-w-0 flex flex-col gap-1" style={{ paddingTop: "2px" }}>
         {item.title && (
-          <p className="t-accent2" style={{ fontSize: "var(--text-base)", fontWeight: 400, lineHeight: 1.4 }}>
+          <p className="t-accent" style={{ fontSize: "var(--text-base)", fontWeight: 400, lineHeight: 1.4 }}>
             {item.title}
           </p>
         )}

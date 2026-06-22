@@ -438,13 +438,18 @@ function StuffCardDemo({ locale }: { locale: Locale }) {
       </div>
       <div className="flex gap-4">
         <div
-          className="shrink-0 t-muted"
-          style={{ width: 80, height: 45, borderRadius: "var(--radius-md)", border: "1px solid var(--theme-border)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.7rem" }}
+          className="shrink-0"
+          style={{ width: 56, height: 56, borderRadius: "var(--radius-md)", backgroundColor: "var(--theme-btn-bg)", position: "relative" }}
         >
-          ▶
+          <span
+            aria-hidden="true"
+            style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.1rem", color: "var(--theme-fg)" }}
+          >
+            ▶
+          </span>
         </div>
         <p className="t-accent2" style={{ fontSize: "0.78rem", fontWeight: 300, lineHeight: 1.6, alignSelf: "center" }}>
-          {locale === "en" ? "Video — small YouTube thumbnail (smaller than the image card) with a play icon." : "Video — thumbnail chico de YouTube (más chico que la card de imagen) con ícono de play."}
+          {locale === "en" ? "Video — square thumbnail with a play icon, no border (unboxed, like quote/note)." : "Video — thumbnail cuadrado con ícono de play, sin caja (editorial, como quote/note)."}
         </p>
       </div>
     </div>
