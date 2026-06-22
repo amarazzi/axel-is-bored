@@ -7,31 +7,33 @@ const MENU_VIDEO = "cositas-video";
 const YOUTUBE_PATTERNS = ["*://*.youtube.com/watch*", "*://youtu.be/*", "*://*.youtube.com/shorts/*"];
 
 chrome.runtime.onInstalled.addListener(() => {
-  chrome.contextMenus.create({
-    id: MENU_QUOTE,
-    title: "Compartir frase a cositas",
-    contexts: ["selection"],
-  });
-  chrome.contextMenus.create({
-    id: MENU_LINK,
-    title: "Compartir este link a cositas",
-    contexts: ["link"],
-  });
-  chrome.contextMenus.create({
-    id: MENU_IMAGE,
-    title: "Compartir esta imagen a cositas",
-    contexts: ["image"],
-  });
-  chrome.contextMenus.create({
-    id: MENU_VIDEO,
-    title: "Compartir este video a cositas",
-    contexts: ["page"],
-    documentUrlPatterns: YOUTUBE_PATTERNS,
-  });
-  chrome.contextMenus.create({
-    id: MENU_PAGE_LINK,
-    title: "Compartir esta página como link",
-    contexts: ["page"],
+  chrome.contextMenus.removeAll(() => {
+    chrome.contextMenus.create({
+      id: MENU_QUOTE,
+      title: "💬 Compartir frase a cositas",
+      contexts: ["selection"],
+    });
+    chrome.contextMenus.create({
+      id: MENU_IMAGE,
+      title: "🖼 Compartir esta imagen a cositas",
+      contexts: ["image"],
+    });
+    chrome.contextMenus.create({
+      id: MENU_VIDEO,
+      title: "▶ Compartir este video a cositas",
+      contexts: ["page", "video"],
+      documentUrlPatterns: YOUTUBE_PATTERNS,
+    });
+    chrome.contextMenus.create({
+      id: MENU_LINK,
+      title: "🔗 Compartir este link a cositas",
+      contexts: ["link"],
+    });
+    chrome.contextMenus.create({
+      id: MENU_PAGE_LINK,
+      title: "🔗 Compartir esta página como link",
+      contexts: ["page"],
+    });
   });
 });
 
@@ -58,7 +60,7 @@ async function sharePayload(payload) {
   const { apiUrl, secret } = await getSettings();
   if (!apiUrl || !secret) {
     notify("Configurá la URL del sitio y el secret en el popup de la extensión.", false);
-    return;
+    return { ok: false };
   }
 
   try {
@@ -74,13 +76,27 @@ async function sharePayload(payload) {
     if (!res.ok) {
       const body = await res.json().catch(() => ({}));
       notify(body.error || `Error al compartir (HTTP ${res.status}).`, false);
-      return;
+      return { ok: false };
     }
 
     notify("Compartido ✓", true);
+    return { ok: true };
   } catch (err) {
     notify(`No se pudo conectar con el sitio: ${err.message}`, false);
+    return { ok: false };
   }
+}
+
+// Abre una ventana chica para revisar/editar el payload antes de mandarlo
+// (agregar caption a una imagen, editar el título de un link, etc.)
+async function openConfirmWindow(payload) {
+  await chrome.storage.session.set({ pendingShare: payload });
+  chrome.windows.create({
+    url: chrome.runtime.getURL("confirm.html"),
+    type: "popup",
+    width: 360,
+    height: 480,
+  });
 }
 
 chrome.contextMenus.onClicked.addListener((info, tab) => {
@@ -124,7 +140,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
       };
       break;
 
-    case MENU_VIDEO:
+    case MENU_VIDEO: {
       if (!tab?.url) return;
       payload = {
         type: "video",
@@ -132,18 +148,19 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
         title: cleanYoutubeTitle(tab.title),
       };
       break;
+    }
 
     default:
       return;
   }
 
-  sharePayload(payload);
+  openConfirmWindow(payload);
 });
 
-// Usado por popup.js para compartir el pensamiento escrito a mano o el link de la pestaña activa.
+// Usado por popup.js / confirm.js para mandar el payload final (ya editado).
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   if (message?.action === "share") {
-    sharePayload(message.payload).then(() => sendResponse({ ok: true }));
+    sharePayload(message.payload).then((result) => sendResponse(result));
     return true;
   }
   return false;

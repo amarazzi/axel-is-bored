@@ -46,3 +46,19 @@ export async function pushStuffItem(item: StuffItem): Promise<void> {
   }
   await redis.lpush(REDIS_KEY, JSON.stringify(item));
 }
+
+export async function removeStuffItem(id: string): Promise<boolean> {
+  const redis = getRedis();
+  if (!redis) {
+    throw new Error("Redis no está configurado (faltan UPSTASH_REDIS_REST_URL / UPSTASH_REDIS_REST_TOKEN)");
+  }
+  const raw = await redis.lrange<unknown>(REDIS_KEY, 0, -1);
+  for (const entry of raw) {
+    const parsed = parseItem(entry);
+    if (parsed?.id === id) {
+      const removed = await redis.lrem(REDIS_KEY, 1, entry as string);
+      return removed > 0;
+    }
+  }
+  return false;
+}

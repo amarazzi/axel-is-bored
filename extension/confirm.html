@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<title>cositas — confirmar</title>
+<link rel="stylesheet" href="popup.css" />
+<style>
+  body { width: 320px; }
+  .type-pill {
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 2px 6px;
+    margin-bottom: 12px;
+  }
+  .preview-img {
+    width: 100%;
+    max-height: 160px;
+    object-fit: contain;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    margin-bottom: 10px;
+    background: var(--btn-bg);
+  }
+  .video-thumb {
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    margin-bottom: 10px;
+    display: block;
+  }
+  .url-preview {
+    color: var(--muted);
+    font-size: 10px;
+    word-break: break-all;
+    margin: 0 0 10px;
+  }
+  .actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .actions button { margin-top: 0; }
+</style>
+</head>
+<body>
+  <p class="type-pill" id="type-label">tipo</p>
+
+  <div id="section-quote" hidden>
+    <label for="quote-text">frase</label>
+    <textarea id="quote-text" rows="3"></textarea>
+    <label for="quote-author">autor / fuente (opcional)</label>
+    <input id="quote-author" type="text" />
+  </div>
+
+  <div id="section-link" hidden>
+    <label for="link-title">título</label>
+    <input id="link-title" type="text" />
+    <label for="link-description">descripción (opcional)</label>
+    <textarea id="link-description" rows="2"></textarea>
+    <p class="url-preview" id="link-url"></p>
+  </div>
+
+  <div id="section-image" hidden>
+    <img id="image-preview" class="preview-img" alt="" />
+    <label for="image-caption">texto / caption (opcional)</label>
+    <textarea id="image-caption" rows="2"></textarea>
+  </div>
+
+  <div id="section-video" hidden>
+    <img id="video-thumb" class="video-thumb" alt="" />
+    <label for="video-title">título</label>
+    <input id="video-title" type="text" />
+    <label for="video-description">descripción (opcional)</label>
+    <textarea id="video-description" rows="2"></textarea>
+  </div>
+
+  <p id="status" class="status" hidden></p>
+
+  <div class="actions">
+    <button id="btn-cancel" class="secondary">cancelar</button>
+    <button id="btn-share">compartir</button>
+  </div>
+
+  <script src="confirm.js"></script>
+</body>
+</html>

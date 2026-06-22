@@ -9,7 +9,8 @@ import { ImageLightbox } from "@/components/ImageLightbox";
 import type { Locale } from "@/lib/i18n";
 
 function formatDate(date: string, locale: Locale): string {
-  return new Date(`${date}T00:00:00`).toLocaleDateString(locale === "en" ? "en-US" : "es-AR", {
+  const parsed = date.includes("T") ? new Date(date) : new Date(`${date}T00:00:00`);
+  return parsed.toLocaleDateString(locale === "en" ? "en-US" : "es-AR", {
     day: "numeric",
     month: "short",
     year: "numeric",

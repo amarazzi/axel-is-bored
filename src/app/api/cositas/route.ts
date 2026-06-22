@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { randomUUID } from "crypto";
-import { pushStuffItem } from "@/lib/cositas";
+import { pushStuffItem, removeStuffItem } from "@/lib/cositas";
 import { StuffItem } from "@/types/stuff";
 
 export const dynamic = "force-dynamic";
 
 const CORS_HEADERS = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Allow-Methods": "POST, DELETE, OPTIONS",
   "Access-Control-Allow-Headers": "Content-Type, Authorization",
 };
 
@@ -96,4 +96,25 @@ export async function POST(req: NextRequest) {
   }
 
   return NextResponse.json({ ok: true, item }, { status: 201, headers: CORS_HEADERS });
+}
+
+export async function DELETE(req: NextRequest) {
+  if (!isAuthorized(req)) {
+    return NextResponse.json({ error: "unauthorized" }, { status: 401, headers: CORS_HEADERS });
+  }
+
+  const id = req.nextUrl.searchParams.get("id");
+  if (!id) {
+    return NextResponse.json({ error: "missing id" }, { status: 400, headers: CORS_HEADERS });
+  }
+
+  try {
+    const removed = await removeStuffItem(id);
+    if (!removed) {
+      return NextResponse.json({ error: "not found" }, { status: 404, headers: CORS_HEADERS });
+    }
+    return NextResponse.json({ ok: true }, { headers: CORS_HEADERS });
+  } catch {
+    return NextResponse.json({ error: "storage not configured" }, { status: 500, headers: CORS_HEADERS });
+  }
 }
