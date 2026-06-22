@@ -65,6 +65,21 @@ function buildItem(body: Record<string, unknown>): StuffItem | null {
     return { id, type, date, imageUrl, caption: nonEmptyString(body.caption), sourceUrl: nonEmptyString(body.sourceUrl) };
   }
 
+  if (type === "song") {
+    const url = nonEmptyString(body.url);
+    if (!url) return null;
+    return {
+      id,
+      type,
+      date,
+      url,
+      title: nonEmptyString(body.title),
+      artist: nonEmptyString(body.artist),
+      albumImageUrl: nonEmptyString(body.albumImageUrl),
+      description: nonEmptyString(body.description),
+    };
+  }
+
   return null;
 }
 

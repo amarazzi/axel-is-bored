@@ -1,4 +1,4 @@
-const TYPE_LABELS = { quote: "frase", link: "link", image: "imagen", video: "video" };
+const TYPE_LABELS = { quote: "frase", link: "link", image: "imagen", video: "video", song: "canción" };
 
 function youtubeId(url) {
   try {
@@ -12,6 +12,32 @@ function youtubeId(url) {
     return null;
   } catch {
     return null;
+  }
+}
+
+function decodeEntities(str) {
+  const el = document.createElement("textarea");
+  el.innerHTML = str;
+  return el.value;
+}
+
+function matchMeta(html, property) {
+  const re = new RegExp(`<meta property="${property}" content="([^"]*)"`);
+  const match = html.match(re);
+  return match ? decodeEntities(match[1]) : undefined;
+}
+
+async function fetchSpotifyMetadata(url) {
+  try {
+    const res = await fetch(url);
+    const html = await res.text();
+    const title = matchMeta(html, "og:title");
+    const description = matchMeta(html, "og:description");
+    const albumImageUrl = matchMeta(html, "og:image");
+    const artist = description ? description.split(" · ")[0] : undefined;
+    return { title, artist, albumImageUrl };
+  } catch {
+    return {};
   }
 }
 
@@ -59,6 +85,29 @@ function render(payload) {
     document.getElementById("video-title").value = payload.title || "";
     document.getElementById("video-title").focus();
   }
+
+  if (payload.type === "song") {
+    document.getElementById("song-title").value = payload.title || "";
+    document.getElementById("song-artist").value = payload.artist || "";
+    if (payload.albumImageUrl) document.getElementById("song-art").src = payload.albumImageUrl;
+    document.getElementById("song-title").focus();
+
+    if (!payload.title || !payload.albumImageUrl) {
+      const btn = document.getElementById("btn-share");
+      btn.disabled = true;
+      fetchSpotifyMetadata(payload.url).then((meta) => {
+        const titleInput = document.getElementById("song-title");
+        const artistInput = document.getElementById("song-artist");
+        if (meta.title && !titleInput.value) titleInput.value = meta.title;
+        if (meta.artist && !artistInput.value) artistInput.value = meta.artist;
+        if (meta.albumImageUrl) {
+          document.getElementById("song-art").src = meta.albumImageUrl;
+          currentPayload.albumImageUrl = meta.albumImageUrl;
+        }
+        btn.disabled = false;
+      });
+    }
+  }
 }
 
 function buildFinalPayload() {
@@ -81,6 +130,12 @@ function buildFinalPayload() {
   if (payload.type === "video") {
     payload.title = document.getElementById("video-title").value.trim() || undefined;
     payload.description = document.getElementById("video-description").value.trim() || undefined;
+  }
+
+  if (payload.type === "song") {
+    payload.title = document.getElementById("song-title").value.trim() || undefined;
+    payload.artist = document.getElementById("song-artist").value.trim() || undefined;
+    payload.description = document.getElementById("song-description").value.trim() || undefined;
   }
 
   return payload;

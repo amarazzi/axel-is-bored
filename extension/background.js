@@ -3,8 +3,10 @@ const MENU_LINK = "cositas-link";
 const MENU_PAGE_LINK = "cositas-page-link";
 const MENU_IMAGE = "cositas-image";
 const MENU_VIDEO = "cositas-video";
+const MENU_SONG = "cositas-song";
 
 const YOUTUBE_PATTERNS = ["*://*.youtube.com/watch*", "*://youtu.be/*", "*://*.youtube.com/shorts/*"];
+const SPOTIFY_PATTERNS = ["*://open.spotify.com/*"];
 
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.removeAll(() => {
@@ -23,6 +25,13 @@ chrome.runtime.onInstalled.addListener(() => {
       title: "▶ Compartir este video a cositas",
       contexts: ["page", "video"],
       documentUrlPatterns: YOUTUBE_PATTERNS,
+    });
+    chrome.contextMenus.create({
+      id: MENU_SONG,
+      title: "🎵 Compartir esta canción a cositas",
+      contexts: ["link"],
+      documentUrlPatterns: SPOTIFY_PATTERNS,
+      targetUrlPatterns: ["*://open.spotify.com/track/*"],
     });
     chrome.contextMenus.create({
       id: MENU_LINK,
@@ -149,6 +158,11 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
       };
       break;
     }
+
+    case MENU_SONG:
+      if (!info.linkUrl) return;
+      payload = { type: "song", url: info.linkUrl };
+      break;
 
     default:
       return;

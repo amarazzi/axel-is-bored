@@ -47,4 +47,16 @@ export interface VideoItem {
   description_en?: string;
 }
 
-export type StuffItem = QuoteItem | LinkItem | NoteItem | ImageItem | VideoItem;
+export interface SongItem {
+  id: string;
+  type: "song";
+  date: string;
+  url: string;
+  title?: string;
+  artist?: string;
+  albumImageUrl?: string;
+  description?: string;
+  description_en?: string;
+}
+
+export type StuffItem = QuoteItem | LinkItem | NoteItem | ImageItem | VideoItem | SongItem;

@@ -42,6 +42,16 @@ export const stuff: StuffItem[] = [
     url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     title: "Video de prueba para testear la tarjeta de video.",
   },
+  {
+    id: "song-de-prueba",
+    type: "song",
+    date: "2026-06-13",
+    url: "https://open.spotify.com/track/4cOdK2wGLETKBW3PvgPWqT",
+    title: "Never Gonna Give You Up",
+    artist: "Rick Astley",
+    albumImageUrl: "https://i.scdn.co/image/ab67616d0000b273baf89eb11ec7c657805d2da0",
+    description: "Canción de prueba para testear la tarjeta de Spotify.",
+  },
 ];
 
 export function sortedStuff(): StuffItem[] {

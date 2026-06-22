@@ -452,6 +452,22 @@ function StuffCardDemo({ locale }: { locale: Locale }) {
           {locale === "en" ? "Video — same bordered card as link, with a square thumbnail + play icon." : "Video — misma tarjeta con borde que el link, con thumbnail cuadrado + ícono de play."}
         </p>
       </a>
+      <a href="#" className="ff-link-card" style={{ display: "flex", gap: "1rem" }} onClick={(e) => e.preventDefault()}>
+        <div
+          className="shrink-0"
+          style={{ width: 56, height: 56, borderRadius: "var(--radius-md)", backgroundColor: "var(--theme-btn-bg)", position: "relative" }}
+        >
+          <span
+            aria-hidden="true"
+            style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.1rem", color: "var(--theme-fg)" }}
+          >
+            ♪
+          </span>
+        </div>
+        <p className="t-accent2" style={{ fontSize: "0.72rem", fontWeight: 300, lineHeight: 1.6, alignSelf: "center" }}>
+          {locale === "en" ? "Song — identical card to video, with album art instead of a thumbnail." : "Song — tarjeta idéntica a la de video, con el arte del álbum en vez del thumbnail."}
+        </p>
+      </a>
     </div>
   );
 }

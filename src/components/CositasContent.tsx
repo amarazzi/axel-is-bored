@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, type CSSProperties } from "react";
-import { StuffItem, QuoteItem, LinkItem, NoteItem, ImageItem, VideoItem } from "@/types/stuff";
+import { StuffItem, QuoteItem, LinkItem, NoteItem, ImageItem, VideoItem, SongItem } from "@/types/stuff";
 import { useLanguage } from "@/components/Language/LanguageProvider";
 import { ImageLightbox } from "@/components/ImageLightbox";
 import type { Locale } from "@/lib/i18n";
@@ -179,6 +179,52 @@ function VideoCard({ item, locale }: { item: VideoItem; locale: Locale }) {
   );
 }
 
+function SongCard({ item, locale }: { item: SongItem; locale: Locale }) {
+  const description = locale === "en" ? (item.description_en ?? item.description) : item.description;
+
+  return (
+    <a href={item.url} target="_blank" rel="noopener noreferrer" className="ff-link-card" style={{ display: "flex", gap: "1rem" }}>
+      <div
+        className="shrink-0"
+        style={{ width: 72, height: 72, borderRadius: "var(--radius-md)", overflow: "hidden", position: "relative" }}
+      >
+        {item.albumImageUrl ? (
+          // eslint-disable-next-line @next/next/no-img-element -- arte del álbum, host externo (Spotify) no whitelisteable de antemano
+          <img src={item.albumImageUrl} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+        ) : (
+          <div className="t-muted" style={{ width: "100%", height: "100%", backgroundColor: "var(--theme-btn-bg)" }} />
+        )}
+        <span
+          aria-hidden="true"
+          style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.3rem", color: "#fff", backgroundColor: "rgba(0,0,0,0.28)" }}
+        >
+          ♪
+        </span>
+      </div>
+      <div className="flex-1 min-w-0 flex flex-col gap-1" style={{ paddingTop: "2px" }}>
+        {item.title && (
+          <p className="t-accent" style={{ fontSize: "var(--text-base)", fontWeight: 400, lineHeight: 1.4 }}>
+            {item.title}
+          </p>
+        )}
+        {item.artist && (
+          <p className="t-muted" style={{ fontSize: "var(--text-xs)", lineHeight: 1.5 }}>
+            {item.artist}
+          </p>
+        )}
+        {description && (
+          <p className="t-muted" style={{ fontSize: "var(--text-xs)", lineHeight: 1.5 }}>
+            {description}
+          </p>
+        )}
+        <span className="t-muted" style={{ fontSize: "var(--text-2xs)", letterSpacing: "0.06em" }}>
+          spotify
+        </span>
+      </div>
+    </a>
+  );
+}
+
 function StuffRow({ item, locale }: { item: StuffItem; locale: Locale }) {
   return (
     <div className="flex flex-col gap-2">
@@ -190,6 +236,7 @@ function StuffRow({ item, locale }: { item: StuffItem; locale: Locale }) {
       {item.type === "note" && <NoteCard item={item} locale={locale} />}
       {item.type === "image" && <ImageCard item={item} locale={locale} />}
       {item.type === "video" && <VideoCard item={item} locale={locale} />}
+      {item.type === "song" && <SongCard item={item} locale={locale} />}
     </div>
   );
 }

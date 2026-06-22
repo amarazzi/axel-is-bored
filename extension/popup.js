@@ -5,6 +5,7 @@ const noteText = document.getElementById("note-text");
 const shareNoteBtn = document.getElementById("share-note");
 const sharePageBtn = document.getElementById("share-page");
 const shareVideoBtn = document.getElementById("share-video");
+const shareSongBtn = document.getElementById("share-song");
 const statusEl = document.getElementById("status");
 const apiUrlInput = document.getElementById("api-url");
 const secretInput = document.getElementById("secret");
@@ -26,6 +27,15 @@ function cleanYoutubeTitle(title) {
 function isYoutubeUrl(url) {
   try {
     return YOUTUBE_HOSTS.includes(new URL(url).hostname);
+  } catch {
+    return false;
+  }
+}
+
+function isSpotifyTrackUrl(url) {
+  try {
+    const u = new URL(url);
+    return u.hostname === "open.spotify.com" && u.pathname.startsWith("/track/");
   } catch {
     return false;
   }
@@ -53,11 +63,11 @@ async function getActiveTab() {
   return tab;
 }
 
-async function setupVideoButton() {
+async function setupContextButtons() {
   const tab = await getActiveTab();
-  if (tab?.url && isYoutubeUrl(tab.url)) {
-    shareVideoBtn.hidden = false;
-  }
+  if (!tab?.url) return;
+  if (isYoutubeUrl(tab.url)) shareVideoBtn.hidden = false;
+  if (isSpotifyTrackUrl(tab.url)) shareSongBtn.hidden = false;
 }
 
 shareNoteBtn.addEventListener("click", async () => {
@@ -95,6 +105,15 @@ shareVideoBtn.addEventListener("click", async () => {
   await openConfirmWindow({ type: "video", url: tab.url, title: cleanYoutubeTitle(tab.title) });
 });
 
+shareSongBtn.addEventListener("click", async () => {
+  const tab = await getActiveTab();
+  if (!tab?.url) {
+    showStatus(statusEl, "No encontré la pestaña activa.", false);
+    return;
+  }
+  await openConfirmWindow({ type: "song", url: tab.url });
+});
+
 saveSettingsBtn.addEventListener("click", async () => {
   const apiUrl = apiUrlInput.value.trim() || DEFAULT_API_URL;
   const secret = secretInput.value.trim();
@@ -103,4 +122,4 @@ saveSettingsBtn.addEventListener("click", async () => {
 });
 
 loadSettings();
-setupVideoButton();
+setupContextButtons();
