@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { randomUUID } from "crypto";
 import { pushStuffItem, removeStuffItem } from "@/lib/cositas";
-import { StuffItem } from "@/types/stuff";
+import { StuffItem, SongItem } from "@/types/stuff";
 
 export const dynamic = "force-dynamic";
 
@@ -83,6 +83,45 @@ function buildItem(body: Record<string, unknown>): StuffItem | null {
   return null;
 }
 
+function decodeHtmlEntities(str: string): string {
+  return str
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'");
+}
+
+function matchMeta(html: string, property: string): string | undefined {
+  const match = html.match(new RegExp(`<meta property="${property}" content="([^"]*)"`));
+  return match ? decodeHtmlEntities(match[1]) : undefined;
+}
+
+// Completa título/artista/arte del álbum desde los meta tags Open Graph
+// de la página del track — server-side, así no depende de que la
+// extensión tenga permisos de fetch cross-origin contra Spotify.
+async function enrichSong(item: SongItem): Promise<SongItem> {
+  if (item.title && item.artist && item.albumImageUrl) return item;
+
+  try {
+    const res = await fetch(item.url);
+    const html = await res.text();
+    const title = matchMeta(html, "og:title");
+    const description = matchMeta(html, "og:description");
+    const albumImageUrl = matchMeta(html, "og:image");
+    const artist = description ? description.split(" · ")[0] : undefined;
+
+    return {
+      ...item,
+      title: item.title || title,
+      artist: item.artist || artist,
+      albumImageUrl: item.albumImageUrl || albumImageUrl,
+    };
+  } catch {
+    return item;
+  }
+}
+
 export async function OPTIONS() {
   return new NextResponse(null, { status: 204, headers: CORS_HEADERS });
 }
@@ -99,9 +138,13 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "invalid json" }, { status: 400, headers: CORS_HEADERS });
   }
 
-  const item = buildItem(body);
+  let item = buildItem(body);
   if (!item) {
     return NextResponse.json({ error: "invalid payload" }, { status: 400, headers: CORS_HEADERS });
+  }
+
+  if (item.type === "song") {
+    item = await enrichSong(item);
   }
 
   try {
