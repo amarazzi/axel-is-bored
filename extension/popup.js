@@ -6,6 +6,7 @@ const shareNoteBtn = document.getElementById("share-note");
 const sharePageBtn = document.getElementById("share-page");
 const shareVideoBtn = document.getElementById("share-video");
 const shareSongBtn = document.getElementById("share-song");
+const shareAlbumBtn = document.getElementById("share-album");
 const statusEl = document.getElementById("status");
 const apiUrlInput = document.getElementById("api-url");
 const secretInput = document.getElementById("secret");
@@ -41,6 +42,15 @@ function isSpotifyTrackUrl(url) {
   }
 }
 
+function isSpotifyAlbumUrl(url) {
+  try {
+    const u = new URL(url);
+    return u.hostname === "open.spotify.com" && u.pathname.startsWith("/album/");
+  } catch {
+    return false;
+  }
+}
+
 async function loadSettings() {
   const { apiUrl, secret } = await chrome.storage.local.get(["apiUrl", "secret"]);
   apiUrlInput.value = apiUrl || DEFAULT_API_URL;
@@ -68,6 +78,7 @@ async function setupContextButtons() {
   if (!tab?.url) return;
   if (isYoutubeUrl(tab.url)) shareVideoBtn.hidden = false;
   if (isSpotifyTrackUrl(tab.url)) shareSongBtn.hidden = false;
+  if (isSpotifyAlbumUrl(tab.url)) shareAlbumBtn.hidden = false;
 }
 
 shareNoteBtn.addEventListener("click", async () => {
@@ -112,6 +123,15 @@ shareSongBtn.addEventListener("click", async () => {
     return;
   }
   await openConfirmWindow({ type: "song", url: tab.url });
+});
+
+shareAlbumBtn.addEventListener("click", async () => {
+  const tab = await getActiveTab();
+  if (!tab?.url) {
+    showStatus(statusEl, "No encontré la pestaña activa.", false);
+    return;
+  }
+  await openConfirmWindow({ type: "album", url: tab.url });
 });
 
 saveSettingsBtn.addEventListener("click", async () => {

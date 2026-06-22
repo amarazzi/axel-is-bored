@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { randomUUID } from "crypto";
 import { pushStuffItem, removeStuffItem } from "@/lib/cositas";
-import { StuffItem, SongItem } from "@/types/stuff";
+import { StuffItem, SongItem, AlbumItem } from "@/types/stuff";
 
 export const dynamic = "force-dynamic";
 
@@ -65,7 +65,7 @@ function buildItem(body: Record<string, unknown>): StuffItem | null {
     return { id, type, date, imageUrl, caption: nonEmptyString(body.caption), sourceUrl: nonEmptyString(body.sourceUrl) };
   }
 
-  if (type === "song") {
+  if (type === "song" || type === "album") {
     const url = nonEmptyString(body.url);
     if (!url) return null;
     return {
@@ -97,19 +97,27 @@ function matchMeta(html: string, property: string): string | undefined {
   return match ? decodeHtmlEntities(match[1]) : undefined;
 }
 
+// Spotify formatea el og:title de un álbum como
+// "Nombre - Album by Artista | Spotify" — el de un track ya viene limpio.
+function cleanAlbumTitle(title: string | undefined): string | undefined {
+  if (!title) return undefined;
+  return title.split(/\s*-\s*Album by /i)[0]?.trim() || undefined;
+}
+
 // Completa título/artista/arte del álbum desde los meta tags Open Graph
-// de la página del track — server-side, así no depende de que la
+// de la página de Spotify — server-side, así no depende de que la
 // extensión tenga permisos de fetch cross-origin contra Spotify.
-async function enrichSong(item: SongItem): Promise<SongItem> {
+async function enrichMusicItem<T extends SongItem | AlbumItem>(item: T): Promise<T> {
   if (item.title && item.artist && item.albumImageUrl) return item;
 
   try {
     const res = await fetch(item.url);
     const html = await res.text();
-    const title = matchMeta(html, "og:title");
+    const rawTitle = matchMeta(html, "og:title");
     const description = matchMeta(html, "og:description");
     const albumImageUrl = matchMeta(html, "og:image");
     const artist = description ? description.split(" · ")[0] : undefined;
+    const title = item.type === "album" ? cleanAlbumTitle(rawTitle) : rawTitle;
 
     return {
       ...item,
@@ -143,8 +151,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "invalid payload" }, { status: 400, headers: CORS_HEADERS });
   }
 
-  if (item.type === "song") {
-    item = await enrichSong(item);
+  if (item.type === "song" || item.type === "album") {
+    item = await enrichMusicItem(item);
   }
 
   try {

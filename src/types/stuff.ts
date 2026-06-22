@@ -59,4 +59,16 @@ export interface SongItem {
   description_en?: string;
 }
 
-export type StuffItem = QuoteItem | LinkItem | NoteItem | ImageItem | VideoItem | SongItem;
+export interface AlbumItem {
+  id: string;
+  type: "album";
+  date: string;
+  url: string;
+  title?: string;
+  artist?: string;
+  albumImageUrl?: string;
+  description?: string;
+  description_en?: string;
+}
+
+export type StuffItem = QuoteItem | LinkItem | NoteItem | ImageItem | VideoItem | SongItem | AlbumItem;

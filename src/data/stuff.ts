@@ -52,6 +52,16 @@ export const stuff: StuffItem[] = [
     albumImageUrl: "https://i.scdn.co/image/ab67616d0000b273baf89eb11ec7c657805d2da0",
     description: "Canción de prueba para testear la tarjeta de Spotify.",
   },
+  {
+    id: "album-de-prueba",
+    type: "album",
+    date: "2026-06-12",
+    url: "https://open.spotify.com/album/4m2880jivSbbyEGAKfITCa",
+    title: "Random Access Memories",
+    artist: "Daft Punk",
+    albumImageUrl: "https://i.scdn.co/image/ab67616d0000b2739b9b36b0e22870b9f542d937",
+    description: "Álbum de prueba para testear la tarjeta de Spotify.",
+  },
 ];
 
 export function sortedStuff(): StuffItem[] {

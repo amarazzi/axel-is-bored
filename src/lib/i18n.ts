@@ -194,7 +194,7 @@ const es: Translations = {
   "nav.cositas": "cositas",
   "meta.title.cositas": "axel hace cositas",
   "cositas.title": "Cositas",
-  "cositas.subtitle": "Frases, links y otras cosas que me parecieron interesantes.",
+  "cositas.subtitle": "Frases, canciones, links y cosas que cruce por internet que me parecieron interesantes.",
   "cositas.empty": "Próximamente.",
   "cositas.back": "← volver",
 };
@@ -288,7 +288,7 @@ const en: Translations = {
   "nav.cositas": "stuff",
   "meta.title.cositas": "axel makes stuff",
   "cositas.title": "Stuff",
-  "cositas.subtitle": "Quotes, links and other things I found interesting.",
+  "cositas.subtitle": "Quotes, songs, links and things I came across online that I found interesting.",
   "cositas.empty": "Coming soon.",
   "cositas.back": "← back",
 };

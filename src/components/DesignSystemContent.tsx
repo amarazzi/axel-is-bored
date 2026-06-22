@@ -465,7 +465,9 @@ function StuffCardDemo({ locale }: { locale: Locale }) {
           </span>
         </div>
         <p className="t-accent2" style={{ fontSize: "0.72rem", fontWeight: 300, lineHeight: 1.6, alignSelf: "center" }}>
-          {locale === "en" ? "Song — identical card to video, with album art instead of a thumbnail." : "Song — tarjeta idéntica a la de video, con el arte del álbum en vez del thumbnail."}
+          {locale === "en"
+            ? "Song / Album — same card as video, with the Spotify cover art. Both types share this exact component."
+            : "Song / Album — misma tarjeta que video, con el arte de Spotify. Ambos tipos comparten este mismo componente."}
         </p>
       </a>
     </div>
@@ -506,7 +508,7 @@ function Components({ locale }: { locale: Locale }) {
     },
     {
       name: "StuffCard",
-      description: { es: "Variantes de cositas (quote / link / note / image). Cada tipo se distingue por estructura, no por color: comilla decorativa, tarjeta con borde, marca de punto, imagen con caption.", en: "Stuff item variants (quote / link / note / image). Each type is distinguished by structure, not color: decorative quote mark, bordered card, dot marker, image with caption." },
+      description: { es: "Variantes de cositas (quote / link / note / image / video / song / album). Cada tipo se distingue por estructura, no por color: comilla decorativa, tarjeta con borde, marca de punto, imagen con caption, thumbnail/cover cuadrado.", en: "Stuff item variants (quote / link / note / image / video / song / album). Each type is distinguished by structure, not color: decorative quote mark, bordered card, dot marker, image with caption, square thumbnail/cover." },
       demo: <StuffCardDemo locale={locale} />,
     },
   ];

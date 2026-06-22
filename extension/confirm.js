@@ -1,4 +1,4 @@
-const TYPE_LABELS = { quote: "frase", link: "link", image: "imagen", video: "video", song: "canción" };
+const TYPE_LABELS = { quote: "frase", link: "link", image: "imagen", video: "video", song: "canción", album: "álbum" };
 
 function youtubeId(url) {
   try {
@@ -27,14 +27,20 @@ function matchMeta(html, property) {
   return match ? decodeEntities(match[1]) : undefined;
 }
 
-async function fetchSpotifyMetadata(url) {
+function cleanAlbumTitle(title) {
+  if (!title) return undefined;
+  return title.split(/\s*-\s*Album by /i)[0]?.trim() || undefined;
+}
+
+async function fetchSpotifyMetadata(url, kind) {
   try {
     const res = await fetch(url);
     const html = await res.text();
-    const title = matchMeta(html, "og:title");
+    const rawTitle = matchMeta(html, "og:title");
     const description = matchMeta(html, "og:description");
     const albumImageUrl = matchMeta(html, "og:image");
     const artist = description ? description.split(" · ")[0] : undefined;
+    const title = kind === "album" ? cleanAlbumTitle(rawTitle) : rawTitle;
     return { title, artist, albumImageUrl };
   } catch {
     return {};
@@ -86,27 +92,33 @@ function render(payload) {
     document.getElementById("video-title").focus();
   }
 
-  if (payload.type === "song") {
-    document.getElementById("song-title").value = payload.title || "";
-    document.getElementById("song-artist").value = payload.artist || "";
-    if (payload.albumImageUrl) document.getElementById("song-art").src = payload.albumImageUrl;
-    document.getElementById("song-title").focus();
+  if (payload.type === "song" || payload.type === "album") {
+    renderMusicSection(payload, payload.type);
+  }
+}
 
-    if (!payload.title || !payload.albumImageUrl) {
-      const btn = document.getElementById("btn-share");
-      btn.disabled = true;
-      fetchSpotifyMetadata(payload.url).then((meta) => {
-        const titleInput = document.getElementById("song-title");
-        const artistInput = document.getElementById("song-artist");
-        if (meta.title && !titleInput.value) titleInput.value = meta.title;
-        if (meta.artist && !artistInput.value) artistInput.value = meta.artist;
-        if (meta.albumImageUrl) {
-          document.getElementById("song-art").src = meta.albumImageUrl;
-          currentPayload.albumImageUrl = meta.albumImageUrl;
-        }
-        btn.disabled = false;
-      });
-    }
+function renderMusicSection(payload, prefix) {
+  const titleInput = document.getElementById(`${prefix}-title`);
+  const artistInput = document.getElementById(`${prefix}-artist`);
+  const artImg = document.getElementById(`${prefix}-art`);
+
+  titleInput.value = payload.title || "";
+  artistInput.value = payload.artist || "";
+  if (payload.albumImageUrl) artImg.src = payload.albumImageUrl;
+  titleInput.focus();
+
+  if (!payload.title || !payload.albumImageUrl) {
+    const btn = document.getElementById("btn-share");
+    btn.disabled = true;
+    fetchSpotifyMetadata(payload.url, prefix).then((meta) => {
+      if (meta.title && !titleInput.value) titleInput.value = meta.title;
+      if (meta.artist && !artistInput.value) artistInput.value = meta.artist;
+      if (meta.albumImageUrl) {
+        artImg.src = meta.albumImageUrl;
+        currentPayload.albumImageUrl = meta.albumImageUrl;
+      }
+      btn.disabled = false;
+    });
   }
 }
 
@@ -132,10 +144,11 @@ function buildFinalPayload() {
     payload.description = document.getElementById("video-description").value.trim() || undefined;
   }
 
-  if (payload.type === "song") {
-    payload.title = document.getElementById("song-title").value.trim() || undefined;
-    payload.artist = document.getElementById("song-artist").value.trim() || undefined;
-    payload.description = document.getElementById("song-description").value.trim() || undefined;
+  if (payload.type === "song" || payload.type === "album") {
+    const prefix = payload.type;
+    payload.title = document.getElementById(`${prefix}-title`).value.trim() || undefined;
+    payload.artist = document.getElementById(`${prefix}-artist`).value.trim() || undefined;
+    payload.description = document.getElementById(`${prefix}-description`).value.trim() || undefined;
   }
 
   return payload;

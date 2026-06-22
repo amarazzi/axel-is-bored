@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, type CSSProperties } from "react";
-import { StuffItem, QuoteItem, LinkItem, NoteItem, ImageItem, VideoItem, SongItem } from "@/types/stuff";
+import { StuffItem, QuoteItem, LinkItem, NoteItem, ImageItem, VideoItem, SongItem, AlbumItem } from "@/types/stuff";
 import { useLanguage } from "@/components/Language/LanguageProvider";
 import { ImageLightbox } from "@/components/ImageLightbox";
 import type { Locale } from "@/lib/i18n";
@@ -179,7 +179,7 @@ function VideoCard({ item, locale }: { item: VideoItem; locale: Locale }) {
   );
 }
 
-function SongCard({ item, locale }: { item: SongItem; locale: Locale }) {
+function MusicCard({ item, locale }: { item: SongItem | AlbumItem; locale: Locale }) {
   const description = locale === "en" ? (item.description_en ?? item.description) : item.description;
 
   return (
@@ -236,7 +236,7 @@ function StuffRow({ item, locale }: { item: StuffItem; locale: Locale }) {
       {item.type === "note" && <NoteCard item={item} locale={locale} />}
       {item.type === "image" && <ImageCard item={item} locale={locale} />}
       {item.type === "video" && <VideoCard item={item} locale={locale} />}
-      {item.type === "song" && <SongCard item={item} locale={locale} />}
+      {(item.type === "song" || item.type === "album") && <MusicCard item={item} locale={locale} />}
     </div>
   );
 }
