@@ -279,6 +279,18 @@ function Classes({ locale }: { locale: Locale }) {
       demo: <hr className="ff-divider" style={{ border: "none", borderTop: "1px solid var(--theme-border)", width: "100%" }} />,
     },
     {
+      name: ".ff-link-card",
+      description: { es: "Tarjeta de link clickeable (cositas). Borde sutil, se oscurece en hover.", en: "Clickable link card (stuff). Subtle border, darkens on hover." },
+      demo: (
+        <a href="#" className="ff-link-card" style={{ fontSize: "0.72rem" }} onClick={(e) => e.preventDefault()}>
+          <div className="flex items-baseline justify-between gap-4">
+            <span className="t-accent2" style={{ fontWeight: 400 }}>{locale === "en" ? "link title" : "título del link"}</span>
+            <span className="t-muted" style={{ fontSize: "0.65rem" }}>↗</span>
+          </div>
+        </a>
+      ),
+    },
+    {
       name: ".t-bg / .t-fg / .t-accent / .t-accent2 / .t-muted",
       description: { es: "Utilidades de color temático. Usan las CSS vars activas.", en: "Thematic color utilities. Use the active CSS vars." },
       demo: (
@@ -403,6 +415,31 @@ function StarsDemo() {
   );
 }
 
+function StuffCardDemo({ locale }: { locale: Locale }) {
+  return (
+    <div className="flex flex-col gap-5">
+      <div className="flex gap-3">
+        <span className="t-muted shrink-0" aria-hidden="true" style={{ fontSize: "1.1rem", lineHeight: 1 }}>“</span>
+        <p className="t-accent" style={{ fontSize: "0.78rem", fontWeight: 300, lineHeight: 1.6 }}>
+          {locale === "en" ? "Quote — set apart by the opening mark, no border." : "Quote — distinguida por la comilla de apertura, sin borde."}
+        </p>
+      </div>
+      <a href="#" className="ff-link-card" style={{ fontSize: "0.72rem" }} onClick={(e) => e.preventDefault()}>
+        <div className="flex items-baseline justify-between gap-4">
+          <span className="t-accent2" style={{ fontWeight: 400 }}>{locale === "en" ? "Link — bordered card, ↗ affordance" : "Link — tarjeta con borde, affordance ↗"}</span>
+          <span className="t-muted" style={{ fontSize: "0.65rem" }}>↗</span>
+        </div>
+      </a>
+      <div className="flex gap-3">
+        <span className="t-muted shrink-0" aria-hidden="true">·</span>
+        <p className="t-accent2" style={{ fontSize: "0.78rem", fontWeight: 300, lineHeight: 1.6 }}>
+          {locale === "en" ? "Note — loose thought, dot marker, no border or quote mark." : "Note — pensamiento suelto, marca de punto, sin borde ni comilla."}
+        </p>
+      </div>
+    </div>
+  );
+}
+
 function Components({ locale }: { locale: Locale }) {
   const rows = [
     {
@@ -434,6 +471,11 @@ function Components({ locale }: { locale: Locale }) {
       name: "TabToggle",
       description: { es: "Toggle de pestañas con roles ARIA (tablist/tab/tabpanel). Activo: accent + underline. Inactivo: muted.", en: "Tab toggle with ARIA roles (tablist/tab/tabpanel). Active: accent + underline. Inactive: muted." },
       demo: <TabToggleDemo locale={locale} />,
+    },
+    {
+      name: "StuffCard",
+      description: { es: "Variantes de cositas (quote / link / note / image). Cada tipo se distingue por estructura, no por color: comilla decorativa, tarjeta con borde, marca de punto, imagen con caption.", en: "Stuff item variants (quote / link / note / image). Each type is distinguished by structure, not color: decorative quote mark, bordered card, dot marker, image with caption." },
+      demo: <StuffCardDemo locale={locale} />,
     },
   ];
 

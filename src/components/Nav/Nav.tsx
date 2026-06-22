@@ -20,6 +20,7 @@ export function Nav() {
     { label: t["nav.observando"], href: "/observando" },
     { label: t["nav.recomendaciones"], href: "/recomendaciones" },
     { label: t["nav.projects"], href: "/projects" },
+    { label: t["nav.cositas"], href: "/cositas" },
   ];
 
   function openMenu() {

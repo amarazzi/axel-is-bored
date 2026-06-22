@@ -95,6 +95,14 @@ export interface Translations {
   "recomendaciones.tab.books": string;
   "recomendaciones.tab.films": string;
   "recomendaciones.films.empty": string;
+
+  // Cositas
+  "nav.cositas": string;
+  "meta.title.cositas": string;
+  "cositas.title": string;
+  "cositas.subtitle": string;
+  "cositas.empty": string;
+  "cositas.back": string;
 }
 
 const es: Translations = {
@@ -182,6 +190,13 @@ const es: Translations = {
   "recomendaciones.tab.books": "libros",
   "recomendaciones.tab.films": "películas y series",
   "recomendaciones.films.empty": "Próximamente.",
+
+  "nav.cositas": "cositas",
+  "meta.title.cositas": "axel hace cositas",
+  "cositas.title": "Cositas",
+  "cositas.subtitle": "Frases, links y otras cosas que me parecieron interesantes.",
+  "cositas.empty": "Próximamente.",
+  "cositas.back": "← volver",
 };
 
 const en: Translations = {
@@ -269,6 +284,13 @@ const en: Translations = {
   "recomendaciones.tab.books": "books",
   "recomendaciones.tab.films": "films & series",
   "recomendaciones.films.empty": "Coming soon.",
+
+  "nav.cositas": "stuff",
+  "meta.title.cositas": "axel makes stuff",
+  "cositas.title": "Stuff",
+  "cositas.subtitle": "Quotes, links and other things I found interesting.",
+  "cositas.empty": "Coming soon.",
+  "cositas.back": "← back",
 };
 
 export const translations: Record<Locale, Translations> = { es, en };

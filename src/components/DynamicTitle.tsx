@@ -19,6 +19,8 @@ export function DynamicTitle() {
       document.title = t["meta.title.observando"];
     } else if (pathname === "/recomendaciones") {
       document.title = t["meta.title.recomendaciones"];
+    } else if (pathname === "/cositas") {
+      document.title = t["meta.title.cositas"];
     }
   }, [pathname, t]);
 
