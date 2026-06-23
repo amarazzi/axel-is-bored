@@ -12,14 +12,28 @@ export interface LetterboxdFilm {
   posterUrl: string | null;
 }
 
+// El feed de Letterboxd entity-encodea texto incluso dentro de CDATA
+// (ej. "Don&#039;t Follow Me"), que el XML parser no decodifica porque
+// el contenido de un CDATA es literal por spec. Lo decodificamos a mano.
+function decodeHtmlEntities(str: string): string {
+  return str
+    .replace(/&#(\d+);/g, (_, code: string) => String.fromCodePoint(Number(code)))
+    .replace(/&#x([0-9a-fA-F]+);/g, (_, hex: string) => String.fromCodePoint(parseInt(hex, 16)))
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'");
+}
+
 function extractText(value: unknown): string {
-  if (typeof value === "string") return value.trim();
+  if (typeof value === "string") return decodeHtmlEntities(value.trim());
   if (value !== null && typeof value === "object") {
     const obj = value as Record<string, unknown>;
-    if (typeof obj.__cdata === "string") return obj.__cdata.trim();
-    if (typeof obj["#text"] === "string") return obj["#text"].trim();
+    if (typeof obj.__cdata === "string") return decodeHtmlEntities(obj.__cdata.trim());
+    if (typeof obj["#text"] === "string") return decodeHtmlEntities(obj["#text"].trim());
   }
-  return String(value ?? "").trim();
+  return decodeHtmlEntities(String(value ?? "").trim());
 }
 
 function parsePoster(html: string): string | null {
