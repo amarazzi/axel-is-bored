@@ -279,6 +279,17 @@ function Classes({ locale }: { locale: Locale }) {
       demo: <hr className="ff-divider" style={{ border: "none", borderTop: "1px solid var(--theme-border)", width: "100%" }} />,
     },
     {
+      name: ".ff-dot-divider",
+      description: { es: "Separador liviano de tres puntos entre ítems de una lista (cositas). Alternativa a .ff-divider cuando la línea larga es demasiado pesada.", en: "Lightweight three-dot separator between list items (cositas). Alternative to .ff-divider when the long line is too heavy." },
+      demo: (
+        <div className="ff-dot-divider">
+          <span>·</span>
+          <span>·</span>
+          <span>·</span>
+        </div>
+      ),
+    },
+    {
       name: ".ff-link-card",
       description: { es: "Tarjeta con borde para video/song/album (cositas). Se oscurece en hover.", en: "Bordered card for video/song/album (stuff). Darkens on hover." },
       demo: (

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { Fragment, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { QuoteItem, LinkItem, NoteItem, ImageItem, VideoItem, SongItem, AlbumItem, BookItem } from "@/types/stuff";
 import { FeedItem, FilmFeedItem } from "@/types/feed";
 import { useLanguage } from "@/components/Language/LanguageProvider";
@@ -53,7 +53,7 @@ function QuoteCard({ item }: { item: QuoteItem }) {
         “
       </span>
       <div className="min-w-0">
-        <p className="t-accent" style={{ fontSize: "var(--text-md)", fontWeight: 300, lineHeight: 1.75 }}>
+        <p className="t-accent2" style={{ fontSize: "var(--text-md)", fontWeight: 300, lineHeight: 1.75 }}>
           {item.text}
         </p>
         {(item.author || item.source) && (
@@ -92,15 +92,19 @@ function LinkCard({ item, locale }: { item: LinkItem; locale: Locale }) {
   );
 }
 
-function NoteCard({ item, locale }: { item: NoteItem; locale: Locale }) {
+function NoteCard({ item, locale, number }: { item: NoteItem; locale: Locale; number: number }) {
+  const { t } = useLanguage();
   const text = locale === "en" ? (item.text_en ?? item.text) : item.text;
   return (
-    <article className="flex gap-3">
-      <span className="t-muted shrink-0" aria-hidden="true">
-        ·
-      </span>
+    <article
+      className="flex flex-col gap-2"
+      style={{ borderLeft: "3px solid var(--theme-accent)", paddingLeft: "0.875rem" }}
+    >
       <p className="t-accent2" style={{ fontSize: "var(--text-base)", fontWeight: 300, lineHeight: 1.75 }}>
         {text}
+      </p>
+      <p className="t-muted" style={{ fontSize: "var(--text-2xs)", letterSpacing: "0.04em" }}>
+        {t["cositas.noteLabel"]} #{number}
       </p>
     </article>
   );
@@ -405,7 +409,7 @@ function FilterChips({
   );
 }
 
-function StuffRow({ item, locale }: { item: FeedItem; locale: Locale }) {
+function StuffRow({ item, locale, noteNumber }: { item: FeedItem; locale: Locale; noteNumber?: number }) {
   return (
     <div className="flex flex-col gap-2">
       <p className="ff-section-label" style={{ fontSize: "0.6rem" }}>
@@ -413,7 +417,7 @@ function StuffRow({ item, locale }: { item: FeedItem; locale: Locale }) {
       </p>
       {item.type === "quote" && <QuoteCard item={item} />}
       {item.type === "link" && <LinkCard item={item} locale={locale} />}
-      {item.type === "note" && <NoteCard item={item} locale={locale} />}
+      {item.type === "note" && <NoteCard item={item} locale={locale} number={noteNumber ?? 1} />}
       {item.type === "image" && <ImageCard item={item} locale={locale} />}
       {item.type === "video" && <VideoCard item={item} locale={locale} />}
       {(item.type === "song" || item.type === "album") && <MusicCard item={item} locale={locale} />}
@@ -459,6 +463,14 @@ export function CositasContent({
       setFadePhase("in");
     }, FADE_OUT_MS - FADE_OVERLAP_MS);
   }
+
+  const noteNumbers = useMemo(() => {
+    const notes = itemsProp.filter((item): item is NoteItem => item.type === "note");
+    const oldestFirst = [...notes].sort(
+      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+    );
+    return new Map(oldestFirst.map((note, index) => [note.id, index + 1]));
+  }, [itemsProp]);
 
   const filtered = itemsProp.filter((item) => matchesFilter(item, displayFilter));
   const showCurrentlyReading = currentlyReading && displayFilter === "book";
@@ -516,9 +528,22 @@ export function CositasContent({
             {t["cositas.empty"]}
           </p>
         ) : (
-          <div key={`list-${displayFilter}`} className={`${fadeClass} flex flex-col gap-12`}>
-            {filtered.map((item) => (
-              <StuffRow key={item.id} item={item} locale={locale} />
+          <div key={`list-${displayFilter}`} className={`${fadeClass} flex flex-col gap-8`}>
+            {filtered.map((item, index) => (
+              <Fragment key={item.id}>
+                {index > 0 && (
+                  <div aria-hidden="true" className="ff-dot-divider">
+                    <span>·</span>
+                    <span>·</span>
+                    <span>·</span>
+                  </div>
+                )}
+                <StuffRow
+                  item={item}
+                  locale={locale}
+                  noteNumber={item.type === "note" ? noteNumbers.get(item.id) : undefined}
+                />
+              </Fragment>
             ))}
           </div>
         )}

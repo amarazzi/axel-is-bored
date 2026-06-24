@@ -209,6 +209,15 @@
     border-color: var(--theme-border);
   }
 
+  /* Separador liviano entre items de una lista (vs. .ff-divider, la linea larga) */
+  .ff-dot-divider {
+    display: flex;
+    justify-content: center;
+    gap: 0.4rem;
+    font-size: var(--text-xs);
+    color: var(--theme-muted);
+  }
+
   /* Section label — etiqueta de sección en mayúsculas */
   .ff-section-label {
     font-size: var(--text-2xs);

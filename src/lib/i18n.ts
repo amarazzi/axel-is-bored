@@ -94,6 +94,7 @@ export interface Translations {
   "cositas.empty": string;
   "cositas.back": string;
   "cositas.currentlyReading": string;
+  "cositas.noteLabel": string;
   "cositas.filter.all": string;
   "cositas.filter.books": string;
   "cositas.filter.films": string;
@@ -189,6 +190,7 @@ const es: Translations = {
   "cositas.empty": "Próximamente.",
   "cositas.back": "← volver",
   "cositas.currentlyReading": "Leyendo",
+  "cositas.noteLabel": "nota personal",
   "cositas.filter.all": "todo",
   "cositas.filter.books": "libros",
   "cositas.filter.films": "cine",
@@ -284,6 +286,7 @@ const en: Translations = {
   "cositas.empty": "Coming soon.",
   "cositas.back": "← back",
   "cositas.currentlyReading": "Reading",
+  "cositas.noteLabel": "personal note",
   "cositas.filter.all": "all",
   "cositas.filter.books": "books",
   "cositas.filter.films": "film",
