@@ -48,7 +48,15 @@ export function HomeContent({
                 <Link href="/observando" className="ff-link-yellow">
                   observando
                 </Link>
-                {t["home.heroDesc2"]}
+                {t["home.heroDesc2"]}{" "}
+                <Link href="/cositas" className="ff-link-yellow">
+                  cositas
+                </Link>
+                {t["home.heroDesc3"]}{" "}
+                <Link href="/projects" className="ff-link-yellow">
+                  apps
+                </Link>
+                {t["home.heroDesc4"]}
               </p>
             </div>
             <div className="shrink-0 hidden sm:block">

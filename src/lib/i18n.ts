@@ -34,6 +34,8 @@ export interface Translations {
   "home.phrases": string[];
   "home.heroDesc1": string;
   "home.heroDesc2": string;
+  "home.heroDesc3": string;
+  "home.heroDesc4": string;
   "home.seeAll": string;
   "home.projects": string;
   "home.more": string;
@@ -127,7 +129,9 @@ const es: Translations = {
 
   "home.phrases": ["hace cosas", "escribe", "vibecodea", "diseña", "lee", "corre"],
   "home.heroDesc1": "Escribo cómo veo la vida en",
-  "home.heroDesc2": ", mi newsletter. Además, vibecodeo y diseño pequeñas apps.",
+  "home.heroDesc2": ", mi newsletter. Comparto lo que leo, veo y me encuentro por internet y me resulta interesante en",
+  "home.heroDesc3": " y vibecodeo pequeñas",
+  "home.heroDesc4": ".",
   "home.seeAll": "más entregas →",
   "home.projects": "Apps",
   "home.more": "más proyectos →",
@@ -220,7 +224,9 @@ const en: Translations = {
 
   "home.phrases": ["does things", "writes", "vibecodes", "designs", "reads", "runs"],
   "home.heroDesc1": "I write about how I see life in",
-  "home.heroDesc2": ", my newsletter. I also vibecode and design small apps.",
+  "home.heroDesc2": ", my newsletter. I share what I read, watch and find online that I find interesting in",
+  "home.heroDesc3": " and vibecode small",
+  "home.heroDesc4": ".",
   "home.seeAll": "see more →",
   "home.projects": "Apps",
   "home.more": "more projects →",
