@@ -460,8 +460,7 @@ export function CositasContent({
     }, FADE_OUT_MS - FADE_OVERLAP_MS);
   }
 
-  const items = [...itemsProp].sort((a, b) => b.date.localeCompare(a.date));
-  const filtered = items.filter((item) => matchesFilter(item, displayFilter));
+  const filtered = itemsProp.filter((item) => matchesFilter(item, displayFilter));
   const showCurrentlyReading = currentlyReading && displayFilter === "book";
   const fadeClass = fadePhase === "out" ? "ff-filter-fade-out" : "ff-filter-fade-in";
 
